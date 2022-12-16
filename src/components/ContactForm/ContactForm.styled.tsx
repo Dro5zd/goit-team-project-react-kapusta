@@ -1,15 +1,7 @@
 import styled from 'styled-components';
 import {Phone} from '@styled-icons/heroicons-solid/Phone';
 import {User} from '@styled-icons/heroicons-outline/User';
-import {ArrowLeftCircleFill} from '@styled-icons/bootstrap/ArrowLeftCircleFill';
 
-export const BackIcon = styled(ArrowLeftCircleFill)`
-  left: 21px;
-  top: 44px;
-  width: 25px;
-  position: absolute;
-  color: grey;
-`;
 
 export const ContactFormWrapper = styled.form`
   display: flex;

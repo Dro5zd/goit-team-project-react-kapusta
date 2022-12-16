@@ -2,6 +2,8 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {selectUsername} from '../../redux/auth/auth-selectors';
 import {logoutUser} from '../../redux/auth/auth-operations';
+import {BackIcon, ExitIcon, UserMenuTitle, UserMenuWrapper} from './UserMenu.styled';
+import {setShowApp} from '../../redux/contacts/contactsSlice';
 
 const UserMenu = () => {
     const userName = useAppSelector(selectUsername)
@@ -9,12 +11,16 @@ const UserMenu = () => {
     const logOutHandler = () => {
         dispatch(logoutUser())
     }
+    const showAppHandler = () => {
+        dispatch(setShowApp())
+    }
 
     return (
-        <div>
-            <p>{userName}</p>
-            <button onClick={logOutHandler}>Logout</button>
-        </div>
+        <UserMenuWrapper>
+            <BackIcon onClick={showAppHandler}/>
+            <UserMenuTitle>{userName}</UserMenuTitle>
+            <ExitIcon onClick={logOutHandler}>Logout</ExitIcon>
+        </UserMenuWrapper>
     );
 };
 

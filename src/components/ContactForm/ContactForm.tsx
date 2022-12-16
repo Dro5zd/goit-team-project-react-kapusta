@@ -1,5 +1,4 @@
 import {
-    BackIcon,
     ContactFormButton,
     ContactFormLabel,
     ContactFormTitle,
@@ -12,16 +11,14 @@ import {ChangeEvent, FormEvent, useState} from 'react';
 import {addContact} from '../../redux/contacts/contacts-operations';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {selectContacts} from '../../redux/contacts/contacts-selectors';
-import {IContact, setShowApp} from '../../redux/contacts/contactsSlice';
+import {IContact} from '../../redux/contacts/contactsSlice';
 
 export const ContactForm = () => {
 
     const dispatch = useAppDispatch()
 
     const contacts: IContact[] = useAppSelector(selectContacts)
-    const showAppHandler = () => {
-        dispatch(setShowApp())
-    }
+
 
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -53,7 +50,6 @@ export const ContactForm = () => {
 
     return (
         <div>
-            <BackIcon onClick={showAppHandler}/>
             <ContactFormTitle>Phonebook</ContactFormTitle>
             <ContactFormWrapper onSubmit={handleSubmit}>
                 <ContactFormLabel>

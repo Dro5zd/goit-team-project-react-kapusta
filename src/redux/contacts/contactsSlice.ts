@@ -36,7 +36,7 @@ const contactsSlice = createSlice({
     initialState: contactsInitialState,
     reducers: {
         filterContacts(state, action){
-            state = action.payload
+            state.filter = action.payload
         },
         setShowApp(state){
             state.showApp = !state.showApp

@@ -1,17 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import {IUser} from './authSlice';
-
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-const token = {
-    set(token: string) {
-        axios.defaults.headers.common.Authorization = token
-    },
-    unset(){
-        axios.defaults.headers.common.Authorization = ''
-    }
-}
+import {token} from '../../http/http';
 
 export const createUser = createAsyncThunk(
     "auth/createUser",

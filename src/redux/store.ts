@@ -18,16 +18,6 @@ const rootReducer = combineReducers({
     auth: persistedAuthReducer
 })
 
-// const contactsConfig = {
-//     key: 'contacts',
-//     storage,
-//     blacklist: ['filter']
-// }
-
-
-
-// const persistedReducer = persistReducer({contactsConfig, authConfig}, rootReducer)
-
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>

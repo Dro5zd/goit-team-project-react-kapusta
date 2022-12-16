@@ -1,21 +1,13 @@
 import styled from 'styled-components';
 import {Exit} from '@styled-icons/icomoon/Exit';
-import {ArrowLeftCircleFill} from '@styled-icons/bootstrap/ArrowLeftCircleFill';
+import {Home} from '@styled-icons/boxicons-solid/Home';
 
-export const BackIcon = styled(ArrowLeftCircleFill)`
-  left: 21px;
-  top: 44px;
-  width: 25px;
-  position: absolute;
-  color: grey;
-  cursor: pointer;
-`;
 
 export const UserMenuWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 41px 10px 10px 10px;
+  padding: 40px 15px 10px 15px;
   gap: 10px;
   width: 100%;
   background-color: #cecece;
@@ -24,9 +16,15 @@ export const UserMenuWrapper = styled.div`
 export const UserMenuTitle = styled.p`
   font-weight: bold;
 `;
+export const BackIcon = styled(Home)`
+  width: 25px;
+  margin-right: auto;
+  color: grey;
+  cursor: pointer;
+`;
 
 export const ExitIcon = styled(Exit)`
-  margin-top: 5px;
+  margin-top: 3px;
   color: grey;
   width: 25px;
   cursor: pointer;

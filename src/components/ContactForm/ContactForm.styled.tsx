@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import {Phone} from '@styled-icons/heroicons-solid/Phone';
 import {User} from '@styled-icons/heroicons-outline/User';
 
+interface UserIconProps {
+    top: string;
+}
+
 
 export const ContactFormWrapper = styled.form`
   display: flex;
@@ -72,10 +76,10 @@ export const PhoneIcon = styled(Phone)`
   left: 5px;
 `;
 
-export const UserIcon = styled(User)`
+export const UserIcon = styled(User)<UserIconProps>`
   color: grey;
   width: 20px;
   position: absolute;
-  top: 6px;
+  top: ${ (p) => p.top };
   left: 5px;
 `;

@@ -53,13 +53,13 @@ export const ContactsList = () => {
                     {contacts.filter(item => {
                         return item.name.toLowerCase().includes(filter);
                     })
-                        .map(({id, name, phoneNumber}) => {
+                        .map(({id, name, number}) => {
                             return <ContactsItem key={id}>
                                 <ContactsAvatar
                                     style={{backgroundColor: getRandomHexColor()}}>{avatarCreator(name)}</ContactsAvatar>
                                 <ContactsSpanWrapper>
                                     <ContactsSpan type={'name'}>{name}</ContactsSpan>
-                                    <ContactsSpan type={'number'}>{phoneNumber}</ContactsSpan>
+                                    <ContactsSpan type={'number'}>{number}</ContactsSpan>
                                 </ContactsSpanWrapper>
                                 <ContactsButton id={id} onClick={deleteUser}><DeleteIcon/></ContactsButton>
                             </ContactsItem>;

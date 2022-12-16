@@ -4,7 +4,7 @@ import {addContact, deleteContact, fetchContacts} from './contacts-operations';
 export interface IContact {
     id?: string,
     name: string,
-    phoneNumber: string
+    number: string
 }
 
 export interface IInitState {
@@ -66,11 +66,6 @@ const contactsSlice = createSlice({
                 const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
                 state.contacts.splice(index, 1);
             })
-        // .addCase(filterContacts.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.error = null;
-        //     state.contacts = action.payload;
-        // })
     }
 })
 export const { filterContacts, setShowApp } = contactsSlice.actions;

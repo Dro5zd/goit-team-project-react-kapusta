@@ -2,13 +2,19 @@ import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {
     ContactFormButton,
     ContactFormLabel,
-    ContactFormTitle,
     ContactFormWrapper,
-    Input
+    Input, UserIcon,
 } from '../ContactForm/ContactForm.styled';
 import {useAppDispatch} from '../../redux/store';
 import {createUser, loginUser} from '../../redux/auth/auth-operations';
-
+import {
+    EmailIcon,
+    FormButton,
+    FormTitle,
+    FormWrapper,
+    KeyIcon, RegFormTitle,
+    RegFormWrapper,
+} from './LoginRegisterForm.styled';
 
 const LoginRegisterForm = () => {
     const [isHidden, setIsHidden] = useState(true);
@@ -46,14 +52,14 @@ const LoginRegisterForm = () => {
         setPassword('');
     };
     return (
-        <>
-            <h1>CONTAppCTS</h1>
+        <FormWrapper>
+            <FormTitle>CONTAppCTS</FormTitle>
             {isHidden ?
-            <div>
-                <ContactFormTitle>Login</ContactFormTitle>
+            <RegFormWrapper>
+                <RegFormTitle>Login</RegFormTitle>
                 <ContactFormWrapper onSubmit={handleLoginSubmit}>
-                    <ContactFormLabel>
-                        <label className='auth-form__label' htmlFor='login_email'>E-mail</label>
+                    <ContactFormLabel>E-mail
+                        <EmailIcon/>
                         <Input
                             type='email'
                             name='e-mail'
@@ -64,8 +70,8 @@ const LoginRegisterForm = () => {
                             onChange={handleEmailChange}
                         />
                     </ContactFormLabel>
-                    <ContactFormLabel>
-                        <label className='auth-form__label' htmlFor='login_password'>Password</label>
+                    <ContactFormLabel>Password
+                        <KeyIcon/>
                         <Input
                             type='password'
                             name='password'
@@ -80,15 +86,16 @@ const LoginRegisterForm = () => {
                     </ContactFormLabel>
                     <ContactFormButton type="submit">Login</ContactFormButton>
                 </ContactFormWrapper>
-                <button className='login-form__button' onClick={()=> setIsHidden(!isHidden)}>
+                <FormButton onClick={()=> setIsHidden(!isHidden)}>
                     <span>Don't have an account? Sign up</span>
-                </button>
-            </div>
+                </FormButton>
+            </RegFormWrapper>
 :
-            <div>
-                <ContactFormTitle>Register</ContactFormTitle>
+            <RegFormWrapper>
+                <RegFormTitle>Register</RegFormTitle>
                 <ContactFormWrapper onSubmit={handleRegisterSubmit}>
                     <ContactFormLabel htmlFor='register_name'>Name
+                        <UserIcon top={'25px'}/>
                         <Input
                             type='text'
                             name='name'
@@ -103,6 +110,7 @@ const LoginRegisterForm = () => {
                         />
                     </ContactFormLabel>
                     <ContactFormLabel htmlFor='register_email'>E-mail
+                        <EmailIcon/>
                         <Input
                             type='email'
                             name='e-mail'
@@ -114,8 +122,8 @@ const LoginRegisterForm = () => {
                             title="Email must contain @ . For example example@gmail.com"
                         />
                     </ContactFormLabel>
-                    <ContactFormLabel>
-                        <label className='auth-form__label' htmlFor='register_password'>Password</label>
+                    <ContactFormLabel htmlFor='register_password'>Password
+                        <KeyIcon/>
                         <Input
                             type='password'
                             name='password'
@@ -130,11 +138,11 @@ const LoginRegisterForm = () => {
                     </ContactFormLabel>
                     <ContactFormButton type="submit">Register</ContactFormButton>
                 </ContactFormWrapper>
-                <button className='reg-form__button' onClick={()=> setIsHidden(!isHidden)}>
+                <FormButton onClick={()=> setIsHidden(!isHidden)}>
                     <span>Already have an account? Login here</span>
-                </button>
-            </div>}
-        </>
+                </FormButton>
+            </RegFormWrapper>}
+        </FormWrapper>
 
     );
 };

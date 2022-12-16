@@ -19,33 +19,29 @@ export const ContactForm = () => {
 
     const contacts: IContact[] = useAppSelector(selectContacts)
 
-
     const [name, setName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [number, setNumber] = useState('');
 
-    const addContactHandler = (name: string, phoneNumber: string) => {
-        if (!contacts.map(contact => contact.name).includes(name)) {
-            dispatch(addContact({name, phoneNumber} ))
-        } else alert(`${name} is already in contacts`);
-    };
 
     const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     };
 
     const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPhoneNumber(e.target.value);
+        setNumber(e.target.value);
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        addContactHandler(name, phoneNumber);
+        if (!contacts.map(contact => contact.name).includes(name)) {
+            dispatch(addContact({name, number} ))
+        } else alert(`${name} is already in contacts`);
         resetForm()
     };
 
     const resetForm = () => {
         setName('');
-        setPhoneNumber('');
+        setNumber('');
     };
 
     return (
@@ -53,7 +49,7 @@ export const ContactForm = () => {
             <ContactFormTitle>Phonebook</ContactFormTitle>
             <ContactFormWrapper onSubmit={handleSubmit}>
                 <ContactFormLabel>
-                    <UserIcon/>
+                    <UserIcon top={'6px'}/>
                     <Input
                         type="text"
                         name="name"
@@ -70,7 +66,7 @@ export const ContactForm = () => {
                     <Input
                         type="tel"
                         name="number"
-                        value={phoneNumber}
+                        value={number}
                         placeholder="Number"
                         onChange={handleNumberChange}
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {Exit} from '@styled-icons/icomoon/Exit';
 import {Home} from '@styled-icons/boxicons-solid/Home';
+import {Link} from 'react-router-dom';
 
 
 export const UserMenuWrapper = styled.div`
@@ -16,9 +17,13 @@ export const UserMenuWrapper = styled.div`
 export const UserMenuTitle = styled.p`
   font-weight: bold;
 `;
+
+export const BackIconLink = styled(Link)`
+  margin-right: auto;
+`;
 export const BackIcon = styled(Home)`
   width: 25px;
-  margin-right: auto;
+  
   color: grey;
   cursor: pointer;
 `;

@@ -2,8 +2,7 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {selectUsername} from '../../redux/auth/auth-selectors';
 import {logoutUser} from '../../redux/auth/auth-operations';
-import {BackIcon, ExitIcon, UserMenuTitle, UserMenuWrapper} from './UserMenu.styled';
-import {setShowApp} from '../../redux/contacts/contactsSlice';
+import {BackIcon, BackIconLink, ExitIcon, UserMenuTitle, UserMenuWrapper} from './UserMenu.styled';
 
 const UserMenu = () => {
     const userName = useAppSelector(selectUsername)
@@ -11,13 +10,10 @@ const UserMenu = () => {
     const logOutHandler = () => {
         dispatch(logoutUser())
     }
-    const showAppHandler = () => {
-        dispatch(setShowApp())
-    }
 
     return (
         <UserMenuWrapper>
-            <BackIcon onClick={showAppHandler}/>
+            <BackIconLink to="/"><BackIcon /></BackIconLink>
             <UserMenuTitle>{userName}</UserMenuTitle>
             <ExitIcon onClick={logOutHandler}>Logout</ExitIcon>
         </UserMenuWrapper>

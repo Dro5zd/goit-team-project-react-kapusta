@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {Key} from '@styled-icons/boxicons-solid/Key';
 import {Email} from '@styled-icons/material/Email';
+import {Link} from 'react-router-dom';
 
 export const FormWrapper = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ export const RegFormTitle = styled.h2`
   font-size: 20px;
 `;
 
-export const FormButton = styled.button`
+export const FormButton = styled(Link)`
   margin-top: 17px;
   padding: 10px 38px;
   background-color: black;
@@ -38,6 +39,7 @@ export const FormButton = styled.button`
   transition: background-color cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 5px;
   color: white;
+  text-decoration: none;
 `;
 export const EmailIcon = styled(Email)`
   color: grey;

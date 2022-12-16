@@ -4,7 +4,6 @@ import {
     ContactsButton,
     ContactsItem,
     ContactsListWrapper,
-    ContactsSpan,
     ContactsSpanWrapper,
     ContactsTitle,
     ContactsUl,
@@ -16,6 +15,7 @@ import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {selectContactFilter, selectContacts} from '../../redux/contacts/contacts-selectors';
 import {deleteContact, fetchContacts} from '../../redux/contacts/contacts-operations';
 import {IContact} from '../../redux/contacts/contactsSlice';
+import {EditableSpan} from '../EditableSpan/EditableSpan';
 
 export const ContactsList = () => {
     const contacts: IContact[] = useAppSelector(selectContacts)
@@ -58,8 +58,8 @@ export const ContactsList = () => {
                                 <ContactsAvatar
                                     style={{backgroundColor: getRandomHexColor()}}>{avatarCreator(name)}</ContactsAvatar>
                                 <ContactsSpanWrapper>
-                                    <ContactsSpan type={'name'}>{name}</ContactsSpan>
-                                    <ContactsSpan type={'number'}>{number}</ContactsSpan>
+                                    <EditableSpan type={'name'} value={name}/>
+                                    <EditableSpan type={'number'} value={number}/>
                                 </ContactsSpanWrapper>
                                 <ContactsButton id={id} onClick={deleteUser}><DeleteIcon/></ContactsButton>
                             </ContactsItem>;

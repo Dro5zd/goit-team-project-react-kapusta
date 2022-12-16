@@ -10,7 +10,6 @@ export interface IContact {
 export interface IInitState {
     contacts: IContact[],
     filter: '',
-    showApp: boolean
     isLoading: boolean,
     error: string | null,
 }
@@ -18,7 +17,6 @@ export interface IInitState {
 const contactsInitialState: IInitState = {
     contacts: [],
     filter: '',
-    showApp: true,
     isLoading: false,
     error: null,
 };
@@ -37,9 +35,6 @@ const contactsSlice = createSlice({
     reducers: {
         filterContacts(state, action){
             state.filter = action.payload
-        },
-        setShowApp(state){
-            state.showApp = !state.showApp
         }
     },
     extraReducers: (builder) => {
@@ -66,7 +61,13 @@ const contactsSlice = createSlice({
                 const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
                 state.contacts.splice(index, 1);
             })
+            // .addCase(editContact.fulfilled, (state, action) => {
+            //     state.isLoading = false;
+            //     state.error = null;
+            //     // const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
+            //     // state.contacts.splice(index, 1);
+            // })
     }
 })
-export const { filterContacts, setShowApp } = contactsSlice.actions;
+export const { filterContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer

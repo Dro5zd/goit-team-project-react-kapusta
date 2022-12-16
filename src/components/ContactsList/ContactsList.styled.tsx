@@ -47,7 +47,8 @@ export const ContactsAvatar = styled.div`
 `;
 
 export const ContactsSpanWrapper = styled.div`
-
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ContactsButton = styled.button`

@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
 import {IUser} from './authSlice';
-import {token} from '../../http/http';
+import {PrivateApi, PublicApi, token} from '../../http/http';
 
 export const createUser = createAsyncThunk(
     "auth/createUser",
     async ({name, email, password}: IUser, thunkAPI) => {
         try {
-            const res = await axios.post("/users/signup", {"name": name, "email": email, "password": password});
+            const res = await PublicApi.post("/users/signup", {"name": name, "email": email, "password": password});
             token.set(res.data.token)
             return res.data;
         } catch (error: any) {
@@ -20,7 +19,7 @@ export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async ({email, password}: IUser, thunkAPI) => {
         try {
-            const res = await axios.post("/users/login", {"email": email, "password": password});
+            const res = await PublicApi.post("/users/login", {"email": email, "password": password});
             token.set(res.data.token)
             return res.data;
         } catch (error: any) {
@@ -33,7 +32,7 @@ export const logoutUser = createAsyncThunk(
     "auth/logoutUser",
     async (_, thunkAPI) => {
         try {
-            const res = await axios.post("/users/logout");
+            const res = await PrivateApi.post("/users/logout");
             token.unset()
             return res.data;
         } catch (error: any) {
@@ -52,7 +51,7 @@ export const getUser = createAsyncThunk(
         }
             token.set(persistedToken)
         try {
-            const res = await axios.get("/users/current");
+            const res = await PrivateApi.get("/users/current");
             return res.data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.message);

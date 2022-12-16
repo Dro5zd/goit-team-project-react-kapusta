@@ -1,12 +1,19 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+
+export const PublicApi = axios.create({
+    baseURL: 'https://connections-api.herokuapp.com'
+})
+export const PrivateApi = axios.create({
+    baseURL: 'https://connections-api.herokuapp.com'
+})
 
 export const token = {
     set(token: string) {
-        axios.defaults.headers.common.Authorization = token
+        PrivateApi.defaults.headers.common.Authorization = token
     },
     unset(){
-        axios.defaults.headers.common.Authorization = ''
+        PrivateApi.defaults.headers.common.Authorization = null
     }
 }

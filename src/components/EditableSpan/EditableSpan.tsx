@@ -1,33 +1,34 @@
 import React, {ChangeEvent, useState} from 'react';
 import {ContactsSpan} from '../ContactsList/ContactsList.styled';
-// import {useAppDispatch} from '../../redux/store';
-// import {editContact} from '../../redux/contacts/contacts-operations';
+import {useAppDispatch} from '../../redux/store';
+import {editContact} from '../../redux/contacts/contacts-operations';
 
 type EditableSpanPropsType = {
+    id: string | undefined
     type: string
     value: string
 }
 
-export function EditableSpan(props: EditableSpanPropsType) {
+export function EditableSpan({id, type, value}: EditableSpanPropsType) {
     let [editMode, setEditMode] = useState(false);
-    let [title, setTitle] = useState(props.value);
+    let [editValue, setEditValue] = useState(value);
 
-    // const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
     const activateEditMode = () => {
         setEditMode(true);
-        setTitle(props.value);
+        setEditValue(value);
     }
     const activateViewMode = () => {
         setEditMode(false);
-        // dispatch(editContact(title))
-        // props.onChange(title);
+        //@ts-ignore
+        dispatch(editContact({contactId: id, [`${type}`]: editValue}));
     }
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
+        setEditValue(e.currentTarget.value)
     }
 
     return editMode
-        ?    <input value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
-        : <ContactsSpan type={props.type} onDoubleClick={activateEditMode}>{props.value}</ContactsSpan>
+        ?    <input id={id} name={type} value={editValue} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
+        : <ContactsSpan type={type} onDoubleClick={activateEditMode}>{value}</ContactsSpan>
 }

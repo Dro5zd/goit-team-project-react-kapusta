@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {addContact, deleteContact, fetchContacts} from './contacts-operations';
+import {addContact, deleteContact, editContact, fetchContacts} from './contacts-operations';
 
 export interface IContact {
     id?: string,
@@ -61,12 +61,12 @@ const contactsSlice = createSlice({
                 const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
                 state.contacts.splice(index, 1);
             })
-            // .addCase(editContact.fulfilled, (state, action) => {
-            //     state.isLoading = false;
-            //     state.error = null;
-            //     // const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
-            //     // state.contacts.splice(index, 1);
-            // })
+            .addCase(editContact.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
+                state.contacts.splice(index, 1, action.payload);
+            })
     }
 })
 export const { filterContacts } = contactsSlice.actions;

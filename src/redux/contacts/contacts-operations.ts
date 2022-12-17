@@ -2,6 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {IContact} from './contactsSlice';
 import {PrivateApi} from '../../http/http';
 
+interface IEdit {
+    contactId: string | undefined,
+    name: string,
+    number?: string
+}
+
 export const fetchContacts = createAsyncThunk(
     "contacts/fetchAll",
     async (_, thunkAPI) => {
@@ -25,7 +31,6 @@ export const addContact = createAsyncThunk(
         }
     }
 );
-
 export const deleteContact = createAsyncThunk(
     "contacts/deleteContact",
     async (contactId:string, thunkAPI) => {
@@ -37,12 +42,11 @@ export const deleteContact = createAsyncThunk(
         }
     }
 );
-
 export const editContact = createAsyncThunk(
-    "contacts/deleteContact",
-    async (contactId:string, thunkAPI) => {
+    "contacts/editContact",
+    async ({contactId, name, number}: IEdit, thunkAPI) => {
         try {
-            const response = await PrivateApi.patch(`/contacts/${contactId}`);
+            const response = await PrivateApi.patch(`/contacts/${contactId}`, {name: name, number: number});
             return response.data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.message);

@@ -29,6 +29,8 @@ export const ContactsList = () => {
     const deleteUser = (e: MouseEvent<HTMLButtonElement>) => {
         dispatch(deleteContact(e.currentTarget.id))
     };
+
+
     const avatarCreator = (name: string) => {
         const nameSplit = name.split(' ');
         if (nameSplit.length > 1) {
@@ -58,8 +60,8 @@ export const ContactsList = () => {
                                 <ContactsAvatar
                                     style={{backgroundColor: getRandomHexColor()}}>{avatarCreator(name)}</ContactsAvatar>
                                 <ContactsSpanWrapper>
-                                    <EditableSpan type={'name'} value={name}/>
-                                    <EditableSpan type={'number'} value={number}/>
+                                    <EditableSpan id={id} type={'name'} value={name}/>
+                                    <EditableSpan id={id} type={'number'} value={number}/>
                                 </ContactsSpanWrapper>
                                 <ContactsButton id={id} onClick={deleteUser}><DeleteIcon/></ContactsButton>
                             </ContactsItem>;

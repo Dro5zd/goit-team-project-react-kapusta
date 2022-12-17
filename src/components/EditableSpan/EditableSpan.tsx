@@ -21,7 +21,6 @@ export function EditableSpan({id, type, value}: EditableSpanPropsType) {
     }
     const activateViewMode = () => {
         setEditMode(false);
-        //@ts-ignore
         dispatch(editContact({contactId: id, [`${type}`]: editValue}));
     }
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {

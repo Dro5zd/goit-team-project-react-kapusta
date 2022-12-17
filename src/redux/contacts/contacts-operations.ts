@@ -4,7 +4,7 @@ import {PrivateApi} from '../../http/http';
 
 interface IEdit {
     contactId: string | undefined,
-    name: string,
+    name?: string,
     number?: string
 }
 

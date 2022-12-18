@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {addContact, deleteContact, editContact, fetchContacts} from './contacts-operations';
+import {Notify} from 'notiflix';
 
 export interface IContact {
     id?: string,
@@ -26,6 +27,7 @@ const handlePending = (state: IInitState) => {
 };
 const handleRejected = (state: IInitState, action: any) => {
     state.isLoading = false;
+    Notify.failure(`Something went wrong`);
     state.error = action.payload;
 };
 

@@ -1,5 +1,5 @@
 import {IphoneWrapper} from './components/IphoneWrapper/IphoneWrapper';
-import {useAppDispatch} from './redux/store';
+import {useAppDispatch, useAppSelector} from './redux/store';
 import {useEffect} from 'react';
 import {getUser} from './redux/auth/auth-operations';
 import {Route, Routes} from 'react-router-dom';
@@ -11,10 +11,13 @@ import {Layout} from './components/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Contacts from './pages/Contacts';
 import PublicRoute from './components/PublicRoute/PublicRoute';
+import {Loader} from './components/Loader/Loader';
+import {selectIsLoading} from './redux/contacts/contacts-selectors';
 
 
 export const App = () => {
     const dispatch = useAppDispatch()
+    const isLoading = useAppSelector(selectIsLoading)
 
     useEffect(() => {
         dispatch(getUser());
@@ -27,31 +30,35 @@ export const App = () => {
     }
 
     return (
-        <IphoneWrapper currentTime={currentTime()}>
-            <Routes>
-                <Route path="/" element={<Layout/>}>
-                    <Route index element={<Home/>}/>
-                    <Route path="/login" element={
+        <>
+            <Loader isLoading={isLoading}/>
+            <IphoneWrapper currentTime={currentTime()}>
+                <Routes>
+                    <Route path="/" element={<Layout/>}>
+                        <Route index element={<Home/>}/>
+                        <Route path="/login" element={
                             <PublicRoute>
                                 <Login/>
                             </PublicRoute>
                         }
-                    />
-                    <Route path="/register" element={
+                        />
+                        <Route path="/register" element={
                             <PublicRoute>
                                 <Register/>
                             </PublicRoute>
                         }
-                    />
-                    <Route path="/contacts" element={
+                        />
+                        <Route path="/contacts" element={
                             <PrivateRoute>
                                 <Contacts/>
                             </PrivateRoute>
                         }
-                    />
-                    <Route path="/*" element={<NotFound/>}/>
-                </Route>
-            </Routes>
-        </IphoneWrapper>
+                        />
+                        <Route path="/*" element={<NotFound/>}/>
+                    </Route>
+                </Routes>
+            </IphoneWrapper>
+        </>
+
     );
 };

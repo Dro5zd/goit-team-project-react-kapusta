@@ -7,6 +7,7 @@ interface IIphoneWrapper {
 }
 
 export const IphoneWrapper = ({currentTime, children}: IIphoneWrapper) => {
+
     return (
         <Iphone>
             <i>Speaker</i>

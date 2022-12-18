@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {Key} from '@styled-icons/boxicons-solid/Key';
 import {Email} from '@styled-icons/material/Email';
+import {Eye} from '@styled-icons/heroicons-solid/Eye';
+import {EyeOff} from '@styled-icons/heroicons-solid/EyeOff';
 import {Link} from 'react-router-dom';
 
 export const FormWrapper = styled.div`
@@ -55,4 +57,20 @@ export const KeyIcon = styled(Key)`
   position: absolute;
   top: 25px;
   left: 5px;
+`;
+
+export const EyeIcon = styled(Eye)`
+  color: grey;
+  width: 20px;
+  position: absolute;
+  top: 25px;
+  right: 5px;
+`;
+
+export const EyeOffIcon = styled(EyeOff)`
+  color: grey;
+  width: 20px;
+  position: absolute;
+  top: 25px;
+  right: 5px;
 `;

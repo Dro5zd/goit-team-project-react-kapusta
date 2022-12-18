@@ -8,7 +8,7 @@ import {
 import {useAppDispatch} from '../../redux/store';
 import {loginUser} from '../../redux/auth/auth-operations';
 import {
-    EmailIcon,
+    EmailIcon, EyeIcon, EyeOffIcon,
     FormButton,
     FormTitle,
     FormWrapper,
@@ -20,6 +20,7 @@ const LoginForm = () => {
     const dispatch = useAppDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [visible, setVisible] = useState(false);
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     };
@@ -34,13 +35,17 @@ const LoginForm = () => {
         resetForm()
     };
 
+    const visiblePasswordHandler = () => {
+       setVisible(!visible)
+    };
+
     const resetForm = () => {
         setEmail('');
         setPassword('');
     };
     return (
         <FormWrapper>
-            <FormTitle>CONTAppCTS</FormTitle>
+            <FormTitle>ContAPPcts</FormTitle>
             <RegFormWrapper>
                 <RegFormTitle>Login</RegFormTitle>
                 <ContactFormWrapper onSubmit={handleLoginSubmit}>
@@ -59,7 +64,7 @@ const LoginForm = () => {
                     <ContactFormLabel>Password
                         <KeyIcon/>
                         <Input
-                            type='password'
+                            type={visible ? 'text' : 'password'}
                             name='password'
                             id='login_password'
                             min='7'
@@ -69,6 +74,8 @@ const LoginForm = () => {
                             onChange={handlePasswordChange}
                             title="The password must be more than 7 characters"
                         />
+                        {visible ? <EyeOffIcon onClick={visiblePasswordHandler}/> :
+                            <EyeIcon onClick={visiblePasswordHandler}/>}
                     </ContactFormLabel>
                     <ContactFormButton type="submit">Login</ContactFormButton>
                 </ContactFormWrapper>

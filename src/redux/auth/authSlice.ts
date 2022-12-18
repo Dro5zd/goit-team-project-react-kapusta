@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {createUser, getUser, loginUser, logoutUser} from './auth-operations';
+import {Notify} from 'notiflix';
 
 export interface IUser {
     name?: string | null,
@@ -38,22 +39,33 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(createUser.pending, handlePending)
-            .addCase(createUser.rejected, handleRejected)
+            .addCase(createUser.rejected, (state: IInitState, action: any) => {
+                state.isLoading = false;
+                Notify.failure(`User with this email already exists`);
+                state.error = action.payload;
+            })
             .addCase(createUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
+                Notify.success(`Welcome, ${state.user.name}`);
                 state.isAuth = true;
             })
             .addCase(loginUser.pending, handlePending)
-            .addCase(loginUser.rejected, handleRejected)
+            .addCase(loginUser.rejected, (state: IInitState, action: any) => {
+                state.isLoading = false;
+                Notify.failure(`Wrong email or password`);
+                state.error = action.payload;
+            })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
+                Notify.success(`Welcome back, ${state.user.name}`);
                 state.isAuth = true;
             })
             .addCase(logoutUser.pending, handlePending)
             .addCase(logoutUser.rejected, handleRejected)
             .addCase(logoutUser.fulfilled, (state) => {
+                Notify.success(`See ya, ${state.user.name}`);
                 state.user = {name: null, email: null};
                 state.token = null;
                 state.isAuth = false;

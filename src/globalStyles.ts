@@ -42,12 +42,12 @@ export const Container = styled.div`
 @include ${device123.mobile} {
   width: ${device.mobile};
 } 
-@include ${device123.mobile} {
+@include ${device123.tablet} {
   padding-left: 32px;
   padding-right: 32px;
   width: ${device.tablet};
 } 
-@include ${device123.mobile} {
+@include ${device123.desktop} {
   padding-left: 16px;
   padding-right: 16px;
   width: ${device.desktop};

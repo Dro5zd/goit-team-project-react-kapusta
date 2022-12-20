@@ -2,18 +2,25 @@ import styled from "styled-components";
 import fon from "../../images/fon.png";
 
 export const Box = styled.div`
-  width: 320px;
+  min-width: 320px;
   margin: 0 auto;
   padding-top: 58px;
-  background-size: 320px 258px;
-  background-repeat: no-repeat;
-  background-image: url(${fon});
+
+  @media screen and (max-width: 479px) {
+    background-size: 100% 258px;
+    background-repeat: no-repeat;
+    background-image: url(${fon});
+  }
 `;
 
 export const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const BlockPicker = styled.div`
+  display: none;
 `;
 
 export const InputProduct = styled.input`

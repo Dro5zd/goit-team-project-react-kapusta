@@ -1,59 +1,57 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
+import {colors} from './utils/colors';
+import {device, device123} from './utils/mixins';
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
   body {
-    background-color: var(--white);
-    color: var(--black);
-    margin: 0;
-
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    font-family: 'Roboto', sans-serif;
+    background-color: ${colors.white};
+    color: ${colors.black};
   }
-
-  main {
-    padding-top: 54px;
-    @include media-min($tablet) {
-    padding-top: 63px;
-  }
-  }
-
-  //.no-scroll {
-  //  overflow: hidden;
-  //}
-  //
-  //.is-hidden {
-  //  opacity: 0;
-  //  pointer-events: none;
-  //  visibility: hidden;
-  //}
-  //
-  //.text-truncate {
-  //  white-space: nowrap;
-  //  overflow: hidden;
-  //  text-overflow: ellipsis;
-  //}
-  //
-  //.visually-hidden {
-  //  position: absolute;
-  //  width: 1px;
-  //  height: 1px;
-  //  margin: -1px;
-  //  border: 0;
-  //  padding: 0;
-  //
-  //  white-space: nowrap;
-  //  clip-path: inset(100%);
-  //  clip: rect(0 0 0 0);
-  //  overflow: hidden;
-  //}
 `;
+
+export const Container = styled.div`
+  width: 100%;
+  background-color: #fd5103;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+
+@include ${device123.mobile} {
+  width: ${device.mobile};
+} 
+@include ${device123.mobile} {
+  padding-left: 32px;
+  padding-right: 32px;
+  width: ${device.tablet};
+} 
+@include ${device123.mobile} {
+  padding-left: 16px;
+  padding-right: 16px;
+  width: ${device.desktop};
+}
+`
 
 export default GlobalStyle;

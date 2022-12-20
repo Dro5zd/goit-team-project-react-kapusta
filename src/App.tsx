@@ -25,7 +25,7 @@ export const App = () => {
     return (
         <>
             <Loader isLoading={isLoading}/>
-            <GlobalStyle />
+            <GlobalStyle/>
             <div>
                 <Routes>
                     <Route path="/" element={<Layout/>}>

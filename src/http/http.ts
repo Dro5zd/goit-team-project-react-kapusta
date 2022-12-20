@@ -1,12 +1,9 @@
 import axios from 'axios';
-
-
-
 export const PublicApi = axios.create({
-    baseURL: 'https://connections-api.herokuapp.com'
+    baseURL: 'https://kapusta-backend.goit.global'
 })
 export const PrivateApi = axios.create({
-    baseURL: 'https://connections-api.herokuapp.com'
+    baseURL: 'https://kapusta-backend.goit.global'
 })
 
 export const token = {

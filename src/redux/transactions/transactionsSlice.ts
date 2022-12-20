@@ -1,22 +1,22 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {addContact, deleteContact, editContact, fetchContacts} from './contacts-operations';
+import {addContact, deleteContact, editContact, fetchContacts} from './transactions-operations';
 import {Notify} from 'notiflix';
 
-export interface IContact {
+export interface ITransaction {
     id?: string,
     name: string,
     number: string
 }
 
 export interface IInitState {
-    contacts: IContact[],
+    transactions: ITransaction[],
     filter: '',
     isLoading: boolean,
     error: string | null,
 }
 
-const contactsInitialState: IInitState = {
-    contacts: [],
+const transactionsInitialState: IInitState = {
+    transactions: [],
     filter: '',
     isLoading: false,
     error: null,
@@ -31,11 +31,11 @@ const handleRejected = (state: IInitState, action: any) => {
     state.error = action.payload;
 };
 
-const contactsSlice = createSlice({
-    name: 'contacts',
-    initialState: contactsInitialState,
+const transactionsSlice = createSlice({
+    name: 'transactions',
+    initialState: transactionsInitialState,
     reducers: {
-        filterContacts(state, action){
+        filterTransaction(state, action){
             state.filter = action.payload
         }
     },
@@ -50,26 +50,26 @@ const contactsSlice = createSlice({
             .addCase(fetchContacts.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.contacts = action.payload;
+                state.transactions = action.payload;
             })
             .addCase(addContact.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.contacts.push(action.payload);
+                state.transactions.push(action.payload);
             })
             .addCase(deleteContact.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
-                state.contacts.splice(index, 1);
+                const index = state.transactions.findIndex((d: ITransaction )=> d.id === action.payload.id)
+                state.transactions.splice(index, 1);
             })
             .addCase(editContact.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                const index = state.contacts.findIndex((d: IContact )=> d.id === action.payload.id)
-                state.contacts.splice(index, 1, action.payload);
+                const index = state.transactions.findIndex((d: ITransaction )=> d.id === action.payload.id)
+                state.transactions.splice(index, 1, action.payload);
             })
     }
 })
-export const { filterContacts } = contactsSlice.actions;
-export const contactsReducer = contactsSlice.reducer
+export const { filterTransaction } = transactionsSlice.actions;
+export const transactionsReducer = transactionsSlice.reducer

@@ -10,7 +10,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Report from './pages/Report';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import {Loader} from './components/Loader/Loader';
-import {selectIsLoading} from './redux/contacts/contacts-selectors';
+import {selectIsLoading} from './redux/transactions/transactions-selectors';
 import GlobalStyle from './globalStyles';
 
 

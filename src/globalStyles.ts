@@ -1,6 +1,6 @@
 import styled, {createGlobalStyle} from 'styled-components';
 import {colors} from './utils/colors';
-import {device, device123} from './utils/mixins';
+import {device, size} from './utils/mixins';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -34,23 +34,28 @@ const GlobalStyle = createGlobalStyle`
 
 export const Container = styled.div`
   width: 100%;
-  background-color: #fd5103;
+  height: 342px;
+  border-bottom-left-radius: 100px;
+  background: #F5F6FB;
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
 
-@include ${device123.mobile} {
-  width: ${device.mobile};
-} 
-@include ${device123.tablet} {
+${device.mobile} {
+  width: ${size.mobile};
+};
+
+${device.tablet} {
   padding-left: 32px;
   padding-right: 32px;
-  width: ${device.tablet};
-} 
-@include ${device123.desktop} {
+  width: ${size.tablet};
+  height: 582px;
+};
+
+${device.desktop} {
   padding-left: 16px;
   padding-right: 16px;
-  width: ${device.desktop};
+  width: ${size.desktop};
 }
 `
 

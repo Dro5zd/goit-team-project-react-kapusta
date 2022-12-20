@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {IContact} from './contactsSlice';
+import {ITransaction} from './transactionsSlice';
 import {PrivateApi} from '../../http/http';
 
 interface IEdit {
@@ -9,7 +9,7 @@ interface IEdit {
 }
 
 export const fetchContacts = createAsyncThunk(
-    "contacts/fetchAll",
+    "transactions/fetchAll",
     async (_, thunkAPI) => {
         try {
             const response = await PrivateApi.get("/contacts");
@@ -21,8 +21,8 @@ export const fetchContacts = createAsyncThunk(
 );
 
 export const addContact = createAsyncThunk(
-    "contacts/addContact",
-    async ({name, number}: IContact, thunkAPI) => {
+    "transactions/addContact",
+    async ({name, number}: ITransaction, thunkAPI) => {
         try {
             const response = await PrivateApi.post("/contacts", {name: name, number: number});
             return response.data;
@@ -32,7 +32,7 @@ export const addContact = createAsyncThunk(
     }
 );
 export const deleteContact = createAsyncThunk(
-    "contacts/deleteContact",
+    "transactions/deleteContact",
     async (contactId:string, thunkAPI) => {
         try {
             const response = await PrivateApi.delete(`/contacts/${contactId}`);
@@ -43,7 +43,7 @@ export const deleteContact = createAsyncThunk(
     }
 );
 export const editContact = createAsyncThunk(
-    "contacts/editContact",
+    "transactions/editContact",
     async ({contactId, name, number}: IEdit, thunkAPI) => {
         try {
             const response = await PrivateApi.patch(`/contacts/${contactId}`, {name: name, number: number});

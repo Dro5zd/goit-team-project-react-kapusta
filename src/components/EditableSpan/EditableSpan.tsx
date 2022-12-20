@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useAppDispatch} from '../../redux/store';
-import {editContact} from '../../redux/contacts/contacts-operations';
+import {editContact} from '../../redux/transactions/transactions-operations';
 
 type EditableSpanPropsType = {
     id: string | undefined

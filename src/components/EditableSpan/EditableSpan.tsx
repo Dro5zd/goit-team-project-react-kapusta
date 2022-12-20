@@ -1,5 +1,4 @@
 import React, {ChangeEvent, useState} from 'react';
-import {ContactsSpan} from '../ContactsList/ContactsList.styled';
 import {useAppDispatch} from '../../redux/store';
 import {editContact} from '../../redux/contacts/contacts-operations';
 
@@ -29,5 +28,7 @@ export function EditableSpan({id, type, value}: EditableSpanPropsType) {
 
     return editMode
         ?    <input id={id} name={type} value={editValue} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
-        : <ContactsSpan type={type} onDoubleClick={activateEditMode}>{value}</ContactsSpan>
+        : <span
+            // type={type}
+            onDoubleClick={activateEditMode}>{value}</span>
 }

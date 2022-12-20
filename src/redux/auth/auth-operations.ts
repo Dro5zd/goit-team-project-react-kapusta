@@ -4,9 +4,9 @@ import {PrivateApi, PublicApi, token} from '../../http/http';
 
 export const createUser = createAsyncThunk(
     "auth/createUser",
-    async ({name, email, password}: IUser, thunkAPI) => {
+    async ({email, password}: IUser, thunkAPI) => {
         try {
-            const res = await PublicApi.post("/users/signup", {"name": name, "email": email, "password": password});
+            const res = await PublicApi.post("/users/signup", {"email": email, "password": password});
             token.set(res.data.token)
             return res.data;
         } catch (error: any) {

@@ -3,7 +3,6 @@ import {createUser, getUser, loginUser, logoutUser} from './auth-operations';
 import {Notify} from 'notiflix';
 
 export interface IUser {
-    name?: string | null,
     email: string | null,
     password?: string | null
 }
@@ -17,7 +16,7 @@ export interface IInitState {
 }
 
 const authInitialState: IInitState = {
-    user: {name: null, email: null},
+    user: {email: null},
     token: null,
     isAuth: false,
     isLoading: false,
@@ -47,7 +46,7 @@ const authSlice = createSlice({
             .addCase(createUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
-                Notify.success(`Welcome, ${state.user.name}`);
+                Notify.success(`Welcome, ${state.user.email}`);
                 state.isAuth = true;
             })
             .addCase(loginUser.pending, handlePending)
@@ -59,14 +58,14 @@ const authSlice = createSlice({
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
-                Notify.success(`Welcome back, ${state.user.name}`);
+                Notify.success(`Welcome back, ${state.user.email}`);
                 state.isAuth = true;
             })
             .addCase(logoutUser.pending, handlePending)
             .addCase(logoutUser.rejected, handleRejected)
             .addCase(logoutUser.fulfilled, (state) => {
-                Notify.success(`See ya, ${state.user.name}`);
-                state.user = {name: null, email: null};
+                Notify.success(`See ya, ${state.user.email}`);
+                state.user = {email: null};
                 state.token = null;
                 state.isAuth = false;
             })

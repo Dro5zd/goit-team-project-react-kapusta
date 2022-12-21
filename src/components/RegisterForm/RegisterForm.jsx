@@ -15,6 +15,9 @@ import * as yup from "yup";
 import { ButtonLink } from "../ButtonLink/ButtonLink";
 import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
 import { Button } from "../../components/Button/Button";
+import { useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { loginUser, registerUser } from "../../redux/auth/auth-operations";
 
 const initialValues = {
   email: "",
@@ -22,78 +25,100 @@ const initialValues = {
 };
 
 export const RegisterForm = () => {
-  // const handleSubmit = (values, actions) => {
-  //   actions.resetForm();
-  // };
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+  // const isLoading = useAppSelector(selectIsLoading);
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .email("Email must be a valid email")
+        .min(3)
+        .max(254)
+        .required("This is a required field"),
+      password: yup
+        .string()
+        .min(8)
+        .max(100)
+        .matches(
+          /^[A-Za-z0-9]*$/,
+          "Password can only contain letters and numbers"
+        )
+        .required("This is a required field"),
+    }),
+    onSubmit: (values, actions) => {
+      console.log(values, actions);
+      // alert(JSON.stringify(values, null, 2));
+      if (location.pathname === "/login") {
+        console.log("login", values);
+        dispatch(loginUser(values));
+      }
+
+      if (location.pathname === "/register") {
+        console.log("registe", values);
+        dispatch(registerUser(values));
+      }
+
+      actions.resetForm();
     },
   });
 
-  // const formik = useFormik({
-  //   initialValues,
-  //   validationSchema: yup.object().shape({
-  //     name: yup.string().required("Only letters"),
-  //     email: yup
-  //       .string()
-  //       .email("Email must be a valid email")
-  //       .min(3)
-  //       .max(254)
-  //       .required("This is a required field"),
-  //     password: yup
-  //       .string()
-  //       .min(8)
-  //       .max(100)
-  //       .matches(
-  //         /^[A-Za-z0-9]*$/,
-  //         "Password can only contain letters and numbers"
-  //       )
-  //       .required("This is a required field"),
-  //   }),
-  //   onSubmit: (values) => {
-  //     alert(JSON.stringify(values, null, 2));
-  //   },
-  // onSubmit: (values, actions) => {
-  //   console.log("onSubmi");
-  //   console.log(values, actions);
-  //   // actions.resetForm();
-  // },
-  // });
+  // const TextField = ({ type, label, name, placeholder, pattern }) => {
+  //   return (
+  //     <FieldStyle>
+  //       <LabelInput htmlFor={name}>
+  //         {formik.touched[name] && formik.errors[name] ? (
+  //           <ErrorText>*</ErrorText>
+  //         ) : null}
+  //         {label}:
+  //       </LabelInput>
+  //       <InputStyled
+  //         id={name}
+  //         type={type}
+  //         name={name}
+  //         autoComplete="off"
+  //         placeholder={placeholder}
+  //         onBlur={formik.handleBlur}
+  //         onChange={formik.handleChange}
+  //         value={formik.values[name]}
+  //         // {...formik.getFieldProps(name)}
+  //         pattern={pattern}
+  //         required
+  //       />
+  //       {formik.touched[name] && formik.errors[name] ? (
+  //         <ErrorText>{formik.errors[name]}</ErrorText>
+  //       ) : null}
+  //     </FieldStyle>
+  //   );
+  // };
 
-  // console.log(formik.errors, "error", formik.touched.email);
+  const renderButtons = () => {
+    if (location.pathname === "/login") {
+      return (
+        <>
+          <Button type="submit" color={"#FF751D"}>
+            Log in
+          </Button>
+          <ButtonLink to="/register">Registration</ButtonLink>
+        </>
+      );
+    }
+    if (location.pathname === "/register") {
+      return (
+        <>
+          <ButtonLink to="/login"> Log in</ButtonLink>
+          <Button type="submit" color={"#FF751D"}>
+            Registration
+          </Button>
+        </>
+      );
+    }
+  };
+
   return (
     <>
-      {/* <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          id="firstName"
-          name="firstName"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.firstName}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          id="lastName"
-          name="lastName"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.lastName}
-        />
-        <label htmlFor="email">Email Address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        <button type="submit">Submit</button>
-      </form> */}
-
       <FormStyle onSubmit={formik.handleSubmit}>
         <Content>
           <Text>You can log in with your Google Account:</Text>
@@ -116,14 +141,19 @@ export const RegisterForm = () => {
               {...formik.getFieldProps("email")}
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required
-              // className="form-control"
             />
             {formik.touched.email && formik.errors.email ? (
               <ErrorText>{formik.errors.email}</ErrorText>
             ) : null}
           </FieldStyle>
+
           <FieldStyle>
-            <LabelInput htmlFor="password">Number</LabelInput>
+            <LabelInput htmlFor="password">
+              {formik.touched.password && formik.errors.password ? (
+                <ErrorText>*</ErrorText>
+              ) : null}
+              Password:
+            </LabelInput>
             <InputStyled
               type="password"
               name="password"
@@ -139,14 +169,7 @@ export const RegisterForm = () => {
               <ErrorText>{formik.errors.password}</ErrorText>
             ) : null}
           </FieldStyle>
-          <BtnBox>
-            {/* <button type="">Log</button> */}
-            {/* <ButtonLink to="/login">Log in</ButtonLink> */}
-            <Button type="submit" color="true">
-              Log in
-            </Button>
-            <ButtonLink to="/register">Registration</ButtonLink>
-          </BtnBox>
+          <BtnBox>{renderButtons()}</BtnBox>
         </Content>
       </FormStyle>
     </>

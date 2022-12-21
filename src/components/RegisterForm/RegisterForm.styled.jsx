@@ -28,7 +28,7 @@ export const Content = styled.div`
 export const Text = styled.p`
   font-weight: 400;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   text-align: center;
   max-width: 222px;
   margin: 0 auto;
@@ -48,10 +48,13 @@ export const SubText = styled(Text)`
   }
 `;
 
-export const ErrorText = styled(Text)`
+export const ErrorText = styled.span`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.1;
   margin: 0;
-  color: ${colors.orange};
-  text-align: left;
+  color: ${colors.red};
+  /* text-align: left; */
   margin-top: 4px;
   margin-bottom: 0;
 `;

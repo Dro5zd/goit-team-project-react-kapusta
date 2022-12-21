@@ -6,7 +6,6 @@ import {
   BlockButton,
   BlockForm,
   BlockPicker,
-  Box,
   ButtonClear,
   ButtonInput,
   FormGroup,
@@ -18,7 +17,6 @@ const Form = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   return (
-    <Box>
       <FormGroup>
         <BlockForm>
           <BlockPicker>
@@ -46,7 +44,6 @@ const Form = () => {
           <ButtonClear>CLEAR</ButtonClear>
         </BlockButton>
       </FormGroup>
-    </Box>
   );
 };
 

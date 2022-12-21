@@ -43,7 +43,7 @@ export const Container = styled.div`
   background-size: 100% 342px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 20px;
+  padding: 104px 20px 0 20px;
 
 ${device.mobile} {
   width: ${size.mobile};

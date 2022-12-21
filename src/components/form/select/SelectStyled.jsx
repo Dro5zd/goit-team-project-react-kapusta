@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device } from "../../../utils/mixins";
+import { colors } from "../../../utils/colors";
 
 export const SelectCategory = styled.div`
   position: relative;
@@ -18,7 +19,7 @@ export const SelectHeader = styled.div`
   width: 280px;
   height: 44px;
   border: 2px solid #ffffff;
-  border-radius: 0 0 25px 0;
+  border-radius: 0 0 16px 0;
   background-color: #f5f6fb;
   cursor: pointer;
   ${device.tablet} {
@@ -32,8 +33,6 @@ export const SelectHeader = styled.div`
   }
 
   span {
-    font-family: "Roboto";
-    font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
@@ -44,7 +43,7 @@ export const SelectHeader = styled.div`
 
   img {
     position: absolute;
-    top: 20px;
+    top: 17px;
     right: 20px;
   }
 `;
@@ -54,15 +53,13 @@ export const SelectBody = styled.div`
   top: 100%;
   left: 0;
   right: 0;
-  background: #ffffff;
+  background: ${colors.white};
   border: 2px solid #f5f6fb;
   border-radius: 0 0 25px 0;
 
   div {
     padding: 8px 20px;
     height: 32px;
-    font-family: "Roboto";
-    font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;

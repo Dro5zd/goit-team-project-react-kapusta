@@ -1,11 +1,14 @@
 import React from 'react';
-import {Container} from '../globalStyles';
+import Form from '../components/form/Form';
+import { Container } from '../globalStyles';
+
 const Home = () => {
 
     return (
         <Container>
-            HOME
+            <Form/>
         </Container>
+
     );
 };
 export default Home

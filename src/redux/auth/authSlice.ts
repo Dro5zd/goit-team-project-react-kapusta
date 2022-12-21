@@ -15,7 +15,6 @@ export interface IUser {
     email: string | null,
     password?: string | null
     balance: number,
-    transactions: ITransaction[]
 }
 
 export interface IInitState {
@@ -31,15 +30,6 @@ const authInitialState: IInitState = {
         email: '',
         balance: 0,
         id: '',
-        transactions: [
-            {
-                description: '',
-                category: '',
-                amount: 0,
-                date: '',
-                _id: ''
-            }
-        ]
     },
     token: null,
     isAuth: false,
@@ -79,7 +69,9 @@ const authSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
-                state.user = action.payload.user;
+                state.user.email = action.payload.userData.email;
+                state.user.balance = action.payload.userData.balance;
+                state.user.id = action.payload.userData.id;
                 state.token = action.payload.token;
                 Notify.success(`Welcome back, ${state.user.email}`);
                 state.isAuth = true;

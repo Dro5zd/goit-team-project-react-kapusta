@@ -1,18 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {PrivateApi} from '../../http/http';
-
-interface ITransactionRequest {
-    description: string,
-    amount: number,
-    date: string,
-    category?: string
-}
+import {ITransaction} from './transactionsSlice';
 
 export const addIncome = createAsyncThunk(
     "transaction/addIncome",
-    async ({description, amount, date}: ITransactionRequest, thunkAPI) => {
+    async ({description, amount, date, category}: ITransaction, thunkAPI) => {
         try {
-            const response = await PrivateApi.post("/transaction/income", {description, amount, date});
+            const response = await PrivateApi.post("/transaction/income", {description, amount, date, category});
             return response.data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.message);
@@ -33,7 +27,7 @@ export const getIncome = createAsyncThunk(
 
 export const addExpense = createAsyncThunk(
     "transaction/addExpense",
-    async ({description, amount, date, category}: ITransactionRequest, thunkAPI) => {
+    async ({description, amount, date, category}: ITransaction, thunkAPI) => {
         try {
             const response = await PrivateApi.post("/transaction/expense", {description, amount, date, category});
             return response.data;
@@ -90,9 +84,9 @@ export const getExpenseCategories = createAsyncThunk(
 
 export const getTransPeriod = createAsyncThunk(
     "transaction/getTransPeriod",
-    async (_, thunkAPI) => {
+    async (date: string, thunkAPI) => {
         try {
-            const response = await PrivateApi.get("/transaction/period-data", {params: {}});
+            const response = await PrivateApi.get("/transaction/period-data", {params: {date}});
             return response.data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.message);

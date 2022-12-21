@@ -5,18 +5,20 @@ import {
     getIncome
 } from './transactions-operations';
 import {Notify} from 'notiflix';
+import {loginUser} from '../auth/auth-operations';
 
 export interface ITransaction {
     description: string,
     amount: number,
     date: string,
     category: string,
-    _id:string
+    _id?:string
 }
 
 interface ITransactionsInitState {
     transaction:{
         incomes: ITransaction[],
+        expenses: ITransaction[],
         monthStats: {
             [id: string]: string | number
         }
@@ -28,6 +30,15 @@ interface ITransactionsInitState {
 const transactionInitialState: ITransactionsInitState = {
     transaction: {
         incomes: [
+            {
+                "description": "Income description",
+                "amount": 100,
+                "date": "2020-12-31",
+                "category": "Доход",
+                "_id": "507f1f77bcf86cd799439011"
+            }
+        ],
+        expenses: [
             {
                 "description": "Income description",
                 "amount": 100,
@@ -95,6 +106,10 @@ const transactionsSlice = createSlice({
                 state.error = null;
                 const index = state.transaction.incomes.findIndex((d: ITransaction )=> d._id === action.payload.id)
                 state.transaction.incomes.splice(index, 1);
+            })
+
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.transaction = action.payload.userData.transactions;
             })
 
     }

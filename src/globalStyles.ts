@@ -1,6 +1,8 @@
 import styled, {createGlobalStyle} from 'styled-components';
 import {colors} from './utils/colors';
 import {device, size} from './utils/mixins';
+// @ts-ignore
+import greyRect from './assets/images/greyRect.png'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -34,9 +36,11 @@ const GlobalStyle = createGlobalStyle`
 
 export const Container = styled.div`
   width: 100%;
-  height: 342px;
+  height: 100vh;
   border-bottom-left-radius: 100px;
-  background: #F5F6FB;
+  background-image: url(${greyRect});
+  background-repeat: no-repeat;
+  background-size: 100% 342px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
@@ -49,7 +53,7 @@ ${device.tablet} {
   padding-left: 32px;
   padding-right: 32px;
   width: ${size.tablet};
-  height: 582px;
+  background-size: 100% 582px;
 };
 
 ${device.desktop} {

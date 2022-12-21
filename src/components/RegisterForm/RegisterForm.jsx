@@ -110,6 +110,7 @@ export const RegisterForm = () => {
               type="email"
               name="email"
               autoComplete="off"
+              placeholder="your@email.com"
               onChange={formik.handleChange}
               value={formik.values.email}
               {...formik.getFieldProps("email")}
@@ -127,6 +128,7 @@ export const RegisterForm = () => {
               type="password"
               name="password"
               autoComplete="off"
+              placeholder="Password"
               onChange={formik.handleChange}
               value={formik.values.password}
               {...formik.getFieldProps("password")}

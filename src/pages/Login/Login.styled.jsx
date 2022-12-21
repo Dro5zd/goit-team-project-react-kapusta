@@ -1,28 +1,28 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
+import { device, size } from "../../utils/mixins";
 import { ReactComponent as titleHero } from "../../images/svg/capusta-hero.svg";
 
 export const Container = styled.div`
   position: relative;
   padding: 86px 20px;
-  background-color: #f5f6fb;
-  min-height: 100vh;
+  /* background-color: ${colors.grayLight}; */
+  /* min-height: 100vh; */
   height: 100%;
   display: flex;
   flex-direction: column;
-  @media screen and (min-width: 1280px) {
-    justify-content: center;
-    padding: 0;
-    padding-bottom: 30px;
+
+  ${device.desktop} {
+    padding: 117px 0 30px;
     height: 100%;
-  }
+  } ;
 `;
 export const Content = styled.div`
   width: 100%;
   max-width: 426px;
   margin: 0 auto;
 
-  @media screen and (min-width: 1280px) {
+  ${device.desktop} {
     display: flex;
     max-width: 960px;
     align-items: center;
@@ -35,14 +35,12 @@ export const TitleBox = styled.div`
   width: 183px;
   margin-bottom: 50px;
 
-  @media screen and (min-width: 768px) {
+  ${device.tablet} {
     width: 307px;
     margin-bottom: 80px;
   }
-
-  @media screen and (min-width: 1280px) {
+  ${device.desktop} {
     width: 377px;
-    margin-bottom: 80px;
   }
 `;
 
@@ -50,6 +48,14 @@ export const Title = styled(titleHero)`
   width: 183px;
   height: 47px;
 
+  ${device.tablet} {
+    width: 306px;
+    height: 78px;
+  }
+  ${device.desktop} {
+    width: 377px;
+    height: 120px;
+  }
   @media screen and (min-width: 768px) {
     width: 306.52px;
     height: 77.69px;

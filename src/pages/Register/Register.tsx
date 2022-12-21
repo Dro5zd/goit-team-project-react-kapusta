@@ -1,4 +1,5 @@
 import React from "react";
+import { BackgroundLogin } from "../../components/BackgroundLogin/BackgroundLogin";
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
 import {
   Container,
@@ -10,15 +11,17 @@ import {
 
 const Register = () => {
   return (
-    <Container>
-      <Content>
-        <TitleBox>
-          <Title />
-          <TitleText>Smart Finance</TitleText>
-        </TitleBox>
-        <RegisterForm />
-      </Content>
-    </Container>
+    <BackgroundLogin>
+      <Container>
+        <Content>
+          <TitleBox>
+            <Title />
+            <TitleText>Smart Finance</TitleText>
+          </TitleBox>
+          <RegisterForm />
+        </Content>
+      </Container>
+    </BackgroundLogin>
   );
 };
 

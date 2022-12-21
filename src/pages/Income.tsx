@@ -1,11 +1,15 @@
 import React from 'react';
 import {Container} from '../globalStyles';
-const Login = () => {
+
+
+
+const Income = () => {
     return (
         <Container>
-            LOGIN
+           INCOME
         </Container>
     );
+
 };
 
-export default Login
+export default Income

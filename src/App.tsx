@@ -10,8 +10,10 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Report from './pages/Report';
 import PublicRoute from './components/PublicRoute/PublicRoute';
 import {Loader} from './components/Loader/Loader';
-import {selectIsLoading} from './redux/transactions/transactions-selectors';
+import {selectIsLoading} from './redux/transaction/transactions-selectors';
 import GlobalStyle from './globalStyles';
+import Expenses from './pages/Expenses';
+import Income from './pages/Income';
 
 
 export const App = () => {
@@ -29,7 +31,10 @@ export const App = () => {
             <div>
                 <Routes>
                     <Route path="/" element={<Layout/>}>
-                        <Route index element={<Home/>}/>
+                        <Route path="/" element={<Home/>}>
+                            <Route path="expenses" element={<Expenses/>}/>
+                            <Route path="income" element={<Income/>}/>
+                        </Route>
                         <Route path="/login" element={
                             <PublicRoute><Login/></PublicRoute>
                         }

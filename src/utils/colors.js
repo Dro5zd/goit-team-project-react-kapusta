@@ -3,8 +3,10 @@ export const colors = {
   white: "#FFFFFF",
   black: "#000000",
   grayLight: "#f5f6fb",
+  grayBg: "#f5f6fb",
   grayTitle: "#52555F",
   grayText: "#A6ABB9",
+  red: "#EB5757",
   // --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 };
 

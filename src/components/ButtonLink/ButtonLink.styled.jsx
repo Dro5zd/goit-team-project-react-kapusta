@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../utils/colors";
 
 export const StyledLink = styled(NavLink)`
   display: inline-flex;
@@ -33,8 +34,8 @@ export const StyledLink = styled(NavLink)`
   }
 
   &.active {
-    background: #ff751d;
-    color: var(--white);
+    background: ${colors.orange};
+    color: ${colors.white};
     filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
   }
 `;

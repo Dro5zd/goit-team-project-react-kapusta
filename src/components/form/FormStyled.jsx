@@ -1,33 +1,50 @@
 import styled from "styled-components";
-import fon from "../../images/fon.png";
+// import fon from "../../images/fon.png";
+import { device } from "../../utils/mixins";
+import { colors } from "../../utils/colors";
 
 export const Box = styled.div`
   min-width: 320px;
   margin: 0 auto;
   padding-top: 58px;
-
-  @media screen and (max-width: 479px) {
-    background-size: 100% 258px;
-    background-repeat: no-repeat;
-    background-image: url(${fon});
-  }
 `;
 
 export const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${device.desktop} {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+export const BlockForm = styled.div`
+  ${device.tablet} {
+    display: flex;
+  }
 `;
 
 export const BlockPicker = styled.div`
   display: none;
+  ${device.tablet} {
+    display: block;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 12px;
+      left: -14px;
+    }
+  }
 `;
 
 export const InputProduct = styled.input`
   width: 280px;
   height: 44px;
   border: 2px solid #ffffff;
-  border-radius: 25px 0 0 0;
+  border-radius: 22px 0 0 0;
   padding: 2px 20px;
   font-family: "Roboto";
   font-style: normal;
@@ -40,17 +57,37 @@ export const InputProduct = styled.input`
   &::placeholder {
     color: #c7ccdc;
   }
+  ${device.tablet} {
+    margin-left: 44px;
+    width: 186px;
+    background-color: #ffffff;
+    border-color: #f5f6fb;
+  }
+  ${device.desktop} {
+    margin-left: 32px;
+    width: 290px;
+  }
 `;
 
 export const BlockButton = styled.div`
   margin-top: 80px;
   display: flex;
   gap: 20px;
+  ${device.tablet} {
+    margin-top: 32px;
+    gap: 15px;
+  }
+
+  ${device.desktop} {
+    margin-top: 0;
+    margin-left: 32px;
+    gap: 16px;
+  }
 `;
 
 export const ButtonInput = styled.button`
   padding: 12px 35px;
-  background: #ff751d;
+  background: ${colors.orange};
   border-radius: 16px;
   border-color: transparent;
   outline: none;
@@ -76,3 +113,9 @@ export const ButtonClear = styled.button`
   color: #52555f;
   box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
 `;
+
+//  @media screen and (max-width: 479px) {
+//     background-size: 100% 258px;
+//     background-repeat: no-repeat;
+//     background-image: url(${fon});
+//   }

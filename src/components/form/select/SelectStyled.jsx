@@ -1,8 +1,14 @@
 import styled from "styled-components";
+import { device } from "../../../utils/mixins";
 
 export const SelectCategory = styled.div`
   position: relative;
   margin-top: -1px;
+  ${device.tablet} {
+    margin-top: 0;
+    margin-left: -1px;
+    height: 44px;
+  }
 `;
 export const SelectHeader = styled.div`
   padding: 2px 20px;
@@ -15,6 +21,15 @@ export const SelectHeader = styled.div`
   border-radius: 0 0 25px 0;
   background-color: #f5f6fb;
   cursor: pointer;
+  ${device.tablet} {
+    width: 186px;
+    border-radius: 0;
+    border-color: #f5f6fb;
+    background-color: #ffffff;
+  }
+  ${device.desktop} {
+    width: 169px;
+  }
 
   span {
     font-family: "Roboto";

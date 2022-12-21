@@ -7,13 +7,13 @@ export const Button = ({
   children,
   styled,
   onClickHandle,
-  color = "",
+  color,
   icon: Icon = null,
 }) => {
   return (
     <StyledButton
       type={type}
-      // color={color}
+      color={color}
       disabled={disabled}
       style={styled}
       onClick={onClickHandle}

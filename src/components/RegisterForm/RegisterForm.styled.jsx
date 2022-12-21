@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
-import { device, size } from "../../utils/mixins";
+import { device } from "../../utils/mixins";
 
 export const FormStyle = styled.form`
   background: ${colors.white};
@@ -14,18 +14,11 @@ export const FormStyle = styled.form`
     padding: 56px 89px;
     max-width: 426px;
   }
-  /* @media screen and (min-width: 1280px) {
-    max-width: 426px;
-  } */
 `;
 
 export const Content = styled.div`
   max-width: 240px;
   margin: 0 auto;
-
-  /* @media screen and (min-width: 768px) {
-    max-width: 259px;
-  } */
 
   ${device.desktop} {
     max-width: 259px;
@@ -35,22 +28,17 @@ export const Content = styled.div`
 export const Text = styled.p`
   font-weight: 400;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   text-align: center;
   max-width: 222px;
   margin: 0 auto;
   letter-spacing: 0.04em;
-  /* color: var(--text); */
   color: ${colors.grayTitle};
   margin-bottom: 16px;
   ${device.tablet} {
     max-width: 100%;
     margin-bottom: 36px;
   }
-  /* @media screen and (min-width: 768px) {
-    max-width: 100%;
-    margin-bottom: 36px;
-  } */
 `;
 
 export const SubText = styled(Text)`
@@ -58,16 +46,15 @@ export const SubText = styled(Text)`
   ${device.tablet} {
     margin-bottom: 20px;
   }
-  /* @media screen and (min-width: 768px) {
-    margin-bottom: 20px;
-  } */
 `;
 
-export const ErrorText = styled(Text)`
-  /* color: var(--red); */
+export const ErrorText = styled.span`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.1;
   margin: 0;
-  color: ${colors.orange};
-  text-align: left;
+  color: ${colors.red};
+  /* text-align: left; */
   margin-top: 4px;
   margin-bottom: 0;
 `;
@@ -81,9 +68,6 @@ export const FieldStyle = styled.div`
   ${device.tablet} {
     margin-bottom: 32px;
   }
-  /* @media screen and (min-width: 768px) {
-    margin-bottom: 32px;
-  } */
 `;
 export const BtnBox = styled.div`
   position: relative;
@@ -98,7 +82,10 @@ export const LabelInput = styled.label`
   line-height: 1.1;
   letter-spacing: 0.04em;
   margin-bottom: 12px;
-  color: ${colors.black}; ;
+  color: ${colors.black};
+  ${device.tablet} {
+    font-size: 12px;
+  }
 `;
 
 export const InputStyled = styled.input`
@@ -117,8 +104,6 @@ export const InputStyled = styled.input`
   line-height: 1.1;
   letter-spacing: 0.04em;
 
-  /* transition: border 250ms var(--timing-function); */
-
   &::placeholder {
     color: ${colors.grayText};
   }
@@ -132,6 +117,7 @@ export const InputStyled = styled.input`
 `;
 
 export const ButtonGoogle = styled.button`
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +125,6 @@ export const ButtonGoogle = styled.button`
   width: 122px;
   height: 40px;
   margin: 0 auto;
-  /* background: var(--grayLight); */
   background: ${colors.grayLight};
   border-radius: 26px;
   margin-bottom: 32px;

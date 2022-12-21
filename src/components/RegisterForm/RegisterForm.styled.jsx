@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { colors } from "../../utils/colors";
+import { device, size } from "../../utils/mixins";
 
 export const FormStyle = styled.form`
-  background: #ffffff;
+  background: ${colors.white};
   width: 100%;
   max-width: 100%;
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
@@ -21,9 +23,13 @@ export const Content = styled.div`
   max-width: 240px;
   margin: 0 auto;
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     max-width: 259px;
-  }
+  } */
+
+  ${device.desktop} {
+    max-width: 259px;
+  } ;
 `;
 
 export const Text = styled.p`
@@ -35,25 +41,32 @@ export const Text = styled.p`
   margin: 0 auto;
   letter-spacing: 0.04em;
   /* color: var(--text); */
-  color: #52555f;
+  color: ${colors.grayTitle};
   margin-bottom: 16px;
-  @media screen and (min-width: 768px) {
+  ${device.tablet} {
     max-width: 100%;
     margin-bottom: 36px;
   }
+  /* @media screen and (min-width: 768px) {
+    max-width: 100%;
+    margin-bottom: 36px;
+  } */
 `;
 
 export const SubText = styled(Text)`
   text-align: left;
-  @media screen and (min-width: 768px) {
+  ${device.tablet} {
     margin-bottom: 20px;
   }
+  /* @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  } */
 `;
 
 export const ErrorText = styled(Text)`
   /* color: var(--red); */
   margin: 0;
-  color: #eb5757;
+  color: ${colors.orange};
   text-align: left;
   margin-top: 4px;
   margin-bottom: 0;
@@ -65,9 +78,12 @@ export const FieldStyle = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
 
-  @media screen and (min-width: 768px) {
+  ${device.tablet} {
     margin-bottom: 32px;
   }
+  /* @media screen and (min-width: 768px) {
+    margin-bottom: 32px;
+  } */
 `;
 export const BtnBox = styled.div`
   position: relative;
@@ -82,7 +98,7 @@ export const LabelInput = styled.label`
   line-height: 1.1;
   letter-spacing: 0.04em;
   margin-bottom: 12px;
-  color: #000000;
+  color: ${colors.black}; ;
 `;
 
 export const InputStyled = styled.input`
@@ -90,8 +106,7 @@ export const InputStyled = styled.input`
   margin: 0;
   padding: 17px 19px;
   font: inherit;
-  /* background: var(--grayLight); */
-  background: #f6f7fb;
+  background: ${colors.grayLight};
   border-radius: 30px;
   height: 52px;
   width: 100%;
@@ -105,7 +120,7 @@ export const InputStyled = styled.input`
   /* transition: border 250ms var(--timing-function); */
 
   &::placeholder {
-    color: #a6abb9;
+    color: ${colors.grayText};
   }
 
   &:focus:invalid {
@@ -125,7 +140,7 @@ export const ButtonGoogle = styled.button`
   height: 40px;
   margin: 0 auto;
   /* background: var(--grayLight); */
-  background: #f6f7fb;
+  background: ${colors.grayLight};
   border-radius: 26px;
   margin-bottom: 32px;
 

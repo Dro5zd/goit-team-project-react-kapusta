@@ -14,6 +14,7 @@ import { selectIsLoading } from "./redux/transaction/transactions-selectors";
 import GlobalStyle from "./globalStyles";
 import Expenses from "./pages/Expenses";
 import Income from "./pages/Income";
+import { Header } from "./components/Header/Header";
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export const App = () => {
     <>
       <Loader isLoading={isLoading} />
       <GlobalStyle />
+      <Header/>
       <div>
         <Routes>
           <Route path="/" element={<Layout />}>

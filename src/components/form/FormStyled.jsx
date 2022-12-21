@@ -1,13 +1,6 @@
 import styled from "styled-components";
-// import fon from "../../images/fon.png";
 import { device } from "../../utils/mixins";
 import { colors } from "../../utils/colors";
-
-export const Box = styled.div`
-  min-width: 320px;
-  margin: 0 auto;
-  padding-top: 58px;
-`;
 
 export const FormGroup = styled.form`
   display: flex;
@@ -17,12 +10,15 @@ export const FormGroup = styled.form`
   ${device.desktop} {
     flex-direction: row;
     justify-content: center;
+    align-items: center;
   }
 `;
 
 export const BlockForm = styled.div`
-  ${device.tablet} {
     display: flex;
+  flex-direction: column;
+  ${device.tablet} {
+    flex-direction: row;
   }
 `;
 
@@ -44,10 +40,8 @@ export const InputProduct = styled.input`
   width: 280px;
   height: 44px;
   border: 2px solid #ffffff;
-  border-radius: 22px 0 0 0;
+  border-radius: 16px 0 0 0;
   padding: 2px 20px;
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
@@ -86,27 +80,23 @@ export const BlockButton = styled.div`
 `;
 
 export const ButtonInput = styled.button`
-  padding: 12px 35px;
+  padding: 16px 35px;
   background: ${colors.orange};
   border-radius: 16px;
-  border-color: transparent;
+  border: none;
   outline: none;
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 14px;
-  color: #ffffff;
+  color: ${colors.white};
 `;
 
 export const ButtonClear = styled.button`
-  padding: 12px 30px;
+  padding: 16px 30px;
   background: #f5f6fb;
   border-radius: 16px;
-  border-color: transparent;
+  border: none;
   outline: none;
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 14px;

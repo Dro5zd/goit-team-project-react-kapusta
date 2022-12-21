@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
-import {useAppDispatch} from '../../redux/store';
-import {editContact} from '../../redux/transactions/transactions-operations';
+// import {useAppDispatch} from '../../redux/store';
+// import {editContact} from '../../redux/transaction/transactions-operations';
 
 type EditableSpanPropsType = {
     id: string | undefined
@@ -12,7 +12,7 @@ export function EditableSpan({id, type, value}: EditableSpanPropsType) {
     let [editMode, setEditMode] = useState(false);
     let [editValue, setEditValue] = useState(value);
 
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
 
     const activateEditMode = () => {
         setEditMode(true);
@@ -20,7 +20,7 @@ export function EditableSpan({id, type, value}: EditableSpanPropsType) {
     }
     const activateViewMode = () => {
         setEditMode(false);
-        dispatch(editContact({contactId: id, [`${type}`]: editValue}));
+        // dispatch(editContact({contactId: id, [`${type}`]: editValue}));
     }
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setEditValue(e.currentTarget.value)

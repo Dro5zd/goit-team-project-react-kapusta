@@ -1,10 +1,21 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {createUser, getUser, loginUser, logoutUser} from './auth-operations';
+import {loginUser, logoutUser, registerUser} from './auth-operations';
 import {Notify} from 'notiflix';
 
+export interface ITransaction {
+    description: string,
+    category: string,
+    amount: number,
+    date: string,
+    _id: string
+}
+
 export interface IUser {
+    id: string | null,
     email: string | null,
     password?: string | null
+    balance: number,
+    transactions: ITransaction[]
 }
 
 export interface IInitState {
@@ -16,7 +27,20 @@ export interface IInitState {
 }
 
 const authInitialState: IInitState = {
-    user: {email: null},
+    user: {
+        email: '',
+        balance: 0,
+        id: '',
+        transactions: [
+            {
+                description: '',
+                category: '',
+                amount: 0,
+                date: '',
+                _id: ''
+            }
+        ]
+    },
     token: null,
     isAuth: false,
     isLoading: false,
@@ -37,15 +61,14 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(createUser.pending, handlePending)
-            .addCase(createUser.rejected, (state: IInitState, action: any) => {
+            .addCase(registerUser.pending, handlePending)
+            .addCase(registerUser.rejected, (state: IInitState, action: any) => {
                 state.isLoading = false;
                 Notify.failure(`User with this email already exists`);
                 state.error = action.payload;
             })
-            .addCase(createUser.fulfilled, (state, action) => {
+            .addCase(registerUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
-                state.token = action.payload.token;
                 Notify.success(`Welcome, ${state.user.email}`);
                 state.isAuth = true;
             })
@@ -65,16 +88,16 @@ const authSlice = createSlice({
             .addCase(logoutUser.rejected, handleRejected)
             .addCase(logoutUser.fulfilled, (state) => {
                 Notify.success(`See ya, ${state.user.email}`);
-                state.user = {email: null};
+                state.user = authInitialState.user;
                 state.token = null;
                 state.isAuth = false;
             })
-            .addCase(getUser.pending, handlePending)
-            .addCase(getUser.rejected, handleRejected)
-            .addCase(getUser.fulfilled, (state, action) => {
-                state.user = action.payload;
-                state.isAuth = true;
-            })
+            // .addCase(getUser.pending, handlePending)
+            // .addCase(getUser.rejected, handleRejected)
+            // .addCase(getUser.fulfilled, (state, action) => {
+            //     state.user = action.payload;
+            //     state.isAuth = true;
+            // })
     }
 })
 export const authReducer = authSlice.reducer

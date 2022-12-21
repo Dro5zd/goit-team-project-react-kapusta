@@ -1,6 +1,6 @@
 import {RootState} from '../store';
 
-export const selectTransactions = (state: RootState) => state.transactions.transactions;
+export const selectTransactions = (state: RootState) => state.transactions.transaction.incomes;
 export const selectIsLoading = (state: RootState) => state.transactions.isLoading;
 export const selectError = (state: RootState) => state.transactions.error;
-export const selectTransactionFilter = (state: RootState) => state.transactions.filter;
+// export const selectTransactionFilter = (state: RootState) => state.transactions.filter;

@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {transactionsReducer} from './transactions/transactionsSlice';
+import {transactionsReducer} from './transaction/transactionsSlice';
 import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE,} from 'redux-persist'
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import storage from 'redux-persist/lib/storage';

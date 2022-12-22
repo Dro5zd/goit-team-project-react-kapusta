@@ -15,7 +15,7 @@ export const FormGroup = styled.form`
 `;
 
 export const BlockForm = styled.div`
-    display: flex;
+  display: flex;
   flex-direction: column;
   ${device.tablet} {
     flex-direction: row;
@@ -89,6 +89,9 @@ export const ButtonInput = styled.button`
   font-size: 12px;
   line-height: 14px;
   color: ${colors.white};
+  ${device.desktop} {
+    padding: 14px 30px;
+  }
 `;
 
 export const ButtonClear = styled.button`
@@ -101,11 +104,12 @@ export const ButtonClear = styled.button`
   font-size: 12px;
   line-height: 14px;
   color: #52555f;
-  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+  /* box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4); */
+  ${device.tablet} {
+    border: 2px solid #f6f7fc;
+    background-color: ${colors.white};
+  }
+  ${device.desktop} {
+    padding: 14px 30px;
+  }
 `;
-
-//  @media screen and (max-width: 479px) {
-//     background-size: 100% 258px;
-//     background-repeat: no-repeat;
-//     background-image: url(${fon});
-//   }

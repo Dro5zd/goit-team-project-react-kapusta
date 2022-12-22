@@ -33,7 +33,7 @@ export const App = () => {
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
-            <Route
+           <Route
               path="/login"
               element={
                 <PublicRoute>

@@ -16,9 +16,7 @@ ${device.tablet}{
  padding: 12px 32px;
 }
 
-
 `
-
 export const Logo = styled(NavLink)`
 display: block;
 width: 100%;

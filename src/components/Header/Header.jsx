@@ -1,6 +1,6 @@
 
 import { Modal } from "../Modal/Modal"
-import { WrapperHeader, Logo, BoxUser, LinkHeader, BoxAvatar, ContentAvatar, UserName } from "./Header.styled"
+import { WrapperHeader, Logo, BoxUser, LinkHeader, BoxAvatar,  UserName } from "./Header.styled"
 import logo from '../../images/svg/logo.svg'
 import logout from '../../images/svg/logout.svg'
 import {  useState } from "react"

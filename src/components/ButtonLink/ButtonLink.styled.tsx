@@ -1,10 +1,8 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
 
-// import { createGlobalStyle } from "styled-components";
-
-export const StyledButton = styled.button`
-  border: none;
+export const StyledLink = styled(NavLink)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +11,7 @@ export const StyledButton = styled.button`
   height: 44px;
   background: ${(p) => (p.color ? "#ff751d" : "#F5F6FB")};
   border-radius: 16px;
-
-  font-family: "Roboto";
+  text-decoration: none;
   font-weight: 700;
   font-size: 12px;
   line-height: 1.1;
@@ -34,11 +31,9 @@ export const StyledButton = styled.button`
     box-shadow: 1px 2px 6px 1px rgba(33, 33, 33, 0.4);
   }
 
-  svg {
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
-    position: relative;
-    z-index: -1;
+  &.active {
+    background: ${colors.orange};
+    color: ${colors.white};
+    filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
   }
 `;

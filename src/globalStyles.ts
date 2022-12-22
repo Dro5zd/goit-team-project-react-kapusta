@@ -1,8 +1,8 @@
-import styled, {createGlobalStyle} from 'styled-components';
-import {colors} from './utils/colors';
-import {device, size} from './utils/mixins';
+import styled, { createGlobalStyle } from "styled-components";
+import { colors } from "./utils/colors";
+import { device, size } from "./utils/mixins";
 // @ts-ignore
-import greyRect from './assets/images/greyRect.png'
+import greyRect from "./assets/images/greyRect.png";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -32,6 +32,22 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${colors.white};
     color: ${colors.black};
   }
+
+  input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: #52555f;
+  -webkit-box-shadow: 0 0 0px 1000px #f6f7fb inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 `;
 
 export const Container = styled.div`
@@ -45,22 +61,22 @@ export const Container = styled.div`
   margin-right: auto;
   padding: 104px 20px 0 20px;
 
-${device.mobile} {
-  width: ${size.mobile};
-};
+  ${device.mobile} {
+    width: ${size.mobile};
+  }
 
-${device.tablet} {
-  padding-left: 32px;
-  padding-right: 32px;
-  width: ${size.tablet};
-  background-size: 100% 582px;
-};
+  ${device.tablet} {
+    padding-left: 32px;
+    padding-right: 32px;
+    width: ${size.tablet};
+    background-size: 100% 582px;
+  }
 
-${device.desktop} {
-  padding-left: 16px;
-  padding-right: 16px;
-  width: ${size.desktop};
-}
-`
+  ${device.desktop} {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: ${size.desktop};
+  }
+`;
 
 export default GlobalStyle;

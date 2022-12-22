@@ -1,8 +1,8 @@
 import React from 'react';
-import {  NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { Container } from '../../globalStyles';
-import { BlockLink, ButtonLink} from './HomeStyled';
+import { BlockLink, ButtonLink} from './Home.styled';
 
 const Home = () => {
 

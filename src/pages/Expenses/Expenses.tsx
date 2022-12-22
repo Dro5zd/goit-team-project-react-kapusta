@@ -4,6 +4,7 @@ import { Summary } from '../../components/Summary/Summary';
 import { Box } from './ExpensesStyled';
 
 
+
 const Expenses = () => {
     return (
         <div>

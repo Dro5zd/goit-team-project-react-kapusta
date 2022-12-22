@@ -1,20 +1,25 @@
 import { Backdrop, Content } from "./Modal.styled";
 import { createPortal } from "react-dom";
-import { useEffect } from "react";
-
+import React, {MouseEvent, useEffect} from 'react';
 const modalRoot = document.querySelector("#modal-root");
 
-export const Modal = ({ onClose, children }) => {
-  useEffect(() => {
-    document.querySelector("body").classList.add("no-scroll");
+interface IModal {
+  onClose: () => void,
+  children: JSX.Element,
+}
 
-    return () => {
-      document.querySelector("body").classList.remove("no-scroll");
-    };
-  }, []);
+export const Modal = ({ onClose, children }: IModal) => {
+
+  // useEffect(() => {
+  //   document.querySelector("body").classList.add("no-scroll");
+  //
+  //   return () => {
+  //     document.querySelector("body").classList.remove("no-scroll");
+  //   };
+  // }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: any) => {
       if (e.code === "Escape") {
         onClose();
       }
@@ -27,7 +32,7 @@ export const Modal = ({ onClose, children }) => {
     };
   }, [onClose]);
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -37,6 +42,7 @@ export const Modal = ({ onClose, children }) => {
     <Backdrop onClick={handleBackdropClick}>
       <Content>{children}</Content>
     </Backdrop>,
+  // @ts-ignore
     modalRoot
   );
 };

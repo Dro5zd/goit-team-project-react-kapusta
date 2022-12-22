@@ -5,15 +5,18 @@ import { ReactComponent as titleHero } from "../../images/svg/capusta-hero.svg";
 
 export const Container = styled.div`
   position: relative;
-  padding: 86px 20px;
-  /* background-color: ${colors.grayLight}; */
-  /* min-height: 100vh; */
+  padding: 86px 20px 105px;
+
   height: 100%;
   display: flex;
   flex-direction: column;
 
+  ${device.tablet} {
+    padding: 13vh 0 155px;
+    height: 100%;
+  }
   ${device.desktop} {
-    padding: 117px 0 30px;
+    padding: 13vh 0 30px;
     height: 100%;
   } ;
 `;

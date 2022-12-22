@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, logoutUser, registerUser } from "./auth-operations";
+import { getUser, loginGoogle, loginUser, logoutUser } from "./auth-operations";
 import { Notify } from "notiflix";
 
 export interface ITransaction {
@@ -12,7 +12,6 @@ export interface ITransaction {
 
 export interface IUser {
   id: string | null;
-  sid: string | null;
   email: string | null;
   password?: string | null;
   balance: number;
@@ -20,6 +19,7 @@ export interface IUser {
 
 export interface IInitState {
   user: IUser;
+  sid: string;
   token: string | null;
   isAuth: boolean;
   isLoading: boolean;
@@ -30,9 +30,9 @@ const authInitialState: IInitState = {
   user: {
     email: "",
     balance: 0,
-    sid: "",
     id: "",
   },
+  sid: "",
   token: null,
   isAuth: false,
   isLoading: false,
@@ -53,18 +53,7 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, handlePending)
-      .addCase(registerUser.rejected, (state: IInitState, action: any) => {
-        state.isLoading = false;
-        Notify.failure(`User with this email already exists`);
-        state.error = action.payload;
-      })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        // state.user = action.payload;
-        Notify.success(`Welcome, ${state?.user?.email}`);
-        state.isAuth = true;
-      })
+
       .addCase(loginUser.pending, handlePending)
       .addCase(loginUser.rejected, (state: IInitState, action: any) => {
         state.isLoading = false;
@@ -72,14 +61,30 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user.email = action.payload.userData.email;
         state.user.balance = action.payload.userData.balance;
         state.user.id = action.payload.userData.id;
-        state.user.sid = action.payload.userData.sid;
-        state.token = action.payload.token;
+        state.sid = action.payload.sid;
+        state.token = action.payload.accessToken;
         Notify.success(`Welcome back, ${state.user.email}`);
         state.isAuth = true;
       })
+
+      .addCase(loginGoogle.pending, handlePending)
+      .addCase(loginGoogle.rejected, (state: IInitState, action: any) => {
+        state.isLoading = false;
+        Notify.failure(`Wrong email or password`);
+        state.error = action.payload;
+      })
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        console.log("loginGoogle", state, action);
+        state.isLoading = false;
+        state.token = action.payload.accessToken;
+        Notify.success(`Welcome back, ${state.user.email}`);
+        state.isAuth = true;
+      })
+
       .addCase(logoutUser.pending, handlePending)
       .addCase(logoutUser.rejected, handleRejected)
       .addCase(logoutUser.fulfilled, (state) => {
@@ -87,13 +92,14 @@ const authSlice = createSlice({
         state.user = authInitialState.user;
         state.token = null;
         state.isAuth = false;
+      })
+      .addCase(getUser.pending, handlePending)
+      .addCase(getUser.rejected, handleRejected)
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isAuth = true;
+        state.isLoading = false;
       });
-    // .addCase(getUser.pending, handlePending)
-    // .addCase(getUser.rejected, handleRejected)
-    // .addCase(getUser.fulfilled, (state, action) => {
-    //     state.user = action.payload;
-    //     state.isAuth = true;
-    // })
   },
 });
 export const authReducer = authSlice.reducer;

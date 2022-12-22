@@ -1,22 +1,21 @@
-import React from 'react';
-import {  Navigate, NavLink, Outlet } from 'react-router-dom';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import { BackgroundMain } from "../../components/BackgroundMain/BackgroundMain";
 
-import { Container } from '../../globalStyles';
-import { BlockLink, ButtonLink} from './Home.styled';
+import { Container } from "../../globalStyles";
+import { BlockLink, ButtonLink } from "./Home.styled";
 
 const Home = () => {
-
-    return (
-        
-        <Container>
-            <Navigate to="expenses"/>
-            <BlockLink>
-                <ButtonLink to="/home/expenses">EXPENSES </ButtonLink>
-                <ButtonLink to="/home/income">INCOME</ButtonLink>  
-            </BlockLink>
-            <Outlet/>
-        </Container>
-
-    );
+  return (
+    <BackgroundMain>
+      <Container>
+        <BlockLink>
+          <ButtonLink to="/home/expenses">EXPENSES </ButtonLink>
+          <ButtonLink to="/home/income">INCOME</ButtonLink>
+        </BlockLink>
+        <Outlet />
+      </Container>
+    </BackgroundMain>
+  );
 };
-export default Home
+export default Home;

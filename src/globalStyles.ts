@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { colors } from "./utils/colors";
 import { device, size } from "./utils/mixins";
-import greyRect from "./assets/images/greyRect.png";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -51,11 +50,8 @@ select:-webkit-autofill:focus {
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  border-bottom-left-radius: 100px;
-  background-image: url(${greyRect});
-  background-repeat: no-repeat;
-  background-size: 100% 342px;
+  min-height: calc(100vh - 56px);
+
   margin-left: auto;
   margin-right: auto;
   padding: 104px 20px 0 20px;

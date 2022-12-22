@@ -15,21 +15,24 @@ import GlobalStyle from "./globalStyles";
 import Expenses from "./pages/Expenses/Expenses";
 import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
-import { refreshUser } from "./redux/auth/auth-operations";
+import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
+import { getUser } from "./redux/auth/auth-operations";
+// import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
+  // const sid = useAppSelector(selectSid);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(getUser());
   }, [dispatch]);
 
   return (
     <>
       <Loader isLoading={isLoading} />
       <GlobalStyle />
-      <Header/>
+      <Header />
       <div>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -38,22 +41,43 @@ export const App = () => {
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
-            <Route
+            {/* <Route
               path="/login"
               element={
                 <PublicRoute>
                   <Login />
                 </PublicRoute>
               }
+            /> */}
+
+            {/* <Route
+              path="/login"
+              element={<RestrictedRoute redirectTo="/" component={<Login />} />}
+            /> */}
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/">
+                  <Login />
+                </RestrictedRoute>
+              }
             />
             <Route
+              path="/register"
+              element={
+                <RestrictedRoute redirectTo="/">
+                  <Register />
+                </RestrictedRoute>
+              }
+            />
+            {/* <Route
               path="/register"
               element={
                 <PublicRoute>
                   <Register />
                 </PublicRoute>
               }
-            />
+            /> */}
             <Route
               path="/report"
               element={

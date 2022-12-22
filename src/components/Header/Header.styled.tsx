@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { device } from "../../utils/mixins";
+import { device, size } from "../../utils/mixins";
 
 export const WrapperHeader = styled.div`
   display: flex;
@@ -16,6 +16,32 @@ export const WrapperHeader = styled.div`
   align-items: center;
   ${device.tablet} {
     padding: 12px 32px;
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  ${device.mobile} {
+    width: ${size.mobile};
+  }
+
+  ${device.tablet} {
+    padding: 0 32px;
+    width: ${size.tablet};
+    background-size: 100% 582px;
+  }
+
+  ${device.desktop} {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: ${size.desktop};
   }
 `;
 

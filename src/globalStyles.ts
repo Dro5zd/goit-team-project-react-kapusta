@@ -50,7 +50,8 @@ select:-webkit-autofill:focus {
 
 export const Container = styled.div`
   width: 100%;
-  min-height: calc(100vh - 56px);
+  max-width: 1400px;
+  /* min-height: calc(100vh - 56px); */
 
   margin-left: auto;
   margin-right: auto;

@@ -1,15 +1,13 @@
-import React from 'react';
-import {Container} from '../../globalStyles';
-
-
+import React from "react";
+import { BackgroundMain } from "../../components/BackgroundMain/BackgroundMain";
+import { Container } from "../../globalStyles";
 
 const Report = () => {
-    return (
-        <Container>
-           REPORT
-        </Container>
-    );
-
+  return (
+    <BackgroundMain>
+      <Container>REPORT</Container>
+    </BackgroundMain>
+  );
 };
 
-export default Report
+export default Report;

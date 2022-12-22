@@ -5,7 +5,7 @@ import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
 import { selectIsLoading } from "../../redux/auth/auth-selectors";
 import { useAppSelector } from "../../redux/store";
 import {
-  Container,
+  Wrapper,
   Title,
   Content,
   TitleBox,
@@ -21,7 +21,7 @@ const Register = () => {
 
   return (
     <BackgroundLogin>
-      <Container>
+      <Wrapper>
         <Content>
           <TitleBox>
             <Title />
@@ -29,7 +29,7 @@ const Register = () => {
           </TitleBox>
           <RegisterForm />
         </Content>
-      </Container>
+      </Wrapper>
     </BackgroundLogin>
   );
 };

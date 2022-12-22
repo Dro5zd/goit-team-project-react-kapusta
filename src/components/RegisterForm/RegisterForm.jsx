@@ -1,3 +1,14 @@
+import { omit } from "lodash-es";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { toast } from "react-toastify";
+import { ButtonLink } from "../ButtonLink/ButtonLink";
+import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
+import { Button } from "../Button/Button";
+import { useLocation } from "react-router-dom";
+import { useAppDispatch } from "../../redux/store";
+import { loginGoogle, loginUser } from "../../redux/auth/auth-operations";
+import { createUserService } from "../../http/services.user";
 import {
   ErrorText,
   FieldStyle,
@@ -10,14 +21,6 @@ import {
   SubText,
   Content,
 } from "./RegisterForm.styled";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { ButtonLink } from "../ButtonLink/ButtonLink";
-import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
-import { Button } from "../Button/Button";
-import { useLocation } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { loginUser, registerUser } from "../../redux/auth/auth-operations";
 
 const initialValues = {
   email: "",
@@ -49,56 +52,37 @@ export const RegisterForm = () => {
         .required("This is a required field"),
     }),
     onSubmit: (values, actions) => {
-      console.log(values, actions);
-      // alert(JSON.stringify(values, null, 2));
       if (location.pathname === "/login") {
         console.log("login", values);
         dispatch(loginUser(values));
       }
 
       if (location.pathname === "/register") {
-        console.log("registe", values);
-        dispatch(registerUser(values));
+        createUserService(values)
+          .then(() => {
+            toast.success("Success");
+            dispatch(loginUser(omit(values))).unwrap();
+          })
+          .then((data) => console.log("REG", data))
+          .catch(() => toast.error("Error"));
       }
 
       actions.resetForm();
     },
   });
 
-  // const TextField = ({ type, label, name, placeholder, pattern }) => {
-  //   return (
-  //     <FieldStyle>
-  //       <LabelInput htmlFor={name}>
-  //         {formik.touched[name] && formik.errors[name] ? (
-  //           <ErrorText>*</ErrorText>
-  //         ) : null}
-  //         {label}:
-  //       </LabelInput>
-  //       <InputStyled
-  //         id={name}
-  //         type={type}
-  //         name={name}
-  //         autoComplete="off"
-  //         placeholder={placeholder}
-  //         onBlur={formik.handleBlur}
-  //         onChange={formik.handleChange}
-  //         value={formik.values[name]}
-  //         // {...formik.getFieldProps(name)}
-  //         pattern={pattern}
-  //         required
-  //       />
-  //       {formik.touched[name] && formik.errors[name] ? (
-  //         <ErrorText>{formik.errors[name]}</ErrorText>
-  //       ) : null}
-  //     </FieldStyle>
-  //   );
-  // };
+  const handleLoginGoogle = () => {
+    console.log("handleLoginGoog");
+    dispatch(loginGoogle());
+  };
 
   const renderButtons = () => {
     if (location.pathname === "/login") {
       return (
         <>
-          <Button type="submit" color={"#FF751D"}>Log in</Button>
+          <Button type="submit" color={"#FF751D"}>
+            Log in
+          </Button>
           <ButtonLink to="/register">Registration</ButtonLink>
         </>
       );
@@ -107,7 +91,9 @@ export const RegisterForm = () => {
       return (
         <>
           <ButtonLink to="/login"> Log in</ButtonLink>
-          <Button type="submit" color={"#FF751D"}>Registration</Button>
+          <Button type="submit" color={"#FF751D"}>
+            Registration
+          </Button>
         </>
       );
     }
@@ -118,7 +104,7 @@ export const RegisterForm = () => {
       <FormStyle onSubmit={formik.handleSubmit}>
         <Content>
           <Text>You can log in with your Google Account:</Text>
-          <ButtonGoogle type="button" on>
+          <ButtonGoogle type="button" onClick={handleLoginGoogle}>
             <GoogleIcon /> Google
           </ButtonGoogle>
           <SubText>

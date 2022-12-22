@@ -13,7 +13,7 @@ import { BsFillBarChartFill } from "react-icons/bs";
 import { RxCalendar } from "react-icons/rx";
 import { BalanceNotification } from "../BalanceNotification/BalanceNotification";
 import { selectBalance } from "../../redux/auth/auth-selectors";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setInitBalance } from "../../redux/auth/authSlice";
 
@@ -22,7 +22,7 @@ export const Balance = () => {
   const dispatch = useDispatch();
   const [balance, setBalance] = useState(initBalance);
 
-  useEffect(() => {}, [balance]);
+  // useEffect(() => {}, [balance]);
 
   // const handleNotification = (e) => {
   //   document.querySelector(".balance-notification").classList.toggle("show");
@@ -34,7 +34,6 @@ export const Balance = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event);
     dispatch(setInitBalance(balance));
   };
 

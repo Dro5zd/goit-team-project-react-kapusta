@@ -4,6 +4,7 @@ import TableBalance from '../../components/Table/Table';
 import { Box } from './Expenses.styled';
 
 
+
 const Expenses = () => {
     return (
         <div>
@@ -11,6 +12,7 @@ const Expenses = () => {
                 <Form />
                 <TableBalance/>
             </Box>
+            <Summary></Summary>
         </div>
     );
 

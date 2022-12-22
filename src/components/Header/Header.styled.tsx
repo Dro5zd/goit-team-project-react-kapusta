@@ -51,6 +51,12 @@ margin-left: 16px;
 list-style-type: none;
  cursor: pointer;
 `
+export const ExitLogo = styled.img`
+
+width: 22px;
+color:#52555F;
+`
+
 export const Exit = styled.p`
 
 width: 22px;

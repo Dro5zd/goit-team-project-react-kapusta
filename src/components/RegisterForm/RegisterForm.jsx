@@ -6,8 +6,8 @@ import { ButtonLink } from "../ButtonLink/ButtonLink";
 import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
 import { Button } from "../Button/Button";
 import { useLocation } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { loginUser, registerUser } from "../../redux/auth/auth-operations";
+import { useAppDispatch } from "../../redux/store";
+import { loginUser } from "../../redux/auth/auth-operations";
 import {
   ErrorText,
   FieldStyle,
@@ -65,12 +65,6 @@ export const RegisterForm = () => {
           })
           .then((data) => console.log("REG", data))
           .catch(() => toast.error("Error"));
-        console.log("registe", values);
-        // dispatch(registerUser(values));const register =
-        // dispatch(omit(registerUser(values)))
-        //   .unwrap()
-        //   .then((data) => console.log(data));
-        // // dispatch(loginThunk(omit(values, "first_name", "last_name"))).unwrap();
       }
 
       actions.resetForm();

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const modalRoot = document.querySelector("#modal-root");
 
-export const ModalNew = ({ onClose, children }) => {
+export const Modal = ({ onClose, children }) => {
   useEffect(() => {
     document.querySelector("body").classList.add("no-scroll");
 

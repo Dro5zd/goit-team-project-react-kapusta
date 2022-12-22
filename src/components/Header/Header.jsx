@@ -1,22 +1,18 @@
-
-// import { Modal } from "../Modal/Modal";
 import {
   WrapperHeader,
   Logo,
-  BoxUser,
   LinkHeader,
   BoxAvatar,
-  ContentAvatar,
   UserName,
 } from "./Header.styled";
 import logo from "../../images/svg/logo.svg";
 import logout from "../../images/svg/logout.svg";
 import { useState } from "react";
-import { ModalNew } from "../Modal/ModalNew";
+import { Modal } from "../Modal/Modal";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const hendeleOpenModal = () => {
+  const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
   return (
@@ -37,9 +33,9 @@ export const Header = () => {
         {/* <Modal isOpen="isOpen" /> */}
       </WrapperHeader>
       {isOpen && (
-        <ModalNew onClose={hendeleOpenModal}>
+        <Modal onClose={handleOpenModal}>
           <div>Modal content</div>
-        </ModalNew>
+        </Modal>
       )}
     </>
   );

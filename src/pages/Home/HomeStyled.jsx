@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { colors } from "../utils/colors";
-import { device } from "../utils/mixins";
+import { colors } from "../../utils/colors";
+import { device } from "../../utils/mixins";
 
 export const BlockLink = styled.div`
   display: flex;

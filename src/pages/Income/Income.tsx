@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "../globalStyles";
-import Form from "../components/form/Form";
-import { Box } from "./ExpensesStyled";
+import { Container } from "../../globalStyles";
+import Form from "../../components/form/Form";
+import { Box } from "../Expenses/ExpensesStyled";
 
 
 const Income = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {  NavLink, Outlet } from 'react-router-dom';
 
-import { Container } from '../globalStyles';
+import { Container } from '../../globalStyles';
 import { BlockLink, ButtonLink} from './HomeStyled';
 
 const Home = () => {

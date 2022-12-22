@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { colors } from "../utils/colors";
-import { device } from "../utils/mixins";
+import { colors } from "../../utils/colors";
+import { device } from "../../utils/mixins";
 
 export const Box = styled.div`
   ${device.tablet} {

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Container } from '../globalStyles';
-import Form from '../components/form/Form';
+import Form from '../../components/form/Form';
 import { Box } from './ExpensesStyled';
 
 

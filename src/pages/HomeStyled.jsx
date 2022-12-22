@@ -12,11 +12,11 @@ export const BlockLink = styled.div`
 `;
 
 export const ButtonLink = styled(NavLink)`
+  text-decoration: none;
   ${device.tablet} {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
     width: 138px;
     height: 40px;
     font-weight: 700;

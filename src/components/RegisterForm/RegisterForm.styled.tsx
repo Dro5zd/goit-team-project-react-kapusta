@@ -128,8 +128,6 @@ export const ButtonGoogle = styled.button`
   background: ${colors.grayLight};
   border-radius: 26px;
   margin-bottom: 32px;
-
-  font-family: "Roboto";
   font-weight: 700;
   font-size: 14px;
   line-height: 1.1;

@@ -1,19 +1,22 @@
-import React, {MouseEvent, useEffect} from 'react';
+import React, {MouseEvent, useEffect, useState} from 'react';
 import {ModalDiv, OverlayModal} from './Modal.styled';
 
 interface IModal {
+    setIsOpen: (value: boolean) => void,
+    isOpen: boolean,
 }
 
-export function Modal({}: IModal) {
+export function Modal({isOpen, setIsOpen}: IModal) {
+    const [show, handleShow] = useState(false)
     const escHandler = (e: any) => {
         if (e.key === "Escape") {
-
+            setIsOpen(false)
         }
     }
 
     const closeModalOnBackdrop = (e: MouseEvent<HTMLDivElement>) => {
         if (e.currentTarget === e.target) {
-
+            setIsOpen(false)
         }
     };
 
@@ -26,6 +29,7 @@ export function Modal({}: IModal) {
 
     return <OverlayModal onClick={closeModalOnBackdrop}>
         <ModalDiv>
+
         </ModalDiv>
     </OverlayModal>
 }

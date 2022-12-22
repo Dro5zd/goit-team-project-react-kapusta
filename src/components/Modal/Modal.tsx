@@ -1,31 +1,48 @@
+import { Backdrop, Content } from "./Modal.styled";
+import { createPortal } from "react-dom";
 import React, {MouseEvent, useEffect} from 'react';
-import {ModalDiv, OverlayModal} from './Modal.styled';
+const modalRoot = document.querySelector("#modal-root");
 
 interface IModal {
+  onClose: () => void,
+  children: JSX.Element,
 }
 
-export function Modal({}: IModal) {
-    const escHandler = (e: any) => {
-        if (e.key === "Escape") {
+export const Modal = ({ onClose, children }: IModal) => {
 
-        }
-    }
+  // useEffect(() => {
+  //   document.querySelector("body").classList.add("no-scroll");
+  //
+  //   return () => {
+  //     document.querySelector("body").classList.remove("no-scroll");
+  //   };
+  // }, []);
 
-    const closeModalOnBackdrop = (e: MouseEvent<HTMLDivElement>) => {
-        if (e.currentTarget === e.target) {
-
-        }
+  useEffect(() => {
+    const handleKeyDown = (e: any) => {
+      if (e.code === "Escape") {
+        onClose();
+      }
     };
 
-    useEffect(() => {
-        document.addEventListener("keydown", escHandler);
-        return () => {
-            document.removeEventListener("keydown", escHandler);
-        };
-    }, []);
+    window.addEventListener("keydown", handleKeyDown);
 
-    return <OverlayModal onClick={closeModalOnBackdrop}>
-        <ModalDiv>
-        </ModalDiv>
-    </OverlayModal>
-}
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  return createPortal(
+    <Backdrop onClick={handleBackdropClick}>
+      <Content>{children}</Content>
+    </Backdrop>,
+  // @ts-ignore
+    modalRoot
+  );
+};

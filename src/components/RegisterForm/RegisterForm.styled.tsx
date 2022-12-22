@@ -31,10 +31,9 @@ export const Text = styled.p`
   line-height: 1.1;
   text-align: center;
   max-width: 222px;
-  margin: 0 auto;
+  margin: 0 auto 16px auto;
   letter-spacing: 0.04em;
   color: ${colors.grayTitle};
-  margin-bottom: 16px;
   ${device.tablet} {
     max-width: 100%;
     margin-bottom: 36px;
@@ -52,11 +51,9 @@ export const ErrorText = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.1;
-  margin: 0;
+  margin: 4px 0 0 0;
   color: ${colors.red};
   /* text-align: left; */
-  margin-top: 4px;
-  margin-bottom: 0;
 `;
 
 export const FieldStyle = styled.div`
@@ -124,12 +121,9 @@ export const ButtonGoogle = styled.button`
   padding: 12px;
   width: 122px;
   height: 40px;
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
   background: ${colors.grayLight};
   border-radius: 26px;
-  margin-bottom: 32px;
-
-  font-family: "Roboto";
   font-weight: 700;
   font-size: 14px;
   line-height: 1.1;

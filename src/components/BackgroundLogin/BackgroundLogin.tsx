@@ -1,6 +1,10 @@
 import { Content, GrayBg } from "./BackgroundLogin.styled";
 
-export const BackgroundLogin = ({ children }) => {
+interface IBackgroundLogin {
+    children: JSX.Element
+}
+
+export const BackgroundLogin = ({children}:IBackgroundLogin) => {
   return (
     <Content>
       <GrayBg />

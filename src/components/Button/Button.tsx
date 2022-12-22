@@ -1,5 +1,15 @@
 import { StyledButton } from "./Button.styled";
-import PropTypes from "prop-types";
+import {CSSProperties} from 'react';
+
+interface IButton {
+  type: "button" | "submit" | "reset" | undefined,
+  disabled?: boolean,
+  styled?: CSSProperties | undefined,
+  color: string
+  onClickHandle?: ()=> void,
+  children: string,
+  icon?: JSX.Element | null
+}
 
 export const Button = ({
   type = "button",
@@ -9,7 +19,7 @@ export const Button = ({
   onClickHandle,
   color,
   icon: Icon = null,
-}) => {
+}:IButton) => {
   return (
     <StyledButton
       type={type}
@@ -18,16 +28,11 @@ export const Button = ({
       style={styled}
       onClick={onClickHandle}
     >
+
+  {/*// @ts-ignore*/}
       {Icon && <Icon size="20" />}
       {children}
     </StyledButton>
   );
 };
 
-Button.propTypes = {
-  type: PropTypes.string,
-  // color: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onClickHandle: PropTypes.func,
-  children: PropTypes.node.isRequired,
-};

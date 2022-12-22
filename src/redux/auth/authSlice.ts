@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, loginUser, logoutUser } from "./auth-operations";
+import { getUser, loginGoogle, loginUser, logoutUser } from "./auth-operations";
 import { Notify } from "notiflix";
 
 export interface ITransaction {
@@ -61,7 +61,6 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log("logg", state, action);
         state.isLoading = false;
         state.user.email = action.payload.userData.email;
         state.user.balance = action.payload.userData.balance;
@@ -71,6 +70,21 @@ const authSlice = createSlice({
         Notify.success(`Welcome back, ${state.user.email}`);
         state.isAuth = true;
       })
+
+      .addCase(loginGoogle.pending, handlePending)
+      .addCase(loginGoogle.rejected, (state: IInitState, action: any) => {
+        state.isLoading = false;
+        Notify.failure(`Wrong email or password`);
+        state.error = action.payload;
+      })
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        console.log("loginGoogle", state, action);
+        state.isLoading = false;
+        state.token = action.payload.accessToken;
+        Notify.success(`Welcome back, ${state.user.email}`);
+        state.isAuth = true;
+      })
+
       .addCase(logoutUser.pending, handlePending)
       .addCase(logoutUser.rejected, handleRejected)
       .addCase(logoutUser.fulfilled, (state) => {
@@ -79,7 +93,6 @@ const authSlice = createSlice({
         state.token = null;
         state.isAuth = false;
       })
-
       .addCase(getUser.pending, handlePending)
       .addCase(getUser.rejected, handleRejected)
       .addCase(getUser.fulfilled, (state, action) => {

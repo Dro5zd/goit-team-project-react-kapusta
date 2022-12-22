@@ -18,6 +18,26 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+export const loginGoogle = createAsyncThunk(
+  "auth/loginGoogle",
+  async (_, thunkAPI) => {
+    try {
+      console.log("THunk goo");
+
+      const res = await PublicApi.get("/auth/google", {
+        headers: {
+          accept: "*/*",
+        },
+      });
+      console.log("Operat google", res.data);
+      token.set(res.data.accessToken);
+      getUser();
+      return res.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const logoutUser = createAsyncThunk(
   "auth/logoutUser",

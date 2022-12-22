@@ -7,7 +7,8 @@ import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
 import { Button } from "../Button/Button";
 import { useLocation } from "react-router-dom";
 import { useAppDispatch } from "../../redux/store";
-import { loginUser } from "../../redux/auth/auth-operations";
+import { loginGoogle, loginUser } from "../../redux/auth/auth-operations";
+import { createUserService } from "../../http/services.user";
 import {
   ErrorText,
   FieldStyle,
@@ -20,7 +21,6 @@ import {
   SubText,
   Content,
 } from "./RegisterForm.styled";
-import { createUserService } from "../../http/services.user";
 
 const initialValues = {
   email: "",
@@ -71,34 +71,10 @@ export const RegisterForm = () => {
     },
   });
 
-  // const TextField = ({ type, label, name, placeholder, pattern }) => {
-  //   return (
-  //     <FieldStyle>
-  //       <LabelInput htmlFor={name}>
-  //         {formik.touched[name] && formik.errors[name] ? (
-  //           <ErrorText>*</ErrorText>
-  //         ) : null}
-  //         {label}:
-  //       </LabelInput>
-  //       <InputStyled
-  //         id={name}
-  //         type={type}
-  //         name={name}
-  //         autoComplete="off"
-  //         placeholder={placeholder}
-  //         onBlur={formik.handleBlur}
-  //         onChange={formik.handleChange}
-  //         value={formik.values[name]}
-  //         // {...formik.getFieldProps(name)}
-  //         pattern={pattern}
-  //         required
-  //       />
-  //       {formik.touched[name] && formik.errors[name] ? (
-  //         <ErrorText>{formik.errors[name]}</ErrorText>
-  //       ) : null}
-  //     </FieldStyle>
-  //   );
-  // };
+  const handleLoginGoogle = () => {
+    console.log("handleLoginGoog");
+    dispatch(loginGoogle());
+  };
 
   const renderButtons = () => {
     if (location.pathname === "/login") {
@@ -128,7 +104,7 @@ export const RegisterForm = () => {
       <FormStyle onSubmit={formik.handleSubmit}>
         <Content>
           <Text>You can log in with your Google Account:</Text>
-          <ButtonGoogle type="button">
+          <ButtonGoogle type="button" onClick={handleLoginGoogle}>
             <GoogleIcon /> Google
           </ButtonGoogle>
           <SubText>

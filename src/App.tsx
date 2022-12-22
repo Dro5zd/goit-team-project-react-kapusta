@@ -16,6 +16,7 @@ import Expenses from "./pages/Expenses";
 import Income from "./pages/Income";
 import { Header } from "./components/Header/Header";
 import { refreshUser } from "./redux/auth/auth-operations";
+import { RestrictedRoute } from "./http/RestrictedRoute";
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -29,31 +30,57 @@ export const App = () => {
     <>
       <Loader isLoading={isLoading} />
       <GlobalStyle />
-      <Header/>
+      <Header />
       <div>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            {/* <Route index element={<Home />} /> */}
             <Route path="/home" element={<Home />}>
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
-            <Route
+            {/* <Route
               path="/login"
               element={
                 <PublicRoute>
                   <Login />
                 </PublicRoute>
               }
+            /> */}
+            <Route
+              path="/"
+              element={
+                <PrivateRoute redirectTo="/login" component={<Home />} />
+              }
+            />
+            {/* <Route
+              path="/login"
+              element={<RestrictedRoute redirectTo="/" component={<Login />} />}
+            /> */}
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/">
+                  <Login />
+                </RestrictedRoute>
+              }
             />
             <Route
+              path="/register"
+              element={
+                <RestrictedRoute redirectTo="/">
+                  <Register />
+                </RestrictedRoute>
+              }
+            />
+            {/* <Route
               path="/register"
               element={
                 <PublicRoute>
                   <Register />
                 </PublicRoute>
               }
-            />
+            /> */}
             <Route
               path="/report"
               element={

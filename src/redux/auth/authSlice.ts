@@ -72,6 +72,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        console.log("logg", state, action);
         state.user.email = action.payload.userData.email;
         state.user.balance = action.payload.userData.balance;
         state.user.id = action.payload.userData.id;

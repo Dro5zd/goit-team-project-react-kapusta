@@ -10,6 +10,8 @@ export const registerUser = createAsyncThunk(
         email: email,
         password: password,
       });
+
+      console.log("Operat register", res.data);
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
@@ -25,6 +27,7 @@ export const loginUser = createAsyncThunk(
         email: email,
         password: password,
       });
+      console.log("Operat login", res.data);
       token.set(res.data.accessToken);
       return res.data;
     } catch (error: any) {

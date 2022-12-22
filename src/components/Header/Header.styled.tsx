@@ -7,6 +7,8 @@ export const WrapperHeader = styled.div`
   position: fixed;
   z-index: 10;
   top: 0;
+  height: 56px;
+  max-height: 56px;
 
   background-color: #fff;
   width: 100%;

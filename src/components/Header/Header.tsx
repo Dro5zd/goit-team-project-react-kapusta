@@ -16,6 +16,22 @@ export const Header = () => {
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
+
+  const avatarCreator = (name: string) => {
+    const nameSplit = name.split(' ');
+    if (nameSplit.length > 1) {
+      return nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
+    } else {
+      return nameSplit[0].charAt(0).toUpperCase();
+    }
+  };
+
+  function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, '0')}`;
+  }
+
   return (
     <>
       <WrapperHeader>
@@ -24,10 +40,10 @@ export const Header = () => {
         </Logo>
         <BoxAvatar>U</BoxAvatar>
         <UserName>User Name</UserName>
-        <Link to={"/"}>
-          <ExitLogo src={logout} alt="log-out" width={16} />
-        </Link>
-        {/* <LinkHeader><p>Exit</p></LinkHeader> */}
+        {/*<Link to={"/"}>*/}
+          <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" width={16} />
+        {/*</Link>*/}
+        <p>Exit</p>
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>

@@ -9,15 +9,6 @@ interface IModal {
 }
 
 export const Modal = ({ onClose, children }: IModal) => {
-
-  // useEffect(() => {
-  //   document.querySelector("body").classList.add("no-scroll");
-  //
-  //   return () => {
-  //     document.querySelector("body").classList.remove("no-scroll");
-  //   };
-  // }, []);
-
   useEffect(() => {
     const handleKeyDown = (e: any) => {
       if (e.code === "Escape") {

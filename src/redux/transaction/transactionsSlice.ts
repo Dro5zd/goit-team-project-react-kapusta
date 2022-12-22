@@ -78,11 +78,7 @@ const handleRejected = (state: ITransactionsInitState, action: any) => {
 const transactionsSlice = createSlice({
     name: 'transaction',
     initialState: transactionInitialState,
-    reducers: {
-        // filterTransaction(state, action){
-        //     state.filter = action.payload
-        // }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getIncome.pending, handlePending)

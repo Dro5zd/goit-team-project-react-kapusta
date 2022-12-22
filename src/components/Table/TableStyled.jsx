@@ -11,11 +11,10 @@ export const TableBal = styled.table`
   flex-direction: column;
   th {
     height: 38px;
-    font-weight: bold;
     padding: 5px;
-    background: #f5f6fb;
+    background: ${colors.grayBg};
     border: none;
-    border-bottom: 2px solid #f2f8f8;
+    //border-bottom: 2px solid #f5f6fb;
     font-weight: 700;
     font-size: 12px;
     line-height: 14px;
@@ -46,13 +45,14 @@ export const TableBal = styled.table`
     flex-direction: column;
     overflow-y: scroll;
     height: 344px;
-    border: 2px solid #f2f8f8;
+    border: 2px solid ${colors.grayBg};
+    border-top: none;
 
     ::-webkit-scrollbar {
       width: 7px;
     }
     ::-webkit-scrollbar-track {
-      background-color: #f5f6fb;
+      background-color: ${colors.grayBg};
     }
     ::-webkit-scrollbar-thumb {
       background-color: ${colors.orange};
@@ -68,16 +68,16 @@ export const TableBal = styled.table`
         flex: 1 0 calc(100% / 4);
         display: flex;
         height: 40px;
-        border-bottom: 2px solid #f2f8f8;
+        border-bottom: 2px solid ${colors.grayBg};
       }
     }
   }
   tr td:first-child {
-    border-left: 2px solid #f2f8f8;
+    border-left: 2px solid ${colors.grayBg};
   }
   tr td:last-child {
     padding-right: 50px;
-    border-right: 2px solid #f2f8f8;
+    border-right: 2px solid ${colors.grayBg};
   }
 `;
 

@@ -12,7 +12,6 @@ const Expenses = () => {
                 <Form />
                 <TableBalance/>
             </Box>
-            <Summary></Summary>
         </div>
     );
 

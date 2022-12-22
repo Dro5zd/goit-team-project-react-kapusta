@@ -1,7 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import { BackgroundLogin } from "../../components/BackgroundLogin/BackgroundLogin";
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
+// @ts-ignore
 import { selectIsLoading } from "../../redux/auth/auth-selectors";
 import { useAppSelector } from "../../redux/store";
 import {

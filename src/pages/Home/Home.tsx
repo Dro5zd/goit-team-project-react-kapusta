@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import {Navigate, Outlet} from 'react-router-dom';
 import { BackgroundMain } from "../../components/BackgroundMain/BackgroundMain";
 
 import { Container } from "../../globalStyles";

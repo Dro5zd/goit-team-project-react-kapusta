@@ -1,3 +1,4 @@
+
 // import { Modal } from "../Modal/Modal";
 import {
   WrapperHeader,
@@ -24,6 +25,7 @@ export const Header = () => {
         <Logo to="/" end="true">
           <img src={logo} alt="Kapusta" width={90} />
         </Logo>
+
 
         <BoxAvatar>U</BoxAvatar>
         <UserName>User Name</UserName>

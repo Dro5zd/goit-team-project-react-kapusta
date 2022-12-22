@@ -8,7 +8,7 @@ interface IButton {
   color: string
   onClickHandle?: ()=> void,
   children: string,
-  icon?: any
+  icon?: JSX.Element | null
 }
 
 export const Button = ({
@@ -28,6 +28,8 @@ export const Button = ({
       style={styled}
       onClick={onClickHandle}
     >
+
+  {/*// @ts-ignore*/}
       {Icon && <Icon size="20" />}
       {children}
     </StyledButton>

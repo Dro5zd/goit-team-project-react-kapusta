@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../../components/form/Form';
-import { Box } from './ExpensesStyled';
+import { Box } from './Expenses.styled';
 
 
 const Expenses = () => {

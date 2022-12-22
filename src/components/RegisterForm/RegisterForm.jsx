@@ -1,3 +1,13 @@
+import { omit } from "lodash-es";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { toast } from "react-toastify";
+import { ButtonLink } from "../ButtonLink/ButtonLink";
+import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
+import { Button } from "../Button/Button";
+import { useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { loginUser, registerUser } from "../../redux/auth/auth-operations";
 import {
   ErrorText,
   FieldStyle,
@@ -10,14 +20,7 @@ import {
   SubText,
   Content,
 } from "./RegisterForm.styled";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { ButtonLink } from "../ButtonLink/ButtonLink";
-import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
-import { Button } from "../Button/Button";
-import { useLocation } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { loginUser, registerUser } from "../../redux/auth/auth-operations";
+import { createUserService } from "../../http/services.user";
 
 const initialValues = {
   email: "",
@@ -49,16 +52,25 @@ export const RegisterForm = () => {
         .required("This is a required field"),
     }),
     onSubmit: (values, actions) => {
-      console.log(values, actions);
-      // alert(JSON.stringify(values, null, 2));
       if (location.pathname === "/login") {
         console.log("login", values);
         dispatch(loginUser(values));
       }
 
       if (location.pathname === "/register") {
+        createUserService(values)
+          .then(() => {
+            toast.success("Success");
+            dispatch(loginUser(omit(values))).unwrap();
+          })
+          .then((data) => console.log("REG", data))
+          .catch(() => toast.error("Error"));
         console.log("registe", values);
-        dispatch(registerUser(values));
+        // dispatch(registerUser(values));const register =
+        // dispatch(omit(registerUser(values)))
+        //   .unwrap()
+        //   .then((data) => console.log(data));
+        // // dispatch(loginThunk(omit(values, "first_name", "last_name"))).unwrap();
       }
 
       actions.resetForm();
@@ -98,7 +110,9 @@ export const RegisterForm = () => {
     if (location.pathname === "/login") {
       return (
         <>
-          <Button type="submit" color={"#FF751D"}>Log in</Button>
+          <Button type="submit" color={"#FF751D"}>
+            Log in
+          </Button>
           <ButtonLink to="/register">Registration</ButtonLink>
         </>
       );
@@ -107,7 +121,9 @@ export const RegisterForm = () => {
       return (
         <>
           <ButtonLink to="/login"> Log in</ButtonLink>
-          <Button type="submit" color={"#FF751D"}>Registration</Button>
+          <Button type="submit" color={"#FF751D"}>
+            Registration
+          </Button>
         </>
       );
     }
@@ -118,7 +134,7 @@ export const RegisterForm = () => {
       <FormStyle onSubmit={formik.handleSubmit}>
         <Content>
           <Text>You can log in with your Google Account:</Text>
-          <ButtonGoogle type="button" on>
+          <ButtonGoogle type="button">
             <GoogleIcon /> Google
           </ButtonGoogle>
           <SubText>

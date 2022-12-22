@@ -15,15 +15,17 @@ import GlobalStyle from "./globalStyles";
 import Expenses from "./pages/Expenses/Expenses";
 import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
-import { refreshUser } from "./redux/auth/auth-operations";
-import { RestrictedRoute } from "./http/RestrictedRoute";
+import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
+import { getUser } from "./redux/auth/auth-operations";
+// import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
+  // const sid = useAppSelector(selectSid);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(getUser());
   }, [dispatch]);
 
   return (
@@ -34,7 +36,7 @@ export const App = () => {
       <div>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {/* <Route index element={<Home />} /> */}
+            <Route index element={<Home />} />
             <Route path="/home" element={<Home />}>
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
@@ -47,12 +49,7 @@ export const App = () => {
                 </PublicRoute>
               }
             /> */}
-            <Route
-              path="/"
-              element={
-                <PrivateRoute redirectTo="/login" component={<Home />} />
-              }
-            />
+
             {/* <Route
               path="/login"
               element={<RestrictedRoute redirectTo="/" component={<Login />} />}

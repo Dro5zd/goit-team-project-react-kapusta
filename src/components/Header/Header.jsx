@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Modal } from "../Modal/Modal";
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
@@ -21,7 +21,6 @@ export const Header = () => {
         <Logo to="/" end="true">
           <img src={logo} alt="Kapusta" width={90} />
         </Logo>
-
 
         <BoxAvatar>U</BoxAvatar>
         <UserName>User Name</UserName>

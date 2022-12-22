@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from '../../components/form/Form';
+import { Summary } from '../../components/Summary/Summary';
 import { Box } from './ExpensesStyled';
 
 
@@ -9,6 +10,7 @@ const Expenses = () => {
             <Box>
                 <Form />
             </Box>
+            <Summary></Summary>
         </div>
     );
 

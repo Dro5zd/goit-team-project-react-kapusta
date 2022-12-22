@@ -44,14 +44,14 @@ export const Backdrop = styled.div`
   z-index: 1200;
 `;
 export const Content = styled.div`
-  min-width: 450px;
-  padding: 60px;
-  background-color: rgba(250, 248, 248, 0.99);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
+  min-width: 380px;
+  min-height: 194px;
+  padding: 20px;
+  background-color: ${colors.white};
   color: ${colors.black};
+
+  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+border-radius: 30px;
   /* max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px); */
 `;

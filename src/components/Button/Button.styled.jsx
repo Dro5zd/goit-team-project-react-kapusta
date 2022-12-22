@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { colors } from "../../utils/colors";
 
 // import { createGlobalStyle } from "styled-components";
 
 export const StyledButton = styled.button`
+  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;

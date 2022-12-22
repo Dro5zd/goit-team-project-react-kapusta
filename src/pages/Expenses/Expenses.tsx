@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from '../../components/form/Form';
-import { Box } from './Expenses.styled';
+import { Summary } from '../../components/Summary/Summary';
+import { Box } from './ExpensesStyled';
+
 
 
 const Expenses = () => {
@@ -9,6 +11,7 @@ const Expenses = () => {
             <Box>
                 <Form />
             </Box>
+            <Summary></Summary>
         </div>
     );
 

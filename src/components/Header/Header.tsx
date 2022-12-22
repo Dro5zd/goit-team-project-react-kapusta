@@ -1,14 +1,14 @@
 import {
   WrapperHeader,
   Logo,
-  LinkHeader,
   BoxAvatar,
-  UserName,
-} from "./Header.styled";
+  UserName, ExitLogo,
+} from './Header.styled';
 import logo from "../../images/svg/logo.svg";
 import logout from "../../images/svg/logout.svg";
 import { useState } from "react";
 import { Modal } from "../Modal/Modal";
+import {Link} from 'react-router-dom';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,19 +18,15 @@ export const Header = () => {
   return (
     <>
       <WrapperHeader>
-        <Logo to="/" end="true">
+        <Logo to="/">
           <img src={logo} alt="Kapusta" width={90} />
         </Logo>
-
-
         <BoxAvatar>U</BoxAvatar>
         <UserName>User Name</UserName>
-
-        <LinkHeader>
-          <img src={logout} alt="log-out" width={16} />
-        </LinkHeader>
+        <Link to={'/'}>
+          <ExitLogo src={logout} alt="log-out" width={16} />
+        </Link>
         {/* <LinkHeader><p>Exit</p></LinkHeader> */}
-        {/* <Modal isOpen="isOpen" /> */}
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>

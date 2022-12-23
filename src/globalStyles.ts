@@ -45,12 +45,14 @@ select:-webkit-autofill:focus {
   /* -webkit-box-shadow: 0 0 0 1000px #f6f7fb inset; */
   transition: background-color 5000s ease-in-out 0s;
 }
-
 `;
 
 export const Container = styled.div`
   width: 100%;
   min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   margin-left: auto;
   margin-right: auto;

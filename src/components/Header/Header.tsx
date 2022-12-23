@@ -9,16 +9,20 @@ import {
   UserInfo
 
 } from "./Header.styled";
-import logo from "../../images/svg/logo.svg";
-import logout from "../../images/svg/logout.svg";
-import { useEffect, useState } from "react";
+
+import logo from "../../assets/images/svg/logo.svg";
+import logout from "../../assets/images/svg/logout.svg";
+import { useState } from "react";
 import { Modal } from "../Modal/Modal";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../redux/store";
+import { logoutUser } from "../../redux/auth/auth-operations";
+import { useAppDispatch } from "../../redux/store";
+import { ModalContent } from "../ModalContent/ModalContent";
 
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+
   const userName = useAppSelector(selectUsername)
 let firstLetter=''
   const userNameCreator = (name = '') => {
@@ -29,9 +33,13 @@ let firstLetter=''
   };
 
   
+
+
+
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
+
 
   
   
@@ -42,11 +50,26 @@ let firstLetter=''
   //   const cutName = str.substring(nameSearch, lengthString)
   // }
 
-  function getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, '0')}`;
-  }
+  // const avatarCreator = (name: string) => {
+  //   const nameSplit = name.split(' ');
+  //   if (nameSplit.length > 1) {
+  //     return nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
+  //   } else {
+  //     return nameSplit[0].charAt(0).toUpperCase();
+  //   }
+  // };
+
+
+  // function getRandomHexColor() {
+  //   return `#${Math.floor(Math.random() * 16777215)
+  //       .toString(16)
+  //       .padStart(6, '0')}`;
+  // }
+
+  const logoutHadler = () => {
+    dispatch(logoutUser());
+    handleOpenModal();
+  };
 
   return (
     <>
@@ -54,6 +77,7 @@ let firstLetter=''
         <Logo to="/">
           <img src={logo} alt="Kapusta" width={90} />
         </Logo>
+
         <UserInfo> <BoxAvatar>{firstLetter}</BoxAvatar>
         <UserName>{userName}</UserName>
        
@@ -63,10 +87,15 @@ let firstLetter=''
     <ExitButton type="button" onClick={handleOpenModal}>Exit</ExitButton>
 </UserInfo>
        
+
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>
-          <div>Modal content</div>
+          <ModalContent
+            onClose={handleOpenModal}
+            logOut={logoutHadler}
+            text="Do you really want to leave?"
+          />
         </Modal>
       )}
     </>

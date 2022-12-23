@@ -5,16 +5,24 @@ import {
   UserName,
   ExitLogo,
 } from "./Header.styled";
-import logo from "../../images/svg/logo.svg";
-import logout from "../../images/svg/logout.svg";
+import logo from "../../assets/images/svg/logo.svg";
+import logout from "../../assets/images/svg/logout.svg";
 import { useState } from "react";
 import { Modal } from "../Modal/Modal";
 import { Link } from "react-router-dom";
+import {useAppDispatch} from '../../redux/store';
+import {logoutUser} from '../../redux/auth/auth-operations';
 
 export const Header = () => {
+
+  const dispatch = useAppDispatch()
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
+  };
+
+  const logOutHandler = () => {
+    dispatch(logoutUser())
   };
 
   const avatarCreator = (name: string) => {
@@ -43,7 +51,7 @@ export const Header = () => {
         {/*<Link to={"/"}>*/}
           <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" width={16} />
         {/*</Link>*/}
-        <p>Exit</p>
+        <button type="button" onClick={logOutHandler}>EXIT</button>
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>

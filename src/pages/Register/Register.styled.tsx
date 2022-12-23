@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
 import { device } from "../../utils/mixins";
-import { ReactComponent as titleHero } from "../../images/svg/capusta-hero.svg";
+import { ReactComponent as titleHero } from "../../assets/images/svg/capusta-hero.svg";
 
 export const Container = styled.div`
   position: relative;

@@ -40,7 +40,7 @@ export const Balance = () => {
   return (
     <>
       <BalanceContainer>
-        <Link to={"/"} className="reports-link">
+        <Link to={"/report"} className="reports-link">
           <span>Reports</span>
           <BsFillBarChartFill size={14} />
         </Link>
@@ -61,7 +61,7 @@ export const Balance = () => {
             // onMouseLeave={handleNotification}
           ></BalanceInput>
           {balance === 0 && <BalanceNotification />}
-          <BalanceBtn type="sumbit">CONFIRM</BalanceBtn>
+          <BalanceBtn type="submit">CONFIRM</BalanceBtn>
         </BalanceForm>
         <DateSpan>
           <RxCalendar size={20} />

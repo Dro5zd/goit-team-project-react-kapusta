@@ -7,7 +7,7 @@ import { Box } from "../Expenses/Expenses.styled";
 const Income = () => {
   return (
     <div>
-      <Box>
+      <Box page={'home'}>
         <Form />
         <TableBalance/>
       </Box>

@@ -7,12 +7,13 @@ interface IBox {
 }
 export const Box = styled.div`
   width: 320px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
   ${device.tablet} {
-    padding:${(p: IBox) => (p.page === 'report' ? "20px 40px" : "24px 40px 0 40px")};
+    padding:${(p: IBox) => (p.page === 'report' ? "20px 40px" : "24px 40px 42px 40px")};
     width: 704px;
     //height: 616px;
     background-color: ${colors.white};
@@ -25,5 +26,21 @@ export const Box = styled.div`
     padding:${(p: IBox) => (p.page === 'report' ? "20px 220px" : "32px 32px 60px 32px")};
     //height: 579px;
     margin: 0 auto;
+  }
+`;
+
+export const SummaryIn = styled.div`
+ display: none;
+  ${device.desktop} {
+    display: block;
+  }
+`;
+export const SummaryOut = styled.div`
+ display: none;
+  ${device.tablet} {
+    display: block;
+  } 
+  ${device.desktop} {
+    display: none;
   }
 `;

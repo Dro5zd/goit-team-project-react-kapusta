@@ -8,31 +8,37 @@ import {
   DateSpan,
   DoubleDots,
 } from "./Balance.styled";
-import {useAppDispatch, useAppSelector} from '../../redux/store';
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { BsFillBarChartFill } from "react-icons/bs";
 import { RxCalendar } from "react-icons/rx";
 import { BalanceNotification } from "../BalanceNotification/BalanceNotification";
 import { selectBalance } from "../../redux/auth/auth-selectors";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {setUserBalance} from '../../redux/auth/auth-operations';
+import { setUserBalance } from "../../redux/auth/auth-operations";
+import { Modal } from "../Modal/Modal";
+import { ModalContent } from "../ModalContent/ModalContent";
 
 export const Balance = () => {
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
   const [balance, setBalance] = useState(initBalance);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
-    setBalance(initBalance)
+    setBalance(initBalance);
   }, [initBalance]);
 
   // const handleNotification = (e) => {
   //   document.querySelector(".balance-notification").classList.toggle("show");
   // };
 
-
   const handleChange = (e) => {
-    const value = e.target.value
+    const value = e.target.value;
     setBalance(value);
   };
 
@@ -41,7 +47,13 @@ export const Balance = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    handleOpenModal();
+  };
+
+  const confirmHandler = (e) => {
     dispatch(setUserBalance(+balance));
+    e.preventDefault();
+    handleOpenModal();
   };
 
   return (
@@ -75,6 +87,16 @@ export const Balance = () => {
           <span>21.11.2012</span>
         </DateSpan>
       </BalanceContainer>
+      {isOpen && (
+        <Modal onClose={handleOpenModal}>
+          <ModalContent
+            onClose={handleOpenModal}
+            action={confirmHandler}
+            text="Are you sure?"
+            type="submit"
+          />
+        </Modal>
+      )}
     </>
   );
 };

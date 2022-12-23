@@ -4,7 +4,7 @@ import { device } from "../../../utils/mixins";
 import {ReactComponent as products} from "../../../assets/images/svg/expenses/products.svg";
 
 interface IIcon {
-    active: boolean
+    active: string
 }
 export const CategoriesItemWrapper = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ export const CategoriesTotalSum = styled.p`
 export const CategoriesIcon = styled(products)`
   width: 56px;
   height: 56px;
-  fill: ${(p: IIcon) => (p.active ? `${colors.orange}` : `#071F41`)};
+  fill: ${(p: IIcon) => (p.active === 'true' ? `${colors.orange}` : `#071F41`)};
   ${device.tablet} {
 
   }

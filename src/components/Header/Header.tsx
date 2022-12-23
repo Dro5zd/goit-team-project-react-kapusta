@@ -1,4 +1,4 @@
-import { selectUsername } from "../../redux/auth/auth-selectors";
+import { selectIsAuth, selectUsername } from "../../redux/auth/auth-selectors";
 import {
   BoxAvatar,
   ExitButton,
@@ -8,7 +8,6 @@ import {
   UserName,
   WrapperHeader,
 } from "./Header.styled";
-
 import logo from "../../assets/images/svg/logo.svg";
 import logout from "../../assets/images/svg/logout.svg";
 import { useEffect, useState } from "react";
@@ -23,6 +22,7 @@ export const Header = () => {
   const [firstLetter, setFirstLetter] = useState("");
   const [userName, setUserName] = useState("");
   const userInitName = useAppSelector(selectUsername);
+  const isAuth = useAppSelector(selectIsAuth);
 
   const userNameCreator = (name: string) => {
     const letter = name?.split("")[0]?.toUpperCase();
@@ -65,23 +65,25 @@ export const Header = () => {
         <Logo to="/home">
           <img src={logo} alt="Kapusta" width={90} />
         </Logo>
-
-        <UserInfo>
-          {" "}
-          <BoxAvatar>{firstLetter}</BoxAvatar>
-          <UserName>{userName}</UserName>
-          <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" />
-          <ExitButton type="button" onClick={handleOpenModal}>
-            Exit
-          </ExitButton>
-        </UserInfo>
+        {isAuth && (
+          <UserInfo>
+            {" "}
+            <BoxAvatar>{firstLetter}</BoxAvatar>
+            <UserName>{userName}</UserName>
+            <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" />
+            <ExitButton type="button" onClick={handleOpenModal}>
+              Exit
+            </ExitButton>
+          </UserInfo>
+        )}
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>
           <ModalContent
             onClose={handleOpenModal}
-            logOut={logoutHandler}
             text="Do you really want to leave?"
+            action={logoutHandler}
+            type="button"
           />
         </Modal>
       )}

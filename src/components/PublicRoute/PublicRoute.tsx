@@ -1,9 +1,8 @@
-import { useAppSelector } from "../../redux/store";
-import { selectIsAuth } from "../../redux/auth/auth-selectors";
 import { Navigate } from "react-router-dom";
-export default function PublicRoute({ children }: any) {
-  const isAuth = useAppSelector(selectIsAuth);
-  console.log("isAuth", isAuth);
+import { selectIsAuth } from "../../redux/auth/auth-selectors";
+import { useAppSelector } from "../../redux/store";
 
-  return !isAuth ? children : <Navigate to="/" />;
-}
+export const PublicRoute = ({ children, redirectTo = "/" }: any) => {
+  const isAuth = useAppSelector(selectIsAuth);
+  return isAuth ? <Navigate to={redirectTo} /> : children;
+};

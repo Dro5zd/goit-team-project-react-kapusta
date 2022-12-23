@@ -90,6 +90,7 @@ const authSlice = createSlice({
         state.user = authInitialState.user;
         state.token = null;
         state.isAuth = false;
+        state.isLoading = false
       })
       .addCase(getUser.pending, handlePending)
       .addCase(getUser.rejected, handleRejected)

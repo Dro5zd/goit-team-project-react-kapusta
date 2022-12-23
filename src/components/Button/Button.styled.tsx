@@ -18,6 +18,7 @@ export const StyledButton = styled.button`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: ${(p) => (p.color ? "#ffffff" : "#52555F")};
+  cursor: pointer;
   filter: drop-shadow(
     ${(p) =>
       p.color

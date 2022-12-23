@@ -51,7 +51,11 @@ const handleRejected = (state: IInitState, action: any) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: authInitialState,
-  reducers: {},
+  reducers: {
+    setInitBalance(state, action) {
+      state.user.balance = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -101,3 +105,5 @@ const authSlice = createSlice({
   },
 });
 export const authReducer = authSlice.reducer;
+
+export const { setInitBalance } = authSlice.actions;

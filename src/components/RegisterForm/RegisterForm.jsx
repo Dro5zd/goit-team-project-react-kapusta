@@ -87,7 +87,7 @@ export const RegisterForm = () => {
         </>
       );
     }
-    if (location.pathname === "/register") {
+    if (location.pathname === "/register" || location.pathname === "/") {
       return (
         <>
           <ButtonLink to="/login"> Log in</ButtonLink>

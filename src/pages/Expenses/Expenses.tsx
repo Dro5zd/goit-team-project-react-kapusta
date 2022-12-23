@@ -10,7 +10,6 @@ const Expenses = () => {
         <Form />
         <TableBalance />
       </Box>
-      {/* <ry></Summary> */}
     </div>
   );
 };

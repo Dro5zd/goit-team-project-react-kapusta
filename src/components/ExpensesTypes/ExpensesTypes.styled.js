@@ -3,24 +3,15 @@ import { device } from "../../utils/mixins";
 import { colors } from "../../utils/colors";
 
 export const StyledDiv = styled.div`
-  padding: 0 0 20px;
-  max-width: 100vw;
-
-  ${device.tablet} {
-    width: 704px;
-    margin: 0 auto;
-  }
-
-  ${device.tablet} {
-    padding: 20px 40px;
-  }
-
   .buttons-wrapper {
     display: flex;
     justify-content: center;
     gap: 15px;
 
-    /* margin-bottom: 20px; */
+    ${device.tablet} {
+      margin-bottom: 20px;
+      gap: 16px;
+    }
   }
 
   .arrow-btn {
@@ -30,18 +21,13 @@ export const StyledDiv = styled.div`
     align-items: center;
 
     cursor: pointer;
-
-    /* img {
-      width: 4px;
-      height: 10px;
-    } */
   }
 
   .expenses-title {
     width: 96px;
     text-align: center;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 16/14;
     letter-spacing: 0.02em;
     color: ${colors.black};
   }
@@ -49,16 +35,32 @@ export const StyledDiv = styled.div`
   .expenses-list {
     width: 280px;
     margin: 0 auto;
-    /* display: flex; */
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 
+    ${device.tablet} {
+      width: 623px;
+    }
+
     li {
-      /* max-width: 93px; */
-      margin-top: 20px;
+      padding-top: 20px;
       padding-bottom: 20px;
       border-bottom: 1px solid grey;
+      flex-grow: 1;
+
+      width: 93px;
+      height: auto;
+
+      &:hover svg,
+      &:focus svg {
+        fill: ${colors.orange};
+      }
+
+      ${device.tablet} {
+        flex-grow: 0;
+        border-bottom: none;
+      }
     }
 
     a {
@@ -67,11 +69,18 @@ export const StyledDiv = styled.div`
 
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 5px;
     }
 
     img {
       margin: 0 auto;
+      color: red;
+      background: grey;
+    }
+
+    svg {
+      fill: #071f41;
     }
 
     p {
@@ -83,6 +92,7 @@ export const StyledDiv = styled.div`
     }
 
     h3 {
+      text-transform: uppercase;
       font-weight: 400;
       font-size: 12px;
       line-height: 12/14;

@@ -3,12 +3,10 @@ import Form from "../../components/form/Form";
 import TableBalance from "../../components/Table/Table";
 import { Box, SummaryIn, SummaryOut } from "./Expenses.styled";
 import { Summary } from "../../components/Summary/Summary";
-import { ExpensesTypes } from "../../components/ExpensesTypes/ExpensesTypes";
 
 const Expenses = () => {
   return (
     <div>
-      <ExpensesTypes />
       <Box page="home">
         <Form />
         <TableBalance />

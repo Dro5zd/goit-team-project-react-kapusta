@@ -36,7 +36,14 @@ export const App = () => {
       <div>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Login />} />
+            <Route
+              index
+              element={
+                <PublicRoute redirectTo="/home">
+                  <Login />
+                </PublicRoute>
+              }
+            />
             <Route
               path="/register"
               element={

@@ -8,6 +8,7 @@ import {
   UserName,
   WrapperHeader,
 } from "./Header.styled";
+
 import logo from "../../assets/images/svg/logo.svg";
 import logout from "../../assets/images/svg/logout.svg";
 import { useEffect, useState } from "react";
@@ -81,8 +82,8 @@ export const Header = () => {
         <Modal onClose={handleOpenModal}>
           <ModalContent
             onClose={handleOpenModal}
-            text="Do you really want to leave?"
             action={logoutHandler}
+            text="Do you really want to leave?"
             type="button"
           />
         </Modal>

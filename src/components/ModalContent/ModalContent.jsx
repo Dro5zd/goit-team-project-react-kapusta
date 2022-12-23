@@ -2,7 +2,7 @@ import close from "../../images/svg/close.svg";
 import { CloseBtn, Text } from "../Modal/Modal.styled";
 import { StyledButton } from "../Button/Button.styled";
 
-export const ModalContent = ({ onClose, logOut, text }) => {
+export const ModalContent = ({ onClose, action, type, text }) => {
   return (
     <div style={{ position: "relative", padding: "30px" }}>
       <CloseBtn type="button" onClick={onClose}>
@@ -10,7 +10,7 @@ export const ModalContent = ({ onClose, logOut, text }) => {
       </CloseBtn>
       <Text>{text}</Text>
       <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
-        <StyledButton type="button" color="white" onClick={logOut}>
+        <StyledButton type={type} color="white" onClick={action}>
           YES
         </StyledButton>
         <StyledButton type="button" onClick={onClose}>

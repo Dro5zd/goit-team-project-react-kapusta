@@ -65,8 +65,9 @@ export const Header = () => {
         <Modal onClose={handleOpenModal}>
           <ModalContent
             onClose={handleOpenModal}
-            logOut={logoutHadler}
+            action={logoutHadler}
             text="Do you really want to leave?"
+            type='button'
           />
         </Modal>
       )}

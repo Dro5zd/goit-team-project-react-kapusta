@@ -9,13 +9,14 @@ import {Layout} from './components/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Report from './pages/Report/Report';
 import {Loader} from './components/Loader/Loader';
-import {selectIsLoading} from './redux/transaction/transactions-selectors';
+
 import GlobalStyle from './globalStyles';
 import Expenses from './pages/Expenses/Expenses';
 import Income from './pages/Income/Income';
 import {Header} from './components/Header/Header';
 import {RestrictedRoute} from './components/RestrictedRoute/RestrictedRoute';
 import {getUser} from './redux/auth/auth-operations';
+import {selectIsLoading} from './redux/auth/auth-selectors';
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
@@ -39,7 +40,7 @@ export const App = () => {
                         <Route
                             path="/register"
                             element={
-                                <RestrictedRoute redirectTo="/">
+                                <RestrictedRoute redirectTo="/home">
                                     <Register/>
                                 </RestrictedRoute>
                             }
@@ -47,12 +48,13 @@ export const App = () => {
                         <Route
                             path="/login"
                             element={
-                                <RestrictedRoute redirectTo="/">
+                                <RestrictedRoute redirectTo="/home">
                                     <Login/>
                                 </RestrictedRoute>
                             }
                         />
                         <Route path="/home" element={<Home/>}>
+                            <Route index element={<Expenses/>}/>
                             <Route path="expenses" element={<Expenses/>}/>
                             <Route path="income" element={<Income/>}/>
                         </Route>

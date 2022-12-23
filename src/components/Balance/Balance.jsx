@@ -8,33 +8,40 @@ import {
   DateSpan,
   DoubleDots,
 } from "./Balance.styled";
-import { useAppSelector } from "../../redux/store";
+import {useAppDispatch, useAppSelector} from '../../redux/store';
 import { BsFillBarChartFill } from "react-icons/bs";
 import { RxCalendar } from "react-icons/rx";
 import { BalanceNotification } from "../BalanceNotification/BalanceNotification";
 import { selectBalance } from "../../redux/auth/auth-selectors";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setInitBalance } from "../../redux/auth/authSlice";
+import {setUserBalance} from '../../redux/auth/auth-operations';
 
 export const Balance = () => {
   const initBalance = useAppSelector(selectBalance);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [balance, setBalance] = useState(initBalance);
 
-  // useEffect(() => {}, [balance]);
+  useEffect(() => {
+    setBalance(initBalance)
+  }, [initBalance]);
 
   // const handleNotification = (e) => {
   //   document.querySelector(".balance-notification").classList.toggle("show");
   // };
 
+
   const handleChange = (e) => {
-    setBalance(e.target.value);
+    const value = e.target.value
+    setBalance(value);
   };
+
+  console.log(initBalance);
+  console.log(balance);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(setInitBalance(balance));
+    dispatch(setUserBalance(+balance));
   };
 
   return (
@@ -50,13 +57,13 @@ export const Balance = () => {
             <DoubleDots>:</DoubleDots>
           </BalanceLabel>
           <BalanceInput
-            type="number"
+            type="text"
             name="balance"
             id="balance"
             value={balance}
             placeholder="00.00 UAH"
             onChange={handleChange}
-
+            pattern="^[0-9]*$"
             // onMouseEnter={handleNotification}
             // onMouseLeave={handleNotification}
           ></BalanceInput>

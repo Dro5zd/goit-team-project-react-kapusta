@@ -1,4 +1,4 @@
-import {selectUsername} from '../../redux/auth/auth-selectors';
+import {selectIsAuth, selectUsername} from '../../redux/auth/auth-selectors';
 import {BoxAvatar, ExitButton, ExitLogo, Logo, UserInfo, UserName, WrapperHeader,} from './Header.styled';
 
 import logo from '../../assets/images/svg/logo.svg';
@@ -16,6 +16,7 @@ export const Header = () => {
     const [firstLetter, setFirstLetter] = useState('');
     const [userName, setUserName] = useState('');
     const userInitName = useAppSelector(selectUsername)
+    const isAuth = useAppSelector(selectIsAuth)
 
     const userNameCreator = (name: string) => {
         const letter = name?.split('')[0]?.toUpperCase()
@@ -62,15 +63,17 @@ export const Header = () => {
                 <Logo to="/home">
                     <img src={logo} alt="Kapusta" width={90}/>
                 </Logo>
-
-                <UserInfo> <BoxAvatar>{firstLetter}</BoxAvatar>
+                {
+                    isAuth && <UserInfo> <BoxAvatar>{firstLetter}</BoxAvatar>
                     <UserName>{userName}</UserName>
 
                     <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out"/>
 
 
                     <ExitButton type="button" onClick={handleOpenModal}>Exit</ExitButton>
-                </UserInfo>
+                  </UserInfo>
+                }
+
 
 
             </WrapperHeader>

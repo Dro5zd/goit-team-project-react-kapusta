@@ -10,7 +10,7 @@ export const Content = styled.div`
   flex-direction: column;
   position: relative;
   min-height: calc(100vh - 56px);
-  max-height: calc(100vh - 56px);
+  //max-height: calc(100vh - 56px);
   overflow: hidden;
   max-width: 100%;
 
@@ -39,7 +39,6 @@ export const Content = styled.div`
   }
 `;
 export const GrayBg = styled.div`
-  display: none;
   position: absolute;
   z-index: -1;
   top: 0;

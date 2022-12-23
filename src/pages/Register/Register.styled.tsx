@@ -3,7 +3,7 @@ import { colors } from "../../utils/colors";
 import { device } from "../../utils/mixins";
 import { ReactComponent as titleHero } from "../../assets/images/svg/capusta-hero.svg";
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   padding: 86px 20px 105px;
 

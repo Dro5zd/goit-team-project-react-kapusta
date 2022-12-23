@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
 import { ReactComponent as Delete } from "../../assets/images/svg/delete.svg";
-import {device} from '../../utils/mixins';
+import { device } from "../../utils/mixins";
 
 export const TableBal = styled.table`
   width: 624px;
@@ -10,6 +10,10 @@ export const TableBal = styled.table`
   border-collapse: collapse;
   display: none;
   flex-direction: column;
+
+  ${device.desktop} {
+    width: 746px;
+  }
 
   th {
     height: 38px;

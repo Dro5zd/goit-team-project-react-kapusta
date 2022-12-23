@@ -1,39 +1,51 @@
 import styled from "styled-components";
 import { device } from "../../utils/mixins";
 import { colors } from "../../utils/colors";
+import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
 
 export const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 
   ${device.desktop} {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 `;
 
 export const BlockForm = styled.div`
-    display: flex;
+  display: flex;
   flex-direction: column;
   ${device.tablet} {
     flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
   }
 `;
 
 export const BlockPicker = styled.div`
   display: none;
   ${device.tablet} {
-    display: block;
-    position: relative;
+    display: flex;
+    align-items: center;
+    /* display: block;
+    position: relative; */
 
-    img {
+    /* img {
       position: absolute;
       top: 12px;
       left: -14px;
-    }
+    } */
   }
+`;
+
+export const CalendarIcon = styled(Calendar)`
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
 `;
 
 export const InputProduct = styled.input`
@@ -52,7 +64,7 @@ export const InputProduct = styled.input`
     color: #c7ccdc;
   }
   ${device.tablet} {
-    margin-left: 44px;
+    /* margin-left: 44px; */
     width: 186px;
     background-color: #ffffff;
     border-color: #f5f6fb;
@@ -89,6 +101,14 @@ export const ButtonInput = styled.button`
   font-size: 12px;
   line-height: 14px;
   color: ${colors.white};
+
+  ${device.tablet} {
+    min-width: 125px;
+  }
+
+  ${device.desktop} {
+    min-width: 136px;
+  }
 `;
 
 export const ButtonClear = styled.button`
@@ -102,6 +122,13 @@ export const ButtonClear = styled.button`
   line-height: 14px;
   color: #52555f;
   box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+  ${device.tablet} {
+    min-width: 125px;
+  }
+
+  ${device.desktop} {
+    min-width: 136px;
+  }
 `;
 
 //  @media screen and (max-width: 479px) {

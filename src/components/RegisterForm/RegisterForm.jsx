@@ -52,8 +52,7 @@ export const RegisterForm = () => {
         .required("This is a required field"),
     }),
     onSubmit: (values, actions) => {
-      if (location.pathname === "/login") {
-        console.log("login", values);
+      if (location.pathname === "/login" || location.pathname === "/") {
         dispatch(loginUser(values));
       }
 
@@ -63,7 +62,6 @@ export const RegisterForm = () => {
             toast.success("Success");
             dispatch(loginUser(omit(values))).unwrap();
           })
-          .then((data) => console.log("REG", data))
           .catch(() => toast.error("Error"));
       }
 
@@ -72,7 +70,6 @@ export const RegisterForm = () => {
   });
 
   const handleLoginGoogle = () => {
-    console.log("handleLoginGoog");
     dispatch(loginGoogle());
   };
 
@@ -87,7 +84,7 @@ export const RegisterForm = () => {
         </>
       );
     }
-    if (location.pathname === "/register") {
+    if (location.pathname === "/register" || location.pathname === "/") {
       return (
         <>
           <ButtonLink to="/login"> Log in</ButtonLink>

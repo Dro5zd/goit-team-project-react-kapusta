@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
 import { device } from "../../utils/mixins";
-import CabbageDesc from "../../images/svg/cabbage-main.svg";
-import CabbageOne from "../../images/svg/cabbage-one.svg";
-import CabbageTwo from "../../images/svg/cabbage-two.svg";
+import CabbageDesc from "../../assets/images/svg/cabbage-main.svg";
+import CabbageOne from "../../assets/images/svg/cabbage-one.svg";
+import CabbageTwo from "../../assets/images/svg/cabbage-two.svg";
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
   min-height: calc(100vh - 56px);
-  max-height: calc(100vh - 56px);
+  //max-height: calc(100vh - 56px);
   overflow: hidden;
   max-width: 100%;
 
@@ -39,7 +39,6 @@ export const Content = styled.div`
   }
 `;
 export const GrayBg = styled.div`
-  display: none;
   position: absolute;
   z-index: -1;
   top: 0;

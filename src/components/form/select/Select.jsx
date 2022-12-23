@@ -1,5 +1,5 @@
 import { useState } from "react";
-import vector from "../../../images/svg/vector.svg";
+import vector from "../../../assets/images/svg/vector.svg";
 
 import { SelectCategory, SelectHeader, SelectBody } from "./SelectStyled";
 

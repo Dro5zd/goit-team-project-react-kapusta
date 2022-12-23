@@ -55,3 +55,24 @@ border-radius: 30px;
   /* max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px); */
 `;
+
+export const CloseBtn = styled.button`
+position: absolute;
+top: 0;
+right: 0;
+  padding: 2px;
+
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
+`
+export const Text = styled.p`
+margin-bottom: 20px;
+  font-weight: 500;
+font-size: 14px;
+line-height: 1.14;
+letter-spacing: 0.02em;
+text-align: center;
+color: ${colors.grayTitle};
+`

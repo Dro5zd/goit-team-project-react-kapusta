@@ -1,7 +1,7 @@
 import Select from "./select/Select";
 import { useState } from "react";
 import Input from "./input/Input";
-import calendar from "../../images/svg/calendar.svg";
+import calendar from "../../assets/images/svg/calendar.svg";
 import {
   BlockButton,
   BlockForm,

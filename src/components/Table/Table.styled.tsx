@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
-import { ReactComponent as Delete } from "../../images/svg/delete.svg";
+import { ReactComponent as Delete } from "../../assets/images/svg/delete.svg";
+import {device} from '../../utils/mixins';
 
 export const TableBal = styled.table`
   width: 624px;
   margin-top: 48px;
   position: relative;
   border-collapse: collapse;
-  display: flex;
+  display: none;
   flex-direction: column;
+
   th {
     height: 38px;
     padding: 5px;
@@ -21,17 +23,22 @@ export const TableBal = styled.table`
     letter-spacing: 0.02em;
     border-collapse: collapse;
   }
+
   tr th:first-child {
     border-radius: 16px 0 0 0;
   }
+
   tr th:last-child {
     border-radius: 0 16px 0 0;
   }
+
   thead {
     justify-content: center;
+
     tr {
       justify-content: center;
       display: flex;
+
       th {
         align-items: center;
         justify-content: center;
@@ -40,6 +47,7 @@ export const TableBal = styled.table`
       }
     }
   }
+
   tbody {
     display: flex;
     flex-direction: column;
@@ -51,16 +59,20 @@ export const TableBal = styled.table`
     ::-webkit-scrollbar {
       width: 7px;
     }
+
     ::-webkit-scrollbar-track {
       background-color: ${colors.grayBg};
     }
+
     ::-webkit-scrollbar-thumb {
       background-color: ${colors.orange};
       border-radius: 8px;
     }
+
     tr {
       justify-content: center;
       display: flex;
+
       td {
         position: relative;
         align-items: center;
@@ -72,12 +84,18 @@ export const TableBal = styled.table`
       }
     }
   }
+
   tr td:first-child {
     border-left: 2px solid ${colors.grayBg};
   }
+
   tr td:last-child {
     padding-right: 50px;
     border-right: 2px solid ${colors.grayBg};
+  }
+
+  ${device.tablet} {
+    display: flex;
   }
 `;
 

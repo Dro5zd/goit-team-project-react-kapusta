@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from './redux/store';
 import {useEffect} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
@@ -9,13 +9,14 @@ import {Layout} from './components/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Report from './pages/Report/Report';
 import {Loader} from './components/Loader/Loader';
-import {selectIsLoading} from './redux/transaction/transactions-selectors';
+
 import GlobalStyle from './globalStyles';
 import Expenses from './pages/Expenses/Expenses';
 import Income from './pages/Income/Income';
-import {Header} from './components/Header/Header';
-import {RestrictedRoute} from './components/RestrictedRoute/RestrictedRoute';
+import { Header } from './components/Header/Header';
+import { PublicRoute } from './components/PublicRoute/PublicRoute';
 import {getUser} from './redux/auth/auth-operations';
+import {selectIsLoading} from './redux/auth/auth-selectors';
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
@@ -35,48 +36,31 @@ export const App = () => {
             <div>
                 <Routes>
                     <Route path="/" element={<Layout/>}>
-                        <Route index element={<Home/>}/>
+                        <Route index element={<Login/>}/>
                         <Route
                             path="/register"
                             element={
-                                <RestrictedRoute redirectTo="/">
+                                <PublicRoute redirectTo="/home">
                                     <Register/>
-                                </RestrictedRoute>
+                                </PublicRoute>
                             }
                         />
                         <Route
                             path="/login"
                             element={
-                                <RestrictedRoute redirectTo="/">
+                                <PublicRoute redirectTo="/home">
                                     <Login/>
-                                </RestrictedRoute>
+                                </PublicRoute>
                             }
                         />
-                        <Route path="/home" element={<Home/>}>
+                        <Route path="/home" element={
+                            <PrivateRoute>
+                                    <Home/>
+                                </PrivateRoute>}>
+                            <Route index element={<Expenses/>}/>
                             <Route path="expenses" element={<Expenses/>}/>
                             <Route path="income" element={<Income/>}/>
                         </Route>
-                        {/* <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            /> */}
-
-                        {/* <Route
-              path="/login"
-              element={<RestrictedRoute redirectTo="/" component={<Login />} />}
-            /> */}
-                        {/* <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <Register />
-                </PublicRoute>
-              }
-            /> */}
                         <Route
                             path="/report"
                             element={

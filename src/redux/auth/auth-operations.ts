@@ -67,3 +67,15 @@ export const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const setUserBalance = createAsyncThunk(
+    "auth/setUserBalance",
+    async (balance: number, thunkAPI) => {
+        try {
+          const res = await PrivateApi.patch("/user/balance", {newBalance: balance});
+          token.unset();
+          return res.data;
+        } catch (error: any) {
+          return thunkAPI.rejectWithValue(error.message);
+        }
+});

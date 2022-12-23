@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, loginGoogle, loginUser, logoutUser } from "./auth-operations";
+import {getUser, loginGoogle, loginUser, logoutUser, setUserBalance} from './auth-operations';
 import { Notify } from "notiflix";
 import {ITransaction} from '../transaction/transactionsSlice';
 
@@ -90,12 +90,19 @@ const authSlice = createSlice({
         state.user = authInitialState.user;
         state.token = null;
         state.isAuth = false;
+        state.isLoading = false
       })
       .addCase(getUser.pending, handlePending)
       .addCase(getUser.rejected, handleRejected)
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuth = true;
+        state.isLoading = false;
+      })
+    .addCase(setUserBalance.pending, handlePending)
+      .addCase(setUserBalance.rejected, handleRejected)
+      .addCase(setUserBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload.newBalance;
         state.isLoading = false;
       });
   },

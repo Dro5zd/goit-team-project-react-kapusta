@@ -5,25 +5,41 @@ import {
   UserName,
   ExitLogo,
 } from "./Header.styled";
-import logo from "../../images/svg/logo.svg";
-import logout from "../../images/svg/logout.svg";
+import logo from "../../assets/images/svg/logo.svg";
+import logout from "../../assets/images/svg/logout.svg";
 import { useState } from "react";
 import { Modal } from "../Modal/Modal";
-import { Link } from "react-router-dom";
-import close from '../../images/svg/close.svg'
-import { CloseBtn, Text } from "../Modal/Modal.styled";
-import { StyledButton } from "../Button/Button.styled";
 import { logoutUser } from "../../redux/auth/auth-operations";
 import { useAppDispatch } from "../../redux/store";
+import { ModalContent } from "../ModalContent/ModalContent";
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-const dispatch = useAppDispatch()
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
 
+  // const avatarCreator = (name: string) => {
+  //   const nameSplit = name.split(' ');
+  //   if (nameSplit.length > 1) {
+  //     return nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
+  //   } else {
+  //     return nameSplit[0].charAt(0).toUpperCase();
+  //   }
+  // };
+
+  // function getRandomHexColor() {
+  //   return `#${Math.floor(Math.random() * 16777215)
+  //       .toString(16)
+  //       .padStart(6, '0')}`;
+  // }
+
+  const logoutHadler = () => {
+    dispatch(logoutUser());
+    handleOpenModal();
+  };
 
   return (
     <>
@@ -34,23 +50,24 @@ const dispatch = useAppDispatch()
         <BoxAvatar>U</BoxAvatar>
         <UserName>User Name</UserName>
         {/*<Link to={"/"}>*/}
-          <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" width={16} />
+        <ExitLogo
+          onClick={handleOpenModal}
+          src={logout}
+          alt="log-out"
+          width={16}
+        />
         {/*</Link>*/}
-        <p>Exit</p>
+        <button type="button" onClick={handleOpenModal}>
+          EXIT
+        </button>
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>
-          <div style={{position: 'relative', padding: '30px'}}>
-            <CloseBtn type="button" onClick={handleOpenModal}>
-              <img src={close} alt="close" width={12} height={12} />
-            </CloseBtn>
-            <Text>Do you really want to leave?</Text>
-            <div style={{display: 'flex', gap: '15px', justifyContent: 'center'}}>
-              <StyledButton type="button" color="white" onClick={() => dispatch(logoutUser())}>YES
-              </StyledButton>
-              <StyledButton type="button" onClick={handleOpenModal}>NO</StyledButton>
-            </div>
-          </div>
+          <ModalContent
+            onClose={handleOpenModal}
+            logOut={logoutHadler}
+            text="Do you really want to leave?"
+          />
         </Modal>
       )}
     </>

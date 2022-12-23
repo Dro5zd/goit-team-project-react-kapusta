@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { ButtonLink } from "../ButtonLink/ButtonLink";
-import { ReactComponent as GoogleIcon } from "../../images/svg/google.svg";
+import { ReactComponent as GoogleIcon } from "../../assets/images/svg/google.svg";
 import { Button } from "../Button/Button";
 import { useLocation } from "react-router-dom";
 import { useAppDispatch } from "../../redux/store";
@@ -77,7 +77,7 @@ export const RegisterForm = () => {
   };
 
   const renderButtons = () => {
-    if (location.pathname === "/login") {
+    if (location.pathname === "/login" || location.pathname === "/") {
       return (
         <>
           <Button type="submit" color={"#FF751D"}>

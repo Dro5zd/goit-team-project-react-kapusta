@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
-import { ReactComponent as Delete } from "../../images/svg/delete.svg";
+import { ReactComponent as Delete } from "../../assets/images/svg/delete.svg";
 
 export const TableBal = styled.table`
   width: 624px;

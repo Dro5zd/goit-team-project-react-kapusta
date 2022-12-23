@@ -27,10 +27,7 @@ let firstLetter=''
     const userName = firstLetter + name.split('@')[0].slice(1,name.length);
     return userName;
   };
-//   useEffect(() => { 
-//     @ts-ignore
-// userNameCreator(userName)
-//   }, [userName])
+
   
   const handleOpenModal = () => {
     setIsOpen(!isOpen);

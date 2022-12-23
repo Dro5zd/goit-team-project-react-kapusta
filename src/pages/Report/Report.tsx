@@ -5,7 +5,6 @@ import { BackgroundMain } from "../../components/BackgroundMain/BackgroundMain";
 import { Box } from "../Expenses/Expenses.styled";
 import CategoriesList from "../../components/Categories/CategoriesList/CategoriesList";
 import SelDataPicker from "../../components/DatePicker/DatePicker";
-import { ExpensesTypes } from "../../components/ExpensesTypes/ExpensesTypes";
 
 const Report = () => {
   return (
@@ -14,7 +13,6 @@ const Report = () => {
         <Balance />
         <SelDataPicker />
         <Box page="report">
-          <ExpensesTypes />
           <CategoriesList />
         </Box>
       </Container>

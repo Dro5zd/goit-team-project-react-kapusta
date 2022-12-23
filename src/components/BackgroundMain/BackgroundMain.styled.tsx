@@ -25,7 +25,7 @@ export const Content = styled.div`
       width: 183px;
       height: 146px;
       background-image: url(${CabbageTwo});
-      background-repeat: no-repeat;
+      background-repeat: repeat;
     }
     ${device.desktop} {
       bottom: -38px;
@@ -34,7 +34,7 @@ export const Content = styled.div`
       width: 100%;
       height: 232px;
       background-image: url(${CabbageDesc});
-      background-repeat: no-repeat;
+      background-repeat: repeat;
     }
   }
 `;

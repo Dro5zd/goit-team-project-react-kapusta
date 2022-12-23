@@ -49,25 +49,25 @@ select:-webkit-autofill:focus {
 
 export const Container = styled.div`
   width: 100%;
-  min-height: calc(100vh - 56px);
+  height: 100%;
+  /* min-height: calc(100vh - 56px); */
   margin-left: auto;
   margin-right: auto;
-  padding: 104px 20px 0 20px;
+  /* padding: 104px 20px 0 20px; */
+  padding: 0 20px 60px;
 
   ${device.mobile} {
     width: ${size.mobile};
   }
 
   ${device.tablet} {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 40px 32px 60px;
     width: ${size.tablet};
     background-size: 100% 582px;
   }
 
   ${device.desktop} {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 40px 16px 83px;
     width: ${size.desktop};
   }
 `;

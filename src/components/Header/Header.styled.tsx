@@ -9,7 +9,7 @@ export const WrapperHeader = styled.div`
   top: 0;
   height: 56px;
   max-height: 56px;
-
+justify-content: space-between;
   background-color: #fff;
   width: 100%;
   padding: 12px 20px;
@@ -25,42 +25,77 @@ export const Logo = styled(NavLink)`
   margin-right: auto;
   cursor: pointer;
 `;
+export const UserInfo =styled.div`
+  display: flex;
+align-items: center;
+`
 export const BoxAvatar = styled.div`
   display: flex;
   font-size: 12px;
   border-radius: 50%;
   color: #52555f;
+    margin-right: 16px;
   background-color: #f5f6fa;
+  min-width: 32px;
   width: 32px;
   height: 32px;
   justify-content: center;
+  text-align: center;
   align-items: center;
   font-weight: 700;
+
 `;
 
 export const UserName = styled.p`
+
   display: none;
   ${device.tablet} {
+
     display: block;
+ text-align: center;
+ white-space: nowrap;
+  margin-right: 20px;
+    color: #52555F;
+    text-align: center;
+    font-size: 12px;
+line-height: 1.16;
+text-align: right;
+letter-spacing: 0.04em;
+     border-right: 1px solid #E0E5EB;
+    padding-right: 20px;
+    height: 100%;
   }
 `;
-export const LinkHeader = styled(NavLink)`
-  display: block;
-  margin-left: 16px;
 
-  list-style-type: none;
+export const ExitButton = styled.button`
+display: none;
   cursor: pointer;
-`;
+  border: none;
+   background: none;
+   ${device.tablet} {
+    color: #52555F;
+    display: block;
+   text-decoration: underline;
+   font-size: 12px;
+line-height: 1.16;
+letter-spacing: 0.04em;
+    
+  }
+  
+
+`
 export const ExitLogo = styled.img`
+display: block;
   width: 22px;
+  margin-left: 16px;
   color: #52555f;
+   ${device.tablet} {
+    display: none;
+  }
+    ${device.desktop} {
+    display: none;
+
+   }
+  
 `;
 
-export const Exit = styled.p`
-  width: 22px;
-  color: #52555f;
-`;
-// export const BoxUser = styled.div`
-// display: flex;
-
-// `

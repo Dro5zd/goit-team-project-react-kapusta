@@ -1,10 +1,15 @@
+import { selectUsername } from "../../redux/auth/auth-selectors";
 import {
   WrapperHeader,
   Logo,
   BoxAvatar,
   UserName,
   ExitLogo,
+  ExitButton,
+  UserInfo
+
 } from "./Header.styled";
+
 import logo from "../../assets/images/svg/logo.svg";
 import logout from "../../assets/images/svg/logout.svg";
 import { useState } from "react";
@@ -13,13 +18,37 @@ import { logoutUser } from "../../redux/auth/auth-operations";
 import { useAppDispatch } from "../../redux/store";
 import { ModalContent } from "../ModalContent/ModalContent";
 
+
 export const Header = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
+  const userName = useAppSelector(selectUsername)
+let firstLetter=''
+  const userNameCreator = (name = '') => {
+    
+    firstLetter = name.split('')[0].toUpperCase();
+    const userName = firstLetter + name.split('@')[0].slice(1,name.length);
+    return userName;
+  };
+
+  
+
+
+
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
+
+
+  
+  
+  userNameCreator('artem@gmail.com')
+  // const str = (name: string) => {
+  //   const nameSearch = name.search('@')
+  //   const lengthString = str.length
+  //   const cutName = str.substring(nameSearch, lengthString)
+  // }
 
   // const avatarCreator = (name: string) => {
   //   const nameSplit = name.split(' ');
@@ -29,6 +58,7 @@ export const Header = () => {
   //     return nameSplit[0].charAt(0).toUpperCase();
   //   }
   // };
+
 
   // function getRandomHexColor() {
   //   return `#${Math.floor(Math.random() * 16777215)
@@ -47,19 +77,17 @@ export const Header = () => {
         <Logo to="/">
           <img src={logo} alt="Kapusta" width={90} />
         </Logo>
-        <BoxAvatar>U</BoxAvatar>
-        <UserName>User Name</UserName>
-        {/*<Link to={"/"}>*/}
-        <ExitLogo
-          onClick={handleOpenModal}
-          src={logout}
-          alt="log-out"
-          width={16}
-        />
-        {/*</Link>*/}
-        <button type="button" onClick={handleOpenModal}>
-          EXIT
-        </button>
+
+        <UserInfo> <BoxAvatar>{firstLetter}</BoxAvatar>
+        <UserName>{userName}</UserName>
+       
+        <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" />
+        
+      
+    <ExitButton type="button" onClick={handleOpenModal}>Exit</ExitButton>
+</UserInfo>
+       
+
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>

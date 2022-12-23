@@ -7,6 +7,7 @@ import {
   UserInfo,
   UserName,
   WrapperHeader,
+  Container,
 } from "./Header.styled";
 
 import logo from "../../assets/images/svg/logo.svg";
@@ -63,20 +64,22 @@ export const Header = () => {
   return (
     <>
       <WrapperHeader>
-        <Logo to="/home">
-          <img src={logo} alt="Kapusta" width={90} />
-        </Logo>
-        {isAuth && (
-          <UserInfo>
-            {" "}
-            <BoxAvatar>{firstLetter}</BoxAvatar>
-            <UserName>{userName}</UserName>
-            <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" />
-            <ExitButton type="button" onClick={handleOpenModal}>
-              Exit
-            </ExitButton>
-          </UserInfo>
-        )}
+        <Container>
+          <Logo to="/home">
+            <img src={logo} alt="Kapusta" width={90} />
+          </Logo>
+          {isAuth && (
+            <UserInfo>
+              {" "}
+              <BoxAvatar>{firstLetter}</BoxAvatar>
+              <UserName>{userName}</UserName>
+              <ExitLogo onClick={handleOpenModal} src={logout} alt="log-out" />
+              <ExitButton type="button" onClick={handleOpenModal}>
+                Exit
+              </ExitButton>
+            </UserInfo>
+          )}
+        </Container>
       </WrapperHeader>
       {isOpen && (
         <Modal onClose={handleOpenModal}>

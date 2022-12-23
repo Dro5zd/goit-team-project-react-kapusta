@@ -77,15 +77,17 @@ export const Header = () => {
 
 
             </WrapperHeader>
-            {isOpen && (
-                <Modal onClose={handleOpenModal}>
-                    <ModalContent
-                        onClose={handleOpenModal}
-                        logOut={logoutHandler}
-                        text="Do you really want to leave?"
-                    />
-                </Modal>
-            )}
+           {isOpen && (
+        <Modal onClose={handleOpenModal}>
+          <ModalContent
+            onClose={handleOpenModal}
+            action={logoutHadler}
+            text="Do you really want to leave?"
+            type='button'
+          />
+        </Modal>
+      )}
         </>
     );
+
 };

@@ -49,19 +49,17 @@ export const BoxAvatar = styled.div`
 export const UserName = styled.p`
 
   display: none;
-  ${device.tablet} {
 
+  ${device.tablet} {
     display: block;
- text-align: center;
- white-space: nowrap;
-  margin-right: 20px;
+    white-space: nowrap;
+    margin-right: 20px;
     color: #52555F;
-    text-align: center;
     font-size: 12px;
-line-height: 1.16;
-text-align: right;
-letter-spacing: 0.04em;
-     border-right: 1px solid #E0E5EB;
+    line-height: 1.16;
+    text-align: right;
+    letter-spacing: 0.04em;
+    border-right: 1px solid #E0E5EB;
     padding-right: 20px;
     height: 100%;
   }

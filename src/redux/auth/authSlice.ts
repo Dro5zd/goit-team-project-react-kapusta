@@ -51,7 +51,8 @@ const handleRejected = (state: IInitState, action: any) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: authInitialState,
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
 

@@ -10,9 +10,7 @@ export const Box = styled.div`
     margin: 40px 0;
     width: 230px;
     height: 278px;
-
-    border-radius: 20px;
-    border-bottom-left-radius: 0;
+    border-radius: 20px 20px 20px 0;
     background-color: ${colors.grayLight};
   }
 
@@ -24,8 +22,6 @@ export const Box = styled.div`
 
 export const Title = styled.h2`
   padding: 12px 0;
-
-  font-family: "Roboto";
   font-weight: 700;
   font-size: 12px;
   line-height: 1.16;
@@ -37,9 +33,7 @@ export const Item = styled.li`
   padding: 12px 22px;
   display: flex;
   justify-content: space-between;
-
   text-transform: uppercase;
-  font-family: "Roboto";
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.04em;

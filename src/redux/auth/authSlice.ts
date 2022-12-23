@@ -1,25 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, loginGoogle, loginUser, logoutUser } from "./auth-operations";
+import {getUser, loginGoogle, loginUser, logoutUser, setUserBalance} from './auth-operations';
 import { Notify } from "notiflix";
-
-export interface ITransaction {
-  description: string;
-  category: string;
-  amount: number;
-  date: string;
-  _id: string;
-}
+import {ITransaction} from '../transaction/transactionsSlice';
 
 export interface IUser {
   id: string | null;
   email: string | null;
   password?: string | null;
   balance: number;
+  transactions: ITransaction[]
 }
 
 export interface IInitState {
   user: IUser;
-  sid: string;
   token: string | null;
   isAuth: boolean;
   isLoading: boolean;
@@ -31,8 +24,16 @@ const authInitialState: IInitState = {
     email: "",
     balance: 0,
     id: "",
+    transactions: [
+      {
+        description: "Transaction's description",
+        category: "Продукты",
+        amount: 0,
+        date: "2020-12-31",
+        _id: "507f1f77bcf86cd799439013"
+      }
+    ]
   },
-  sid: "",
   token: null,
   isAuth: false,
   isLoading: false,
@@ -50,7 +51,8 @@ const handleRejected = (state: IInitState, action: any) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: authInitialState,
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
 
@@ -62,10 +64,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user.email = action.payload.userData.email;
-        state.user.balance = action.payload.userData.balance;
-        state.user.id = action.payload.userData.id;
-        state.sid = action.payload.sid;
+        state.user = action.payload.userData;
         state.token = action.payload.accessToken;
         Notify.success(`Welcome back, ${state.user.email}`);
         state.isAuth = true;
@@ -92,12 +91,19 @@ const authSlice = createSlice({
         state.user = authInitialState.user;
         state.token = null;
         state.isAuth = false;
+        state.isLoading = false
       })
       .addCase(getUser.pending, handlePending)
       .addCase(getUser.rejected, handleRejected)
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuth = true;
+        state.isLoading = false;
+      })
+    .addCase(setUserBalance.pending, handlePending)
+      .addCase(setUserBalance.rejected, handleRejected)
+      .addCase(setUserBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload.newBalance;
         state.isLoading = false;
       });
   },

@@ -8,15 +8,15 @@ import NotFound from "./pages/NotFound/NotFound";
 import { Layout } from "./components/Layout/Layout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Report from "./pages/Report/Report";
-import PublicRoute from "./components/PublicRoute/PublicRoute";
 import { Loader } from "./components/Loader/Loader";
-import { selectIsLoading } from "./redux/transaction/transactions-selectors";
+
 import GlobalStyle from "./globalStyles";
 import Expenses from "./pages/Expenses/Expenses";
 import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
-import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
+import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { getUser } from "./redux/auth/auth-operations";
+import { selectIsLoading } from "./redux/auth/auth-selectors";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
@@ -36,48 +36,35 @@ export const App = () => {
       <div>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Register />} />
-            <Route path="/home" element={<Home />}>
+            <Route index element={<Login />} />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute redirectTo="/home">
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/home">
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            >
+              <Route index element={<Expenses />} />
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
-            {/* <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            /> */}
-
-            {/* <Route
-              path="/login"
-              element={<RestrictedRoute redirectTo="/" component={<Login />} />}
-            /> */}
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute redirectTo="/">
-                  <Login />
-                </RestrictedRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute redirectTo="/">
-                  <Register />
-                </RestrictedRoute>
-              }
-            />
-            {/* <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <Register />
-                </PublicRoute>
-              }
-            /> */}
             <Route
               path="/report"
               element={

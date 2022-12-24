@@ -46,7 +46,7 @@ export const TableBal = styled.table`
       th {
         align-items: center;
         justify-content: center;
-        flex: 1 0 calc(100% / 4);
+        flex: 1 0 calc(100% / 5);
         display: flex;
       }
     }
@@ -81,7 +81,7 @@ export const TableBal = styled.table`
         position: relative;
         align-items: center;
         justify-content: center;
-        flex: 1 0 calc(100% / 4);
+        flex: 1 0 calc(100% / 5);
         display: flex;
         height: 40px;
         border-bottom: 2px solid ${colors.grayBg};
@@ -103,8 +103,25 @@ export const TableBal = styled.table`
   }
 `;
 
+export const DeleteBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    background-color: ${colors.grayLight};
+  }
+`;
+
 export const DeleteIcon = styled(Delete)`
-  position: absolute;
-  top: 12px;
-  right: 32px;
+  /* position: absolute; */
+  fill: #52555f;
+  width: 18px;
+  height: 18px;
 `;

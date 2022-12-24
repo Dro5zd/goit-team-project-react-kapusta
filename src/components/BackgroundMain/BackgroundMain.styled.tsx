@@ -6,13 +6,16 @@ import CabbageOne from "../../assets/images/svg/cabbage-one.svg";
 import CabbageTwo from "../../assets/images/svg/cabbage-two.svg";
 
 export const Content = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   position: relative;
   min-height: calc(100vh - 56px);
   //max-height: calc(100vh - 56px);
   overflow: hidden;
   max-width: 100%;
+  ${device.tablet}{
+    display: flex;
+  }
 
   &::after {
     content: "";

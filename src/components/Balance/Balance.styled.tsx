@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { device } from "../../utils/mixins";
 import { size } from "../../utils/mixins";
 import { colors } from "../../utils/colors";
+import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
 
 export const BalanceContainer = styled.div`
   /* background-color: #f5f6fb;
@@ -55,9 +56,8 @@ export const BalanceContainer = styled.div`
       margin-left: auto;
     }
 
-    span {
-      display: inline-flex;
-      align-items: center;
+    svg {
+      color: #52555f;
     }
   }
 `;
@@ -74,6 +74,66 @@ export const BalanceForm = styled.form`
   ${device.desktop} {
     margin-left: auto;
     justify-content: center;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  input {
+    border: 2px solid ${colors.white};
+    background-color: transparent;
+    outline: none;
+
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+
+    padding-right: 16px;
+    width: 140px;
+    height: 44px;
+
+    text-align: end;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12/14;
+    letter-spacing: 0.02em;
+
+    ${device.tablet} {
+      border-radius: 20px;
+      padding: 12px 0;
+      margin-right: 15px;
+      justify-content: center;
+      text-align: center;
+      width: 125px;
+    }
+
+    ${device.desktop} {
+      margin-right: 16px;
+      width: 125px;
+      height: 44px;
+      padding: 12px 20px 12px 0;
+      border-radius: 16px;
+      text-align: end;
+    }
+
+    &:placeholder-shown {
+      text-align: end;
+
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 12/14;
+      letter-spacing: 0.02em;
+    }
   }
 `;
 
@@ -108,57 +168,6 @@ export const DoubleDots = styled.span`
   }
   ${device.desktop} {
     display: inline-block;
-  }
-`;
-
-export const BalanceInput = styled.input`
-  border: 2px solid ${colors.white};
-  background-color: transparent;
-  outline: none;
-
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: end;
-
-  padding-right: 16px;
-  width: 140px;
-  height: 44px;
-
-  text-align: end;
-
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 12/14;
-  letter-spacing: 0.02em;
-
-  ${device.tablet} {
-    border-radius: 20px;
-    padding: 12px 0;
-    margin-right: 15px;
-    justify-content: center;
-    text-align: center;
-    width: 125px;
-  }
-
-  ${device.desktop} {
-    margin-right: 16px;
-    width: 125px;
-    height: 44px;
-    padding: 12px 20px 12px 0;
-    border-radius: 16px;
-    text-align: end;
-  }
-
-  &:placeholder-shown {
-    text-align: end;
-
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 12/14;
-    letter-spacing: 0.02em;
   }
 `;
 
@@ -214,17 +223,18 @@ export const BalanceBtn = styled.button`
 `;
 
 export const DateSpan = styled.span`
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  width: 94px;
-  height: 40px;
+  /* width: 94px;
+  height: 40px; */
 
   ${device.tablet} {
     display: none;
   }
-
+  /* 
   svg {
     color: #52555f;
     margin-right: 8px;
@@ -236,5 +246,11 @@ export const DateSpan = styled.span`
     line-height: 12/14;
     letter-spacing: 0.04em;
     color: #52555f;
-  }
+  } */
+`;
+
+export const CalendarSvg = styled(Calendar)`
+  position: absolute;
+  top: 12px;
+  left: -14px;
 `;

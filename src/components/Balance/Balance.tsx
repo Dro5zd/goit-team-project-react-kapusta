@@ -3,8 +3,8 @@ import {
   BalanceBtn,
   BalanceContainer,
   BalanceForm,
-  BalanceInput,
   BalanceLabel,
+  CalendarSvg,
   DateSpan,
   DoubleDots,
 } from "./Balance.styled";
@@ -17,8 +17,11 @@ import { setUserBalance } from "../../redux/auth/auth-operations";
 import { Modal } from "../Modal/Modal";
 import { ModalContent } from "../ModalContent/ModalContent";
 import chart from "../../assets/images/svg/balance/bar-chart.svg";
+import DatePicker from "react-multi-date-picker";
 
 export const Balance = () => {
+  
+  const [startDate, setStartDate] = useState(new Date());
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
   const [balance, setBalance] = useState(initBalance);
@@ -63,7 +66,7 @@ export const Balance = () => {
             Balance
             <DoubleDots>:</DoubleDots>
           </BalanceLabel>
-          <BalanceInput
+          <input
             type="text"
             name="balance"
             id="balance"
@@ -72,13 +75,32 @@ export const Balance = () => {
             min="0.00"
             onChange={handleChange}
             pattern="^[0-9]*$"
-          ></BalanceInput>
+          />
           {balance === 0 && <BalanceNotification />}
           <BalanceBtn type="submit">CONFIRM</BalanceBtn>
         </BalanceForm>
         <DateSpan>
-          <RxCalendar size={20} />
-          <span>21.11.2012</span>
+          <CalendarSvg />
+
+          <DatePicker
+            value={startDate}
+            format={" DD.MM.YYYY"}
+            style={{
+              backgroundColor: "transparent",
+              height: "44px",
+              width: "100px",
+              borderColor: "transparent",
+              padding: "3px 10px",
+              fontWeight: "900",
+              fontSize: "12px",
+              lineHeight: "14px",
+              color: " #52555f",
+            }}
+            onChange={()=>setStartDate}
+          />
+
+          {/* <RxCalendar size={20} />
+          <span>21.11.2012</span> */}
         </DateSpan>
       </BalanceContainer>
       {isOpen && (

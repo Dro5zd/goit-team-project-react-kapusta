@@ -9,15 +9,14 @@ import {
   DoubleDots,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { BsFillBarChartFill } from "react-icons/bs";
 import { RxCalendar } from "react-icons/rx";
 import { BalanceNotification } from "../BalanceNotification/BalanceNotification";
 import { selectBalance } from "../../redux/auth/auth-selectors";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { setUserBalance } from "../../redux/auth/auth-operations";
 import { Modal } from "../Modal/Modal";
 import { ModalContent } from "../ModalContent/ModalContent";
+import chart from "../../images/svg/balance/bar-chart.svg";
 
 export const Balance = () => {
   const initBalance = useAppSelector(selectBalance);
@@ -32,10 +31,6 @@ export const Balance = () => {
   useEffect(() => {
     setBalance(initBalance);
   }, [initBalance]);
-
-  // const handleNotification = (e) => {
-  //   document.querySelector(".balance-notification").classList.toggle("show");
-  // };
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -61,7 +56,7 @@ export const Balance = () => {
       <BalanceContainer>
         <Link to={"/report"} className="reports-link">
           <span>Reports</span>
-          <BsFillBarChartFill size={14} />
+          <img src={chart} alt="chart" />
         </Link>
         <BalanceForm onSubmit={handleSubmit}>
           <BalanceLabel htmlFor="balance">
@@ -74,10 +69,9 @@ export const Balance = () => {
             id="balance"
             value={balance}
             placeholder="00.00 UAH"
+            min="0.00"
             onChange={handleChange}
             pattern="^[0-9]*$"
-            // onMouseEnter={handleNotification}
-            // onMouseLeave={handleNotification}
           ></BalanceInput>
           {balance === 0 && <BalanceNotification />}
           <BalanceBtn type="submit">CONFIRM</BalanceBtn>

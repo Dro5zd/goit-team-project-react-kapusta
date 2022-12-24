@@ -31,14 +31,6 @@ export const BlockPicker = styled.div`
   ${device.tablet} {
     display: flex;
     align-items: center;
-    /* display: block;
-    position: relative; */
-
-    /* img {
-      position: absolute;
-      top: 12px;
-      left: -14px;
-    } */
   }
 `;
 

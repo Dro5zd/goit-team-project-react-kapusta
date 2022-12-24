@@ -1,5 +1,6 @@
 import calculator from "../../../assets/images/svg/calculator.svg";
-import { BlockNumberMobil, BlockNumber } from "./InputStyled";
+import {BlockNumber, BlockNumberMobil} from './Input.styled';
+
 
 const Input = () => {
   return (

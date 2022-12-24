@@ -28,77 +28,77 @@ export const ExpensesTypes = () => {
       </div>
       <ul className="expenses-list">
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>5 000.00</p>
             <ProductsIcon />
             <h3>Products</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>200.00</p>
             <AlcoholIcon />
             <h3>Alcohol</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>800.00</p>
             <EntertainmentIcon />
             <h3>Entertainment</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>900.00</p>
             <HealthIcon />
             <h3>Health</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>2 000.00</p>
             <TransportIcon />
             <h3>Transport</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>1 500.00</p>
             <HousingIcon />
             <h3>Housing</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>800.00</p>
             <TechniqueIcon />
             <h3>Technique</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>2 200.00</p>
             <CommunalIcon />
             <h3>Communal, communication</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>1 800.00</p>
             <HobbiesIcon />
             <h3>Sports, hobbies</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>2 400.00</p>
             <EducationIcon />
             <h3>Education</h3>
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to={'/'}>
             <p>3 000.00</p>
             <OtherIcon />
             <h3>Other</h3>

@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
 import { setUserBalance } from "../../redux/auth/auth-operations";
 import { Modal } from "../Modal/Modal";
 import { ModalContent } from "../ModalContent/ModalContent";
-import chart from "../../images/svg/balance/bar-chart.svg";
+import chart from "../../assets/images/svg/balance/bar-chart.svg";
 
 export const Balance = () => {
   const initBalance = useAppSelector(selectBalance);
@@ -32,7 +32,7 @@ export const Balance = () => {
     setBalance(initBalance);
   }, [initBalance]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const value = e.target.value;
     setBalance(value);
   };
@@ -40,12 +40,12 @@ export const Balance = () => {
   console.log(initBalance);
   console.log(balance);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     handleOpenModal();
   };
 
-  const confirmHandler = (e) => {
+  const confirmHandler = (e: any) => {
     dispatch(setUserBalance(+balance));
     e.preventDefault();
     handleOpenModal();
@@ -85,6 +85,7 @@ export const Balance = () => {
         <Modal onClose={handleOpenModal}>
           <ModalContent
             onClose={handleOpenModal}
+  // @ts-ignore
             action={confirmHandler}
             text="Are you sure?"
             type="submit"

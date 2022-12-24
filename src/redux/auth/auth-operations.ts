@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IUser } from "./authSlice";
 import { PrivateApi, PublicApi, token } from "../../http/http";
+import {IValues} from '../../components/RegisterForm/RegisterForm';
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async ({ email, password }: IUser, thunkAPI) => {
+  async ({ email, password }: IValues, thunkAPI) => {
     try {
       const res = await PublicApi.post("/auth/login", {
         email: email,

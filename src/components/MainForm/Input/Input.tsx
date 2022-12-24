@@ -1,18 +1,27 @@
 import calculator from "../../../assets/images/svg/calculator.svg";
-import {BlockNumber, BlockNumberMobil} from './Input.styled';
+import { BlockNumber, BlockNumberMobil } from "./Input.styled";
 
-
-const Input = () => {
+const Input = ({ handleChange }: any) => {
   return (
     <>
       <BlockNumberMobil>
-        <input type="number" placeholder="00.00 UAH" />
+        <input
+          type="number"
+          name="amount"
+          onChange={handleChange}
+          placeholder="00.00 UAH"
+        />
         <span>
           <img src={calculator} alt="calculator" />
         </span>
       </BlockNumberMobil>
       <BlockNumber>
-        <input type="number" placeholder="0,00" />
+        <input
+          type="number"
+          name="amount"
+          onChange={handleChange}
+          placeholder="0,00"
+        />
         <img src={calculator} alt="calculator" />
       </BlockNumber>
     </>

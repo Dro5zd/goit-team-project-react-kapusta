@@ -20,7 +20,6 @@ import { selectIsLoading } from "./redux/auth/auth-selectors";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
-  // const sid = useAppSelector(selectSid);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
 
@@ -87,3 +86,4 @@ export const App = () => {
     </>
   );
 };
+

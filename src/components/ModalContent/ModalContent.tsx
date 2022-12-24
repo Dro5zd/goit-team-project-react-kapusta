@@ -1,6 +1,6 @@
 import close from "../../assets/images/svg/close.svg";
 import { CloseBtn, Text } from "../Modal/Modal.styled";
-import { StyledButton } from "../Button/Button.styled";
+import { ModalBtn } from "./ModalContent.styled";
 
 interface IModalContent {
     onClose: ()=>void,
@@ -16,12 +16,12 @@ export const ModalContent = ({ onClose, action, type, text }: IModalContent) => 
       </CloseBtn>
       <Text>{text}</Text>
       <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
-        <StyledButton type={type} color="white" onClick={action}>
+        <ModalBtn type={type} onClick={action}>
           YES
-        </StyledButton>
-        <StyledButton type="button" onClick={onClose}>
+        </ModalBtn>
+        <ModalBtn type="button" onClick={onClose}>
           NO
-        </StyledButton>
+        </ModalBtn>
       </div>
     </div>
   );

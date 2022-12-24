@@ -1,6 +1,8 @@
-import {device} from '../../utils/mixins';
-import styled from 'styled-components';
-import {colors} from '../../utils/colors';
+
+import { device } from "../../utils/mixins";
+import styled from "styled-components";
+import { colors } from "../../utils/colors";
+
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
 
 export const FormGroup = styled.form`
@@ -16,6 +18,8 @@ export const FormGroup = styled.form`
   }
 `;
 export const BlockForm = styled.div`
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   ${device.tablet} {
@@ -42,23 +46,24 @@ export const CalendarIcon = styled(Calendar)`
 export const InputProduct = styled.input`
   width: 280px;
   height: 44px;
-  border: 2px solid #ffffff;
+  border: 2px solid ${colors.white};
   border-radius: 16px 0 0 0;
   padding: 2px 20px;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  background-color: #f5f6fb;
+  background-color: ${colors.grayBg};
   outline: none;
-  color: #c7ccdc;
+  color: ${colors.black};
+
   &::placeholder {
     color: #c7ccdc;
   }
   ${device.tablet} {
     /* margin-left: 44px; */
     width: 186px;
-    background-color: #ffffff;
-    border-color: #f5f6fb;
+    background-color:${colors.white};
+    border-color: ${colors.grayBg};
   }
   ${device.desktop} {
     margin-left: 32px;
@@ -81,6 +86,19 @@ export const BlockButton = styled.div`
     gap: 16px;
   }
 `;
+
+// export const Button = styled(StyledButton)`
+// width: 130px;
+
+//   ${device.tablet} {
+//   width: 125px;
+//   }
+
+//   ${device.desktop} {
+//     width: 136px;
+//   }
+// `;
+
 
 export const ButtonInput = styled.button`
   padding: 16px 35px;
@@ -122,8 +140,10 @@ export const ButtonClear = styled.button`
   }
 `;
 
+
 //  @media screen and (max-width: 479px) {
 //     background-size: 100% 258px;
 //     background-repeat: no-repeat;
 //     background-image: url(${fon});
 //   }
+

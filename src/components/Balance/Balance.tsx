@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   BalanceBtn,
   BalanceContainer,
   BalanceForm,
+  BalanceInput,
   BalanceLabel,
-  CalendarSvg,
   DateSpan,
   DoubleDots,
+  BackIcon,
+  BalanceText,
+  InputWrap,
+  CalendarSvg,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { RxCalendar } from "react-icons/rx";
@@ -17,22 +21,25 @@ import { setUserBalance } from "../../redux/auth/auth-operations";
 import { Modal } from "../Modal/Modal";
 import { ModalContent } from "../ModalContent/ModalContent";
 import chart from "../../assets/images/svg/balance/bar-chart.svg";
+import { ReactComponent as ArrowBack } from "../../assets/images/svg/balance/arrow-back.svg";
 import DatePicker from "react-multi-date-picker";
 
 export const Balance = () => {
-  
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate,setStartDate]=useState(new Date())
+  const location = useLocation();
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
-  const [balance, setBalance] = useState(initBalance);
+  const [balance, setBalance] = useState(initBalance.toFixed(2));
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log("location", typeof balance);
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
 
   useEffect(() => {
-    setBalance(initBalance);
+    setBalance(initBalance.toFixed(2));
   }, [initBalance]);
 
   const handleChange = (e: any) => {
@@ -40,49 +47,54 @@ export const Balance = () => {
     setBalance(value);
   };
 
-  console.log(initBalance);
-  console.log(balance);
-
   const handleSubmit = (event: any) => {
     event.preventDefault();
     handleOpenModal();
   };
 
   const confirmHandler = (e: any) => {
-    dispatch(setUserBalance(+balance));
     e.preventDefault();
+    dispatch(setUserBalance(+balance));
     handleOpenModal();
   };
 
   return (
     <>
       <BalanceContainer>
-        <Link to={"/report"} className="reports-link">
-          <span>Reports</span>
-          <img src={chart} alt="chart" />
-        </Link>
+        <BackIcon to="/" hidden={location.pathname !== "/report"}>
+          <ArrowBack />
+          Main page
+        </BackIcon>
+
         <BalanceForm onSubmit={handleSubmit}>
           <BalanceLabel htmlFor="balance">
             Balance
             <DoubleDots>:</DoubleDots>
           </BalanceLabel>
-          <input
-            type="text"
-            name="balance"
-            id="balance"
-            value={balance}
-            placeholder="00.00 UAH"
-            min="0.00"
-            onChange={handleChange}
-            pattern="^[0-9]*$"
-          />
-          {balance === 0 && <BalanceNotification />}
+
+          <InputWrap>
+            <BalanceText>UAN</BalanceText>
+            <BalanceInput
+              type="number"
+              name="balance"
+              id="balance"
+              value={balance}
+              placeholder="00.00"
+              min="0.00"
+              onChange={handleChange}
+              pattern="^[0-9]*$"
+            />
+          </InputWrap>
+          {balance === "0.00" && <BalanceNotification />}
           <BalanceBtn type="submit">CONFIRM</BalanceBtn>
         </BalanceForm>
+        <Link to={"/report"} className="reports-link">
+          <span>Reports</span>
+          <img src={chart} alt="chart" />
+        </Link>
         <DateSpan>
-          <CalendarSvg />
-
-          <DatePicker
+          <CalendarSvg/>
+        <DatePicker
             value={startDate}
             format={" DD.MM.YYYY"}
             style={{
@@ -98,7 +110,6 @@ export const Balance = () => {
             }}
             onChange={()=>setStartDate}
           />
-
           {/* <RxCalendar size={20} />
           <span>21.11.2012</span> */}
         </DateSpan>
@@ -107,7 +118,7 @@ export const Balance = () => {
         <Modal onClose={handleOpenModal}>
           <ModalContent
             onClose={handleOpenModal}
-  // @ts-ignore
+            // @ts-ignore
             action={confirmHandler}
             text="Are you sure?"
             type="submit"

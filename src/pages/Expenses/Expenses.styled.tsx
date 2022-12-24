@@ -9,8 +9,9 @@ export const Box = styled.div`
   width: 320px;
   margin: 0 auto;
   display: flex;
+
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 
   ${device.tablet} {
     padding: ${(p: IBox) =>

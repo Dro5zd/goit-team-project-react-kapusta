@@ -16,12 +16,13 @@ import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useAppDispatch } from "../../redux/store";
 import { addExpense } from "../../redux/transaction/transactions-operations";
 
+
 const Form = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [selectCategory, setSelectCategory] = useState("");
   const [amount, setAmount] = useState(0);
   const dispatch = useAppDispatch();
-
+  
   const handleChange = (e: any) => {
     const value = e.target.value;
     setAmount(+value);

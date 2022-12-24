@@ -1,6 +1,8 @@
+
 import { device } from "../../utils/mixins";
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
+
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
 
 export const FormGroup = styled.form`
@@ -44,13 +46,13 @@ export const CalendarIcon = styled(Calendar)`
 export const InputProduct = styled.input`
   width: 280px;
   height: 44px;
-  border: 2px solid #ffffff;
+  border: 2px solid ${colors.white};
   border-radius: 16px 0 0 0;
   padding: 2px 20px;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  background-color: #f5f6fb;
+  background-color: ${colors.grayBg};
   outline: none;
   color: ${colors.black};
 
@@ -60,8 +62,8 @@ export const InputProduct = styled.input`
   ${device.tablet} {
     /* margin-left: 44px; */
     width: 186px;
-    background-color: #ffffff;
-    border-color: #f5f6fb;
+    background-color:${colors.white};
+    border-color: ${colors.grayBg};
   }
   ${device.desktop} {
     margin-left: 32px;
@@ -85,43 +87,15 @@ export const BlockButton = styled.div`
   }
 `;
 
-export const ButtonInput = styled.button`
-  padding: 16px 35px;
-  background: ${colors.orange};
-  border-radius: 16px;
-  border: none;
-  outline: none;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  color: ${colors.white};
+export const Button = styled(StyledButton)`
+width: 130px;
 
   ${device.tablet} {
-    min-width: 125px;
+  width: 125px;
   }
 
   ${device.desktop} {
-    min-width: 136px;
-  }
-`;
-
-export const ButtonClear = styled.button`
-  padding: 16px 30px;
-  background: #f5f6fb;
-  border-radius: 16px;
-  border: none;
-  outline: none;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  color: #52555f;
-  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
-  ${device.tablet} {
-    min-width: 125px;
-  }
-
-  ${device.desktop} {
-    min-width: 136px;
+    width: 136px;
   }
 `;
 
@@ -130,3 +104,4 @@ export const ButtonClear = styled.button`
 //     background-repeat: no-repeat;
 //     background-image: url(${fon});
 //   }
+

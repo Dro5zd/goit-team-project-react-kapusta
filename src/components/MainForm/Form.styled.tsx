@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { device } from "../../utils/mixins";
-import { colors } from "../../utils/colors";
+import {device} from '../../utils/mixins';
+import styled from 'styled-components';
+import {colors} from '../../utils/colors';
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
 
 export const FormGroup = styled.form`
@@ -15,7 +15,6 @@ export const FormGroup = styled.form`
     align-items: center;
   }
 `;
-
 export const BlockForm = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,14 +30,6 @@ export const BlockPicker = styled.div`
   ${device.tablet} {
     display: flex;
     align-items: center;
-    /* display: block;
-    position: relative; */
-
-    /* img {
-      position: absolute;
-      top: 12px;
-      left: -14px;
-    } */
   }
 `;
 

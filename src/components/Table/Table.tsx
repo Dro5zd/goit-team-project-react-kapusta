@@ -1,7 +1,18 @@
-import { DeleteIcon, TableBal } from "./Table.styled";
+import { useAppDispatch } from "../../redux/store";
+import { deleteTransaction } from "../../redux/transaction/transactions-operations";
+import { DeleteBtn, DeleteIcon, TableBal } from "./Table.styled";
 
-const TableBalance = () => {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+const TableBalance = ({ expensesList }: any) => {
+  const dispatch = useAppDispatch();
+  // const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  // console.log("expensesList", expensesList);
+
+  const deleteExpense = (id: any) => {
+    console.log("dele", id);
+
+    dispatch(deleteTransaction(id));
+  };
+
   return (
     <TableBal>
       <thead>
@@ -10,20 +21,26 @@ const TableBalance = () => {
           <th>DESCRIPTION</th>
           <th>CATEGORY</th>
           <th>SUM</th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
-        {arr.map((el) => (
-          <tr key={el}>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>
-              4 <DeleteIcon />
-            </td>
-          </tr>
-        ))}
+        {expensesList?.map(
+          ({ amount, category, date, description, _id }: any) => (
+            <tr key={_id}>
+              <td>{date}</td>
+              <td>{description}</td>
+              <td>{category}</td>
+              <td>{amount}</td>
+              <td>
+                <DeleteBtn type="button" onClick={() => deleteExpense(_id)}>
+                  <DeleteIcon />
+                </DeleteBtn>
+              </td>
+            </tr>
+          )
+        )}
       </tbody>
     </TableBal>
   );

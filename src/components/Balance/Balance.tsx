@@ -44,17 +44,14 @@ export const Balance = () => {
     setBalance(value);
   };
 
-  console.log(initBalance);
-  console.log(balance);
-
   const handleSubmit = (event: any) => {
     event.preventDefault();
     handleOpenModal();
   };
 
   const confirmHandler = (e: any) => {
-    dispatch(setUserBalance(+balance));
     e.preventDefault();
+    dispatch(setUserBalance(+balance));
     handleOpenModal();
   };
 

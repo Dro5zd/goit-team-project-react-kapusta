@@ -1,6 +1,6 @@
-import {device} from '../../utils/mixins';
-import styled from 'styled-components';
-import {colors} from '../../utils/colors';
+import { device } from "../../utils/mixins";
+import styled from "styled-components";
+import { colors } from "../../utils/colors";
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
 
 export const FormGroup = styled.form`
@@ -16,6 +16,8 @@ export const FormGroup = styled.form`
   }
 `;
 export const BlockForm = styled.div`
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   ${device.tablet} {
@@ -50,7 +52,8 @@ export const InputProduct = styled.input`
   line-height: 14px;
   background-color: #f5f6fb;
   outline: none;
-  color: #c7ccdc;
+  color: ${colors.black};
+
   &::placeholder {
     color: #c7ccdc;
   }

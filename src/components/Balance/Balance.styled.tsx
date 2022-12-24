@@ -143,6 +143,36 @@ export const DoubleDots = styled.span`
   }
 `;
 
+export const InputWrap = styled.div`
+  position: relative;
+  ${device.tablet} {
+    display: none;
+  }
+  ${device.desktop} {
+    display: inline-block;
+  }
+`;
+
+export const BalanceText = styled.span`
+  position: absolute;
+  right: 36px;
+  top: 16px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: ${colors.black};
+  /* right: 10px; */
+
+  ${device.tablet} {
+    display: none;
+  }
+  ${device.desktop} {
+    display: inline-block;
+  }
+`;
+
 export const BalanceInput = styled.input`
   border: 2px solid ${colors.white};
   background-color: transparent;
@@ -179,7 +209,7 @@ export const BalanceInput = styled.input`
     margin-right: 16px;
     width: 125px;
     height: 44px;
-    padding: 12px 20px 12px 0;
+    padding: 12px 45px 12px 0;
     border-radius: 16px;
     text-align: end;
   }

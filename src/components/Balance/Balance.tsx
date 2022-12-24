@@ -8,6 +8,8 @@ import {
   DateSpan,
   DoubleDots,
   BackIcon,
+  BalanceText,
+  InputWrap,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { RxCalendar } from "react-icons/rx";
@@ -24,17 +26,17 @@ export const Balance = () => {
   const location = useLocation();
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
-  const [balance, setBalance] = useState(initBalance);
+  const [balance, setBalance] = useState(initBalance.toFixed(2));
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log("location", location);
+  console.log("location", typeof balance);
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   };
 
   useEffect(() => {
-    setBalance(initBalance);
+    setBalance(initBalance.toFixed(2));
   }, [initBalance]);
 
   const handleChange = (e: any) => {
@@ -69,17 +71,21 @@ export const Balance = () => {
             Balance
             <DoubleDots>:</DoubleDots>
           </BalanceLabel>
-          <BalanceInput
-            type="text"
-            name="balance"
-            id="balance"
-            value={balance}
-            placeholder="00.00 UAH"
-            min="0.00"
-            onChange={handleChange}
-            pattern="^[0-9]*$"
-          ></BalanceInput>
-          {balance === 0 && <BalanceNotification />}
+
+          <InputWrap>
+            <BalanceText>UAN</BalanceText>
+            <BalanceInput
+              type="number"
+              name="balance"
+              id="balance"
+              value={balance}
+              placeholder="00.00"
+              min="0.00"
+              onChange={handleChange}
+              pattern="^[0-9]*$"
+            />
+          </InputWrap>
+          {balance === "0.00" && <BalanceNotification />}
           <BalanceBtn type="submit">CONFIRM</BalanceBtn>
         </BalanceForm>
         <Link to={"/report"} className="reports-link">

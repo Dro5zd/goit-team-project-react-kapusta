@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { device } from "../../utils/mixins";
 import { size } from "../../utils/mixins";
 import { colors } from "../../utils/colors";
+import { Link } from "react-router-dom";
 
 export const BalanceContainer = styled.div`
   /* background-color: #f5f6fb;
@@ -24,7 +25,7 @@ export const BalanceContainer = styled.div`
     /* border-bottom-left-radius: 0; */
     /* padding: 40px 32px; */
 
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -60,6 +61,37 @@ export const BalanceContainer = styled.div`
       align-items: center;
     }
   }
+`;
+
+export const BackIcon = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  opacity: ${(props) => (props.hidden === true ? "0" : "1")};
+  pointer-events: ${(props) => props.hidden === true && "none"};
+  visibility: ${(props) => props.hidden === true && "hidden"};
+
+  svg {
+    fill: ${colors.orange};
+    width: 18px;
+    height: 12px;
+    margin-right: 19px;
+  }
+
+  :hover {
+    color: ${colors.orange};
+  }
+  /* ${device.desktop} {
+    margin-left: auto;
+    justify-content: center;
+  } */
 `;
 
 export const BalanceForm = styled.form`

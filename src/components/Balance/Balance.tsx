@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   BalanceBtn,
   BalanceContainer,
@@ -7,6 +7,7 @@ import {
   BalanceLabel,
   DateSpan,
   DoubleDots,
+  BackIcon,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { RxCalendar } from "react-icons/rx";
@@ -17,12 +18,16 @@ import { setUserBalance } from "../../redux/auth/auth-operations";
 import { Modal } from "../Modal/Modal";
 import { ModalContent } from "../ModalContent/ModalContent";
 import chart from "../../assets/images/svg/balance/bar-chart.svg";
+import { ReactComponent as ArrowBack } from "../../assets/images/svg/balance/arrow-back.svg";
 
 export const Balance = () => {
+  const location = useLocation();
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
   const [balance, setBalance] = useState(initBalance);
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log("location", location);
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
@@ -54,10 +59,11 @@ export const Balance = () => {
   return (
     <>
       <BalanceContainer>
-        <Link to={"/report"} className="reports-link">
-          <span>Reports</span>
-          <img src={chart} alt="chart" />
-        </Link>
+        <BackIcon to="/" hidden={location.pathname !== "/report"}>
+          <ArrowBack />
+          Main page
+        </BackIcon>
+
         <BalanceForm onSubmit={handleSubmit}>
           <BalanceLabel htmlFor="balance">
             Balance
@@ -76,6 +82,10 @@ export const Balance = () => {
           {balance === 0 && <BalanceNotification />}
           <BalanceBtn type="submit">CONFIRM</BalanceBtn>
         </BalanceForm>
+        <Link to={"/report"} className="reports-link">
+          <span>Reports</span>
+          <img src={chart} alt="chart" />
+        </Link>
         <DateSpan>
           <RxCalendar size={20} />
           <span>21.11.2012</span>
@@ -85,7 +95,7 @@ export const Balance = () => {
         <Modal onClose={handleOpenModal}>
           <ModalContent
             onClose={handleOpenModal}
-  // @ts-ignore
+            // @ts-ignore
             action={confirmHandler}
             text="Are you sure?"
             type="submit"

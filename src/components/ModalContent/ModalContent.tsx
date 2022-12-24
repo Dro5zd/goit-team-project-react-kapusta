@@ -1,8 +1,14 @@
-import close from "../../images/svg/close.svg";
+import close from "../../assets/images/svg/close.svg";
 import { CloseBtn, Text } from "../Modal/Modal.styled";
 import { StyledButton } from "../Button/Button.styled";
 
-export const ModalContent = ({ onClose, action, type, text }) => {
+interface IModalContent {
+    onClose: ()=>void,
+    action: ()=>void,
+    type: "button" | "submit" | "reset" | undefined,
+    text: string
+}
+export const ModalContent = ({ onClose, action, type, text }: IModalContent) => {
   return (
     <div style={{ position: "relative", padding: "30px" }}>
       <CloseBtn type="button" onClick={onClose}>

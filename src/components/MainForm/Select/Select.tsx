@@ -1,7 +1,7 @@
-import { useState } from "react";
+import {MouseEvent, useState} from 'react';
 import vector from "../../../assets/images/svg/vector.svg";
 
-import { SelectCategory, SelectHeader, SelectBody } from "./SelectStyled";
+import { SelectCategory, SelectHeader, SelectBody } from "./Select.styled";
 
 const Select = () => {
   const [selectCategory, setSelectCategory] = useState(false);
@@ -25,9 +25,9 @@ const Select = () => {
     setSelectCategory(!selectCategory);
   };
 
-  const onElementCategory = (event) => {
+  const onElementCategory = (event: MouseEvent<HTMLDivElement>) => {
     setSelectCategory(!selectCategory);
-    setElementCategory(event.target.innerText);
+    setElementCategory((event.target as HTMLInputElement).innerText);
   };
 
   return (

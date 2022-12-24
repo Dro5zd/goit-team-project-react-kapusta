@@ -55,8 +55,9 @@ export const BalanceContainer = styled.div`
       margin-left: auto;
     }
 
-    svg {
-      color: #52555f;
+    span {
+      display: inline-flex;
+      align-items: center;
     }
   }
 `;

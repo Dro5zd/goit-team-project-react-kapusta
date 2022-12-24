@@ -48,6 +48,16 @@ export const SubText = styled(Text)`
 `;
 
 export const ErrorText = styled.span`
+  position: absolute;
+  bottom: -20px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.1;
+  margin: 4px 0 0 0;
+  color: ${colors.red};
+  /* text-align: left; */
+`;
+export const ErrorStar = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.1;

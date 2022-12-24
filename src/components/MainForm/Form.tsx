@@ -6,8 +6,7 @@ import {
     BlockButton,
     BlockForm,
     BlockPicker,
-    ButtonClear,
-    ButtonInput,
+    Button,
     CalendarIcon,
     FormGroup,
     InputProduct,
@@ -44,8 +43,8 @@ const Form = () => {
                 <Input/>
             </BlockForm>
             <BlockButton>
-                <ButtonInput>INPUT</ButtonInput>
-                <ButtonClear>CLEAR</ButtonClear>
+                <Button color={'white'}>INPUT</Button>
+                <Button>CLEAR</Button>
             </BlockButton>
         </FormGroup>
     );

@@ -87,6 +87,7 @@ const transactionInitialState: ITransactionsInitState = {
     expensesCategories: [],
     incomeCategories: [],
   },
+
   isLoading: false,
   error: null,
 };

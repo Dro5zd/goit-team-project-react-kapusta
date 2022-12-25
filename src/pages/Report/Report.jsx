@@ -14,17 +14,35 @@ import { Loader } from "../../components/Loader/Loader";
 const Report = () => {
   const categories = getReportsByPeriod();
   const [isLoading, setIsLoading] = useState(false);
+  const [arr, setArr] = useState([]);
   const [categoriesExpenses, setCategoriesExpenses] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
 
+    const obj = {}
+
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      console.log(data, "data");
-      setCategoriesIncomes(data?.incomes);
-      setCategoriesExpenses(data?.expenses);
+      // console.log(data, "data");
+      setCategoriesIncomes(data.incomes);
+      setCategoriesExpenses(data.expenses);
+      for (const dataKey in data.expenses) {
+        if(typeof data.expenses[dataKey] === 'object'){
+          for (const key in data.expenses[dataKey]) {
+            console.log('data.expenses[dataKey]', data.expenses[dataKey]);
+            console.log('[Key]', data.expenses[dataKey][key]);
+
+          }
+
+        }
+        // console.log('123456789:', data.expenses[dataKey]);
+        // console.log('123456789:', typeof data.expenses[dataKey]);
+        // console.log('dataKey', dataKey);
+      }
       setIsLoading(false);
     });
   }, []);
+
+  console.log('arr', arr);
 
   const [fetchData, isError] = useFetch(getData);
 
@@ -35,7 +53,7 @@ const Report = () => {
   }, [fetchData]);
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader isLoading={isLoading}/>;
   }
 
   return (

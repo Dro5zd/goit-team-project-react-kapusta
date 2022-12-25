@@ -20,6 +20,7 @@ const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
 
   const expensesBool = expensesForm ==='/home/expenses';
   const classNameTd = expensesBool ? "sumRed" : 'sumGreen';
+console.log(expensesBool);
 
   useEffect(()=>{
       if(expensesList ) {

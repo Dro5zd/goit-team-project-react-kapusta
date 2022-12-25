@@ -5,16 +5,8 @@ import { StyledButton } from "../Button/Button.styled";
 export const ModalBtn = styled(StyledButton)`
   width: 125px;
 
-  color: ${colors.grayTitle};
-  background: ${colors.white};
+  background: ${(p) => (p.color ? "#ff751d" : "#ffffff")};
   border: 2px solid ${colors.grayBg};
   box-shadow: none;
   filter: none;
-
-  :hover {
-    color: ${colors.white};
-    background: ${colors.orange};
-    box-shadow: none;
-    border: none;
-  }
 `;

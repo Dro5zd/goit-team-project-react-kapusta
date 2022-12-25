@@ -143,7 +143,7 @@ const transactionsSlice = createSlice({
         state.error = null;
         state.transaction.expenses.push(action.payload.transaction);
       })
-      .addCase(deleteIncomesTransaction.fulfilled, (state, action) => {
+      .addCase(deleteIncomesTransaction.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.transaction.incomes.findIndex(
@@ -153,7 +153,7 @@ const transactionsSlice = createSlice({
         state.transaction.incomes.splice(index, 1);
       })
 
-        .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
+        .addCase(deleteExpenseTransaction.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.transaction.expenses.findIndex(
@@ -163,7 +163,7 @@ const transactionsSlice = createSlice({
         state.transaction.expenses.splice(index, 1);
       })
 
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginUser.fulfilled, (state: ITransactionsInitState, action) => {
         state.transaction = action.payload.userData.transactions;
       });
   },

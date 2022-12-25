@@ -87,17 +87,59 @@ export const BlockButton = styled.div`
   }
 `;
 
-export const Button = styled(StyledButton)`
-width: 130px;
+// export const Button = styled(StyledButton)`
+// width: 130px;
+
+//   ${device.tablet} {
+//   width: 125px;
+//   }
+
+//   ${device.desktop} {
+//     width: 136px;
+//   }
+// `;
+
+
+export const ButtonInput = styled.button`
+  padding: 16px 35px;
+  background: ${colors.orange};
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: ${colors.white};
 
   ${device.tablet} {
-  width: 125px;
+    min-width: 125px;
   }
 
   ${device.desktop} {
-    width: 136px;
+    min-width: 136px;
   }
 `;
+
+export const ButtonClear = styled.button`
+  padding: 16px 30px;
+  background: #f5f6fb;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #52555f;
+  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+  ${device.tablet} {
+    min-width: 125px;
+  }
+
+  ${device.desktop} {
+    min-width: 136px;
+  }
+`;
+
 
 //  @media screen and (max-width: 479px) {
 //     background-size: 100% 258px;

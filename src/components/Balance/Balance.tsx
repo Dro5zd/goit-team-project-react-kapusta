@@ -10,6 +10,7 @@ import {
   BackIcon,
   BalanceText,
   InputWrap,
+  CalendarSvg,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { RxCalendar } from "react-icons/rx";
@@ -21,8 +22,10 @@ import { Modal } from "../Modal/Modal";
 import { ModalContent } from "../ModalContent/ModalContent";
 import chart from "../../assets/images/svg/balance/bar-chart.svg";
 import { ReactComponent as ArrowBack } from "../../assets/images/svg/balance/arrow-back.svg";
+import DatePicker from "react-multi-date-picker";
 
 export const Balance = () => {
+  const [startDate,setStartDate]=useState(new Date())
   const location = useLocation();
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
@@ -90,8 +93,25 @@ export const Balance = () => {
           <img src={chart} alt="chart" />
         </Link>
         <DateSpan>
-          <RxCalendar size={20} />
-          <span>21.11.2012</span>
+          <CalendarSvg/>
+        <DatePicker
+            value={startDate}
+            format={" DD.MM.YYYY"}
+            style={{
+              backgroundColor: "transparent",
+              height: "44px",
+              width: "100px",
+              borderColor: "transparent",
+              padding: "3px 10px",
+              fontWeight: "900",
+              fontSize: "12px",
+              lineHeight: "14px",
+              color: " #52555f",
+            }}
+            onChange={()=>setStartDate}
+          />
+          {/* <RxCalendar size={20} />
+          <span>21.11.2012</span> */}
         </DateSpan>
       </BalanceContainer>
       {isOpen && (

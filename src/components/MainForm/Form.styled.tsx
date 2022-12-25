@@ -1,9 +1,9 @@
-
 import { device } from "../../utils/mixins";
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
 
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
+import {StyledButton} from '../Button/Button.styled';
 
 export const FormGroup = styled.form`
   display: flex;

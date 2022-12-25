@@ -6,8 +6,6 @@ import {
   BlockButton,
   BlockForm,
   BlockPicker,
-  ButtonClear,
-  ButtonInput,
   CalendarIcon,
   FormGroup,
   InputProduct,
@@ -15,6 +13,7 @@ import {
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useAppDispatch } from "../../redux/store";
 import { addExpense } from "../../redux/transaction/transactions-operations";
+import {ButtonClear, ButtonInput} from '../form/Form.styled';
 
 
 const Form = () => {

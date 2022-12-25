@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ReactComponent as Left } from "../../assets/images/svg/left.svg";
 import { ReactComponent as Right } from "../../assets/images/svg/right.svg";
-import { MonthPicker } from "./DatePickerStyled";
+import { MonthPicker } from "./DatePicker.styled";
 
 const SelDataPicker = () => {
   const date = new Date();

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -17,11 +17,13 @@ import { Header } from "./components/Header/Header";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { getUser } from "./redux/auth/auth-operations";
 import { selectIsLoading } from "./redux/auth/auth-selectors";
+import { selectIsLoadingTransaction } from "./redux/transaction/transactions-selectors";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
+  const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
 
   useEffect(() => {
     dispatch(getUser());
@@ -29,7 +31,7 @@ export const App = () => {
 
   return (
     <>
-      <Loader isLoading={isLoading} />
+      <Loader isLoading={isLoading || isLoadingTrx} />
       <GlobalStyle />
       <Header />
       <div>
@@ -67,7 +69,8 @@ export const App = () => {
                 </PrivateRoute>
               }
             >
-              <Route index element={<Expenses />} />
+              {/* <Route index element={<Expenses />} /> */}
+              <Route index element={<Navigate to="/home/expenses" />} />
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
@@ -86,4 +89,3 @@ export const App = () => {
     </>
   );
 };
-

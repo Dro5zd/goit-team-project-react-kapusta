@@ -29,7 +29,7 @@ export const Header = () => {
   const userNameCreator = (name: string) => {
     const letter = name?.split("")[0]?.toUpperCase();
     setFirstLetter(letter);
-    return letter + name.split("@")[0].slice(1, name.length);
+    return letter + name?.split("@")[0].slice(1, name?.length);
   };
 
   const handleOpenModal = () => {

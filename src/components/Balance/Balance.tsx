@@ -25,14 +25,12 @@ import { ReactComponent as ArrowBack } from "../../assets/images/svg/balance/arr
 import DatePicker from "react-multi-date-picker";
 
 export const Balance = () => {
-  const [startDate,setStartDate]=useState(new Date())
+  const [startDate, setStartDate] = useState(new Date());
   const location = useLocation();
   const initBalance = useAppSelector(selectBalance);
   const dispatch = useAppDispatch();
   const [balance, setBalance] = useState(initBalance.toFixed(2));
   const [isOpen, setIsOpen] = useState(false);
-
-  console.log("location", typeof balance);
 
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
@@ -93,8 +91,8 @@ export const Balance = () => {
           <img src={chart} alt="chart" />
         </Link>
         <DateSpan>
-          <CalendarSvg/>
-        <DatePicker
+          <CalendarSvg />
+          <DatePicker
             value={startDate}
             format={" DD.MM.YYYY"}
             style={{
@@ -108,7 +106,7 @@ export const Balance = () => {
               lineHeight: "14px",
               color: " #52555f",
             }}
-            onChange={()=>setStartDate}
+            onChange={() => setStartDate}
           />
           {/* <RxCalendar size={20} />
           <span>21.11.2012</span> */}

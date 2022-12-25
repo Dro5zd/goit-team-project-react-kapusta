@@ -119,7 +119,7 @@ export const InputStyled = styled.input`
     filter: drop-shadow(1px 2px 3px rgba(235, 87, 87, 0.2));
   }
   :valid {
-    filter: drop-shadow(1px 2px 3px rgba(6, 242, 199, 0.2));
+    filter: drop-shadow(1px 2px 3px rgba(rgb(255, 117, 29), 0.2));
   }
 `;
 

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addExpense,
   addIncome, deleteExpenseTransaction, deleteIncomesTransaction,
-  getExpense,
+  getExpense, getExpenseCategories,
   getIncome,
 } from './transactions-operations';
 import { Notify } from "notiflix";
@@ -26,6 +26,8 @@ interface ITransactionsInitState {
     monthIncomeStats: {
       [id: string]: string | number;
     };
+    expensesCategories: string[]
+    incomeCategories: string[]
   };
   isLoading: boolean;
   error: string | null;
@@ -79,6 +81,8 @@ const transactionInitialState: ITransactionsInitState = {
       Ноябрь: "N/A",
       Декабрь: "N/A",
     },
+    expensesCategories: [],
+    incomeCategories: [],
   },
   isLoading: false,
   error: null,
@@ -127,6 +131,12 @@ const transactionsSlice = createSlice({
         state.error = null;
         state.transaction.expenses = action.payload.expenses;
         state.transaction.monthExpensesStats = action.payload.monthsStats;
+      })
+        .addCase(getExpenseCategories.fulfilled, (state: ITransactionsInitState, action) => {
+        state.isLoading = false;
+        state.error = null;
+          console.log('action.payload', action.payload)
+        state.transaction.expensesCategories = action.payload;
       })
       .addCase(addExpense.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;

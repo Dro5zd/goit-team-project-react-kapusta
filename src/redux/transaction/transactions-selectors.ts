@@ -2,6 +2,8 @@ import { RootState } from "../store";
 
 export const selectTransactions = (state: RootState) =>
   state.transactions.transaction.incomes;
+export const selectExpenseCategories = (state: RootState) =>
+  state.transactions.transaction.expensesCategories;
 export const selectTransactionsExpenses = (state: RootState) =>
   state.transactions.transaction.expenses;
 export const selectTransactionsIncomes = (state: RootState) =>

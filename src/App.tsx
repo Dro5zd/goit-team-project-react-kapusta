@@ -70,7 +70,7 @@ export const App = () => {
               }
             >
               {/* <Route index element={<Expenses />} /> */}
-              <Route index element={<Navigate to="/home/expenses" />} />
+              <Route index element={<Navigate to='/home/expenses' />} />
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>

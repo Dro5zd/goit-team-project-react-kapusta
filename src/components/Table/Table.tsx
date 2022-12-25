@@ -4,24 +4,33 @@ import {
   deleteIncomesTransaction,
 } from "../../redux/transaction/transactions-operations";
 import { DeleteBtn, DeleteIcon, TableBal } from "./Table.styled";
-import { ITransaction } from "../../redux/transaction/transactionsSlice";
-import { useEffect, useState } from "react";
+
+import {ITransaction} from '../../redux/transaction/transactionsSlice';
+import {useEffect, useState} from 'react';
+// import styled from "styled-components";
 
 interface ITableBalanceProps {
   expensesList?: ITransaction[];
   incomeList?: ITransaction[];
 }
-const TableBalance = ({ expensesList, incomeList }: any) => {
+const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
   const dispatch = useAppDispatch();
   const [arr, setArr] = useState([]);
 
-  useEffect(() => {
-    if (expensesList) {
-      setArr(expensesList);
-    } else {
-      setArr(incomeList);
-    }
-  }, [expensesList, incomeList]);
+
+  const expensesBool = expensesForm ==='/home/expenses';
+  const classNameTd = expensesBool ? "sumRed" : 'sumGreen';
+console.log(expensesBool);
+
+  useEffect(()=>{
+      if(expensesList ) {
+          setArr(expensesList)
+      } else {
+          setArr(incomeList)
+      }
+  }, [expensesList, incomeList])
+  // const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  // console.log("expensesList", expensesList);
 
   const deleteExpense = (id: any) => {
     dispatch(
@@ -33,11 +42,11 @@ const TableBalance = ({ expensesList, incomeList }: any) => {
     <TableBal>
       <thead>
         <tr>
-          <th>DATE</th>
-          <th>DESCRIPTION</th>
-          <th>CATEGORY</th>
-          <th>SUM</th>
-          <th></th>
+          <th className={'date'}>DATE</th>
+          <th className={'description'}>DESCRIPTION</th>
+          <th className={'category'}>CATEGORY</th>
+          <th className={'sum'}>SUM</th>
+          <th className={'svg'}></th>
         </tr>
       </thead>
 
@@ -45,11 +54,11 @@ const TableBalance = ({ expensesList, incomeList }: any) => {
         {arr?.map(
           ({ amount, category, date, description, _id }: ITransaction) => (
             <tr key={_id}>
-              <td>{date}</td>
-              <td>{description}</td>
-              <td>{category}</td>
-              <td>{amount}</td>
-              <td>
+              <td className={'date'}>{date}</td>
+              <td className={'descriptionTd'}>{description}</td>
+              <td className={'category'}>{category}</td>
+              <td  className={classNameTd}>{expensesBool ? -amount : amount}  UAH</td>
+              <td className={'svg'}>
                 <DeleteBtn type="button" onClick={() => deleteExpense(_id)}>
                   <DeleteIcon />
                 </DeleteBtn>

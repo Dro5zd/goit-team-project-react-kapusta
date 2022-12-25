@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -67,7 +67,8 @@ export const App = () => {
                 </PrivateRoute>
               }
             >
-              <Route index element={<Expenses />} />
+              {/* <Route index element={<Expenses />} /> */}
+              <Route index element={<Navigate to='/home/expenses' />} />
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>

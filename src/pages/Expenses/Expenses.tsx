@@ -7,8 +7,12 @@ import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {addExpense, getExpense} from '../../redux/transaction/transactions-operations';
 import {selectMonthExpensesStats, selectTransactionsExpenses} from '../../redux/transaction/transactions-selectors';
 import {ITransaction} from '../../redux/transaction/transactionsSlice';
+import { useLocation } from 'react-router-dom';
+import { log } from 'console';
 
 const Expenses = () => {
+    const location = useLocation();
+    
     const dispatch = useAppDispatch();
     const expensesList = useAppSelector(selectTransactionsExpenses);
     const summaryExpense = useAppSelector(selectMonthExpensesStats);
@@ -25,7 +29,7 @@ const Expenses = () => {
         <div>
             <Box page="home">
                 <Form type="expense" onHandleSubmit={onHandleSubmit}/>
-                <TableBalance expensesList={expensesList}/>
+                <TableBalance expensesList={expensesList} expensesForm={location.pathname} />
                 <SummaryIn>
                     <Summary summaryExpense={summaryExpense}/>
                 </SummaryIn>

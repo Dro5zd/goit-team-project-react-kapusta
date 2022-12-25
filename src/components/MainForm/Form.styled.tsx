@@ -25,7 +25,7 @@ export const BlockForm = styled.div`
   ${device.tablet} {
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
 `;
 
@@ -51,19 +51,19 @@ export const InputProduct = styled.input`
   padding: 2px 20px;
   font-weight: 400;
   font-size: 12px;
+
   line-height: 14px;
   background-color: ${colors.grayBg};
-  outline: none;
   color: ${colors.black};
 
   &::placeholder {
     color: #c7ccdc;
   }
   ${device.tablet} {
-    /* margin-left: 44px; */
     width: 186px;
     background-color:${colors.white};
     border-color: ${colors.grayBg};
+    
   }
   ${device.desktop} {
     margin-left: 32px;

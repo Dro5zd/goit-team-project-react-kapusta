@@ -3,14 +3,18 @@ import {deleteExpenseTransaction, deleteIncomesTransaction} from '../../redux/tr
 import { DeleteBtn, DeleteIcon, TableBal } from "./Table.styled";
 import {ITransaction} from '../../redux/transaction/transactionsSlice';
 import {useEffect, useState} from 'react';
+import styled from "styled-components";
 
 interface ITableBalanceProps {
     expensesList?: ITransaction[]
     incomeList?: ITransaction[]
 }
-const TableBalance = ({ expensesList, incomeList }: any) => {
+const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
   const dispatch = useAppDispatch();
   const[arr, setArr ]=useState([])
+
+  const expensesBool = expensesForm ==='/home/expenses';
+  const classNameTd = expensesBool ? "sumRed" : 'sumGreen';
 
   useEffect(()=>{
       if(expensesList ) {
@@ -30,11 +34,11 @@ dispatch(expensesList ? deleteExpenseTransaction(id) :  deleteIncomesTransaction
     <TableBal>
       <thead>
         <tr>
-          <th>DATE</th>
-          <th>DESCRIPTION</th>
-          <th>CATEGORY</th>
-          <th>SUM</th>
-          <th></th>
+          <th className={'date'}>DATE</th>
+          <th className={'description'}>DESCRIPTION</th>
+          <th className={'category'}>CATEGORY</th>
+          <th className={'sum'}>SUM</th>
+          <th className={'svg'}></th>
         </tr>
       </thead>
 
@@ -43,11 +47,11 @@ dispatch(expensesList ? deleteExpenseTransaction(id) :  deleteIncomesTransaction
         {arr?.map(
           ({ amount, category, date, description, _id }: ITransaction) => (
             <tr key={_id}>
-              <td>{date}</td>
-              <td>{description}</td>
-              <td>{category}</td>
-              <td>{amount}</td>
-              <td>
+              <td className={'date'}>{date}</td>
+              <td className={'descriptionTd'}>{description}</td>
+              <td className={'category'}>{category}</td>
+              <td  className={classNameTd}>{expensesBool ? -amount : amount}  UAH</td>
+              <td className={'svg'}>
                 <DeleteBtn type="button" onClick={() => deleteExpense(_id)}>
                   <DeleteIcon />
                 </DeleteBtn>

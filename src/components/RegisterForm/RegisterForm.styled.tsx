@@ -121,6 +121,21 @@ export const InputStyled = styled.input`
   :valid {
     filter: drop-shadow(1px 2px 3px rgba(rgb(255, 117, 29), 0.2));
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: #52555f;
+    /* -webkit-box-shadow: 0 0 0 1000px #f6f7fb inset; */
+    transition: background-color 5000s ease-in-out 0s;
+  }
 `;
 
 export const ButtonGoogle = styled.button`

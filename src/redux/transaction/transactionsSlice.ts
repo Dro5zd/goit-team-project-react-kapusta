@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addExpense,
-  addIncome, deleteExpenseTransaction, deleteIncomesTransaction,
-  getExpense, getExpenseCategories,
+  addIncome,
+  deleteExpenseTransaction,
+  deleteIncomesTransaction,
+  getExpense,
+  getExpenseCategories,
   getIncome,
-} from './transactions-operations';
+} from "./transactions-operations";
 import { Notify } from "notiflix";
 import { loginUser } from "../auth/auth-operations";
 
@@ -26,8 +29,8 @@ interface ITransactionsInitState {
     monthIncomeStats: {
       [id: string]: string | number;
     };
-    expensesCategories: string[]
-    incomeCategories: string[]
+    expensesCategories: string[];
+    incomeCategories: string[];
   };
   isLoading: boolean;
   error: string | null;
@@ -126,23 +129,31 @@ const transactionsSlice = createSlice({
         state.error = null;
         state.transaction.incomes.push(action.payload.transaction);
       })
-      .addCase(getExpense.fulfilled, (state: ITransactionsInitState, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.transaction.expenses = action.payload.expenses;
-        state.transaction.monthExpensesStats = action.payload.monthsStats;
-      })
-        .addCase(getExpenseCategories.fulfilled, (state: ITransactionsInitState, action) => {
-        state.isLoading = false;
-        state.error = null;
-          console.log('action.payload', action.payload)
-        state.transaction.expensesCategories = action.payload;
-      })
-      .addCase(addExpense.fulfilled, (state: ITransactionsInitState, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.transaction.expenses.push(action.payload.transaction);
-      })
+      .addCase(
+        getExpense.fulfilled,
+        (state: ITransactionsInitState, action) => {
+          state.isLoading = false;
+          state.error = null;
+          state.transaction.expenses = action.payload.expenses;
+          state.transaction.monthExpensesStats = action.payload.monthsStats;
+        }
+      )
+      .addCase(
+        getExpenseCategories.fulfilled,
+        (state: ITransactionsInitState, action) => {
+          state.isLoading = false;
+          state.error = null;
+          state.transaction.expensesCategories = action.payload;
+        }
+      )
+      .addCase(
+        addExpense.fulfilled,
+        (state: ITransactionsInitState, action) => {
+          state.isLoading = false;
+          state.error = null;
+          state.transaction.expenses.push(action.payload.transaction);
+        }
+      )
       .addCase(deleteIncomesTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -153,13 +164,13 @@ const transactionsSlice = createSlice({
         state.transaction.incomes.splice(index, 1);
       })
 
-        .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
+      .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.transaction.expenses.findIndex(
           (d: ITransaction) => d._id === action.payload.id
         );
-          Notify.success(`Success`);
+        Notify.success(`Success`);
         state.transaction.expenses.splice(index, 1);
       })
 

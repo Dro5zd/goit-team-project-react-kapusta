@@ -72,16 +72,16 @@ export const Container = styled.div`
   }
 `;
 
-export const ContainerMobilHome = styled.div`
-width: 100%;
-min-height: calc(100vh - 56px);
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-padding: 40px 0 0 0;
-  ${device.tablet}{
-    display: none;
-  }
-`
+// export const ContainerMobilHome = styled.div`
+// width: 100%;
+// min-height: calc(100vh - 56px);
+// display: flex;
+// flex-direction: column;
+// justify-content: space-between;
+// padding: 40px 0 0 0;
+//   ${device.tablet}{
+//     display: none;
+//   }
+// `
 
 export default GlobalStyle;

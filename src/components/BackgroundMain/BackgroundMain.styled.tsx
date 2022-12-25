@@ -12,7 +12,7 @@ export const Content = styled.div`
   //max-height: calc(100vh - 56px);
   overflow: hidden;
   max-width: 100%;
-  ${device.tablet}{
+  ${device.tablet} {
     display: flex;
   }
 

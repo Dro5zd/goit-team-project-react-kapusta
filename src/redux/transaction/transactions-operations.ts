@@ -33,8 +33,6 @@ export const getIncome = createAsyncThunk(
 export const addExpense = createAsyncThunk(
   "transaction/addExpense",
   async ({ description, amount, date, category }: ITransaction, thunkAPI) => {
-    console.log("AddExp OPER", description, amount, date, category);
-
     try {
       const response = await PrivateApi.post("/transaction/expense", {
         description,
@@ -62,8 +60,6 @@ export const getExpense = createAsyncThunk(
 export const deleteIncomesTransaction = createAsyncThunk(
   "transaction/deleteIncomesTransaction",
   async (transactionId: string, thunkAPI) => {
-    console.log("ransactionId", transactionId);
-
     try {
       const response = await PrivateApi.delete(`/transaction/${transactionId}`);
       return response.data;
@@ -75,8 +71,6 @@ export const deleteIncomesTransaction = createAsyncThunk(
 export const deleteExpenseTransaction = createAsyncThunk(
   "transaction/deleteExpenseTransaction",
   async (transactionId: string, thunkAPI) => {
-    console.log("ransactionId", transactionId);
-
     try {
       const response = await PrivateApi.delete(`/transaction/${transactionId}`);
       return response.data;

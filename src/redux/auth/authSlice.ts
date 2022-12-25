@@ -82,7 +82,6 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
-        console.log("loginGoogle", state, action);
         state.isLoading = false;
         state.token = action.payload.accessToken;
         Notify.success(`Welcome back, ${state.user.email}`);

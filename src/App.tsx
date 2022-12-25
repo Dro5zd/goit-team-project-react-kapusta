@@ -17,11 +17,13 @@ import { Header } from "./components/Header/Header";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { getUser } from "./redux/auth/auth-operations";
 import { selectIsLoading } from "./redux/auth/auth-selectors";
+import { selectIsLoadingTransaction } from "./redux/transaction/transactions-selectors";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
+  const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
 
   useEffect(() => {
     dispatch(getUser());
@@ -29,7 +31,7 @@ export const App = () => {
 
   return (
     <>
-      <Loader isLoading={isLoading} />
+      <Loader isLoading={isLoading || isLoadingTrx} />
       <GlobalStyle />
       <Header />
       <div>
@@ -87,4 +89,3 @@ export const App = () => {
     </>
   );
 };
-

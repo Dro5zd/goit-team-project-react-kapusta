@@ -1,17 +1,22 @@
 import { useAppDispatch } from "../../redux/store";
-import {deleteExpenseTransaction, deleteIncomesTransaction} from '../../redux/transaction/transactions-operations';
+import {
+  deleteExpenseTransaction,
+  deleteIncomesTransaction,
+} from "../../redux/transaction/transactions-operations";
 import { DeleteBtn, DeleteIcon, TableBal } from "./Table.styled";
+
 import {ITransaction} from '../../redux/transaction/transactionsSlice';
 import {useEffect, useState} from 'react';
-import styled from "styled-components";
+// import styled from "styled-components";
 
 interface ITableBalanceProps {
-    expensesList?: ITransaction[]
-    incomeList?: ITransaction[]
+  expensesList?: ITransaction[];
+  incomeList?: ITransaction[];
 }
 const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
   const dispatch = useAppDispatch();
-  const[arr, setArr ]=useState([])
+  const [arr, setArr] = useState([]);
+
 
   const expensesBool = expensesForm ==='/home/expenses';
   const classNameTd = expensesBool ? "sumRed" : 'sumGreen';
@@ -27,7 +32,9 @@ const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
   // console.log("expensesList", expensesList);
 
   const deleteExpense = (id: any) => {
-dispatch(expensesList ? deleteExpenseTransaction(id) :  deleteIncomesTransaction(id))
+    dispatch(
+      expensesList ? deleteExpenseTransaction(id) : deleteIncomesTransaction(id)
+    );
   };
 
   return (
@@ -43,7 +50,6 @@ dispatch(expensesList ? deleteExpenseTransaction(id) :  deleteIncomesTransaction
       </thead>
 
       <tbody>
-
         {arr?.map(
           ({ amount, category, date, description, _id }: ITransaction) => (
             <tr key={_id}>

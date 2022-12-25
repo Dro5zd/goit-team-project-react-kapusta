@@ -16,7 +16,7 @@ export const ModalContent = ({ onClose, action, type, text }: IModalContent) => 
       </CloseBtn>
       <Text>{text}</Text>
       <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
-        <ModalBtn type={type} onClick={action}>
+        <ModalBtn type={type} onClick={action} color={ 'white'}>
           YES
         </ModalBtn>
         <ModalBtn type="button" onClick={onClose}>

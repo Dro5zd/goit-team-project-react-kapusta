@@ -59,8 +59,21 @@ export const getExpense = createAsyncThunk(
     }
   }
 );
-export const deleteTransaction = createAsyncThunk(
-  "transaction/deleteTransaction",
+export const deleteIncomesTransaction = createAsyncThunk(
+  "transaction/deleteIncomesTransaction",
+  async (transactionId: string, thunkAPI) => {
+    console.log("ransactionId", transactionId);
+
+    try {
+      const response = await PrivateApi.delete(`/transaction/${transactionId}`);
+      return response.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const deleteExpenseTransaction = createAsyncThunk(
+  "transaction/deleteExpenseTransaction",
   async (transactionId: string, thunkAPI) => {
     console.log("ransactionId", transactionId);
 

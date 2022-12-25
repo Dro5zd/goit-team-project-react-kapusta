@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { colors } from "../../utils/colors";
 import { device } from "../../utils/mixins";
 import CabbageDesc from "../../assets/images/svg/cabbage-main.svg";
-import CabbageOne from "../../assets/images/svg/cabbage-one.svg";
 import CabbageTwo from "../../assets/images/svg/cabbage-two.svg";
 
 export const Content = styled.div`

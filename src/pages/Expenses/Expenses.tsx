@@ -1,36 +1,40 @@
-import React, { useEffect } from "react";
-import Form from "../../components/MainForm/Form";
-import TableBalance from "../../components/Table/Table";
-import { Box, SummaryIn, SummaryOut } from "./Expenses.styled";
-import { Summary } from "../../components/Summary/Summary";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { getExpense } from "../../redux/transaction/transactions-operations";
-import { selectTransactionsExpenses } from "../../redux/transaction/transactions-selectors";
+import React, {useEffect} from 'react';
+import Form from '../../components/MainForm/Form';
+import TableBalance from '../../components/Table/Table';
+import {Box, SummaryIn, SummaryOut} from './Expenses.styled';
+import {Summary} from '../../components/Summary/Summary';
+import {useAppDispatch, useAppSelector} from '../../redux/store';
+import {addExpense, getExpense} from '../../redux/transaction/transactions-operations';
+import {selectMonthExpensesStats, selectTransactionsExpenses} from '../../redux/transaction/transactions-selectors';
+import {ITransaction} from '../../redux/transaction/transactionsSlice';
 
 const Expenses = () => {
-  const dispatch = useAppDispatch();
-  const expensesList = useAppSelector(selectTransactionsExpenses);
+    const dispatch = useAppDispatch();
+    const expensesList = useAppSelector(selectTransactionsExpenses);
+    const summaryExpense = useAppSelector(selectMonthExpensesStats);
 
-  // console.log(expensesList);
+    useEffect(() => {
+        dispatch(getExpense());
+    }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getExpense());
-  }, [dispatch]);
+    const onHandleSubmit = (data: ITransaction) => {
+        dispatch(addExpense(data));
+    }
 
-  return (
-    <div>
-      <Box page="home">
-        <Form />
-        <TableBalance expensesList={expensesList} />
-        <SummaryIn>
-          <Summary />
-        </SummaryIn>
-      </Box>
-      <SummaryOut>
-        <Summary />
-      </SummaryOut>
-    </div>
-  );
+    return (
+        <div>
+            <Box page="home">
+                <Form type="expense" onHandleSubmit={onHandleSubmit}/>
+                <TableBalance expensesList={expensesList}/>
+                <SummaryIn>
+                    <Summary summaryExpense={summaryExpense}/>
+                </SummaryIn>
+            </Box>
+            <SummaryOut>
+                <Summary summaryExpense={summaryExpense}/>
+            </SummaryOut>
+        </div>
+    );
 };
 
 export default Expenses;

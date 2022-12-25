@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addExpense,
-  addIncome,
-  deleteTransaction,
+  addIncome, deleteExpenseTransaction, deleteIncomesTransaction,
   getExpense,
   getIncome,
-} from "./transactions-operations";
+} from './transactions-operations';
 import { Notify } from "notiflix";
 import { loginUser } from "../auth/auth-operations";
 
@@ -21,7 +20,10 @@ interface ITransactionsInitState {
   transaction: {
     incomes: ITransaction[];
     expenses: ITransaction[];
-    monthStats: {
+    monthExpensesStats: {
+      [id: string]: string | number;
+    };
+    monthIncomeStats: {
       [id: string]: string | number;
     };
   };
@@ -49,19 +51,33 @@ const transactionInitialState: ITransactionsInitState = {
         _id: "507f1f77bcf86cd799439011",
       },
     ],
-    monthStats: {
-      Январь: 5,
-      Февраль: 100,
+    monthExpensesStats: {
+      Январь: "N/A",
+      Февраль: "N/A",
       Март: "N/A",
       Апрель: "N/A",
-      Май: 1,
+      Май: "N/A",
       Июнь: "N/A",
-      Июль: 3,
+      Июль: "N/A",
       Август: "N/A",
       Сентябрь: "N/A",
-      Октябрь: 77,
+      Октябрь: "N/A",
       Ноябрь: "N/A",
-      Декабрь: 123,
+      Декабрь: "N/A",
+    },
+    monthIncomeStats: {
+      Январь: "N/A",
+      Февраль: "N/A",
+      Март: "N/A",
+      Апрель: "N/A",
+      Май: "N/A",
+      Июнь: "N/A",
+      Июль: "N/A",
+      Август: "N/A",
+      Сентябрь: "N/A",
+      Октябрь: "N/A",
+      Ноябрь: "N/A",
+      Декабрь: "N/A",
     },
   },
   isLoading: false,
@@ -87,39 +103,54 @@ const transactionsSlice = createSlice({
       .addCase(addIncome.pending, handlePending)
       .addCase(addExpense.pending, handlePending)
       .addCase(getExpense.pending, handlePending)
-      .addCase(deleteTransaction.pending, handlePending)
+      .addCase(deleteIncomesTransaction.pending, handlePending)
+      .addCase(deleteExpenseTransaction.pending, handlePending)
       .addCase(getIncome.rejected, handleRejected)
       .addCase(addIncome.rejected, handleRejected)
       .addCase(addExpense.rejected, handleRejected)
       .addCase(getExpense.rejected, handleRejected)
-      .addCase(deleteTransaction.rejected, handleRejected)
-      .addCase(getIncome.fulfilled, (state, action) => {
+      .addCase(deleteIncomesTransaction.rejected, handleRejected)
+      .addCase(deleteExpenseTransaction.rejected, handleRejected)
+      .addCase(getIncome.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transaction.incomes = action.payload;
+        state.transaction.incomes = action.payload.incomes;
+        state.transaction.monthIncomeStats = action.payload.monthsStats;
       })
-      .addCase(addIncome.fulfilled, (state, action) => {
+      .addCase(addIncome.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transaction.incomes.push(action.payload);
+        state.transaction.incomes.push(action.payload.transaction);
       })
-      .addCase(getExpense.fulfilled, (state, action) => {
+      .addCase(getExpense.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;
         state.error = null;
         state.transaction.expenses = action.payload.expenses;
+        state.transaction.monthExpensesStats = action.payload.monthsStats;
       })
-      .addCase(addExpense.fulfilled, (state, action) => {
+      .addCase(addExpense.fulfilled, (state: ITransactionsInitState, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transaction.expenses.push(action.payload);
+        state.transaction.expenses.push(action.payload.transaction);
       })
-      .addCase(deleteTransaction.fulfilled, (state, action) => {
+      .addCase(deleteIncomesTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.transaction.incomes.findIndex(
           (d: ITransaction) => d._id === action.payload.id
         );
+        Notify.success(`Success`);
         state.transaction.incomes.splice(index, 1);
+      })
+
+        .addCase(deleteExpenseTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.transaction.expenses.findIndex(
+          (d: ITransaction) => d._id === action.payload.id
+        );
+          Notify.success(`Success`);
+        state.transaction.expenses.splice(index, 1);
       })
 
       .addCase(loginUser.fulfilled, (state, action) => {

@@ -12,7 +12,7 @@ export const LoaderWrapper = styled.div<LoaderWrapperType>`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(192, 192, 192, 0.8);
   z-index: 1200;
   display: ${props => props.disable === true ? 'flex' : 'none'};
 `

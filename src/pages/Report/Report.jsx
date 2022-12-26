@@ -10,6 +10,8 @@ import { getReportsByPeriod } from "../../http/services.user";
 import { ExpensesTypes } from "../../components/ExpensesTypes/ExpensesTypes";
 import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../components/Loader/Loader";
+import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
+import { SubHeaderReport } from "../../components/SubHeaderReport/SubHeaderReport";
 
 const Report = () => {
   const categories = getReportsByPeriod();
@@ -81,6 +83,18 @@ const Report = () => {
         </Box>
       </Container>
     </BackgroundMain>
+    // <BackgroundMobil>
+    //   <Container>
+    //     <SubHeaderReport />
+    //     {/* <Balance />
+    //     <SelDataPicker /> */}
+    //     <Box page="report">
+    //       <CategoriesList categories={categoriesArr} />
+    //       {/* <ExpensesTypes /> */}
+    //       <MainChart />
+    //     </Box>
+    //   </Container>
+    // </BackgroundMobil>
   );
 };
 

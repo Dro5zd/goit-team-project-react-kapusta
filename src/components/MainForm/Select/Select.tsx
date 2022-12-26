@@ -9,9 +9,11 @@ import {ITransaction} from '../../../redux/transaction/transactionsSlice';
 //   onHandleSubmit: (data: ITransaction)=>void
 // }
 
-const Select = ({ onSelectedCategory, type }: any) => {
+const Select = ({ onSelectedCategory, type, selectDefault, onSelect }: any) => {
   const [selectCategory, setSelectCategory] = useState(false);
   const [elementCategory, setElementCategory] = useState("Product category");
+
+  let select = elementCategory === "Product category" ? '': 'activeSelect'
 
   const expense =  [
       "Продукты",
@@ -41,7 +43,15 @@ const Select = ({ onSelectedCategory, type }: any) => {
       // @ts-ignore
       setArr(income)
     }
-  }, [type])
+    
+    if (selectDefault!=='') {
+      setElementCategory(selectDefault)
+    }
+  if (elementCategory!==selectDefault) {
+    onSelect("")
+  }
+   
+  }, [type, selectDefault])
 
   const onSelectHeader = () => {
     setSelectCategory(!selectCategory);
@@ -53,22 +63,36 @@ const Select = ({ onSelectedCategory, type }: any) => {
     onSelectedCategory((event.target as HTMLInputElement).innerText);
   };
 
+
   return (
+    <>
     <SelectCategory>
-      <SelectHeader onClick={onSelectHeader}>
-        <span>{elementCategory}</span>
+      <SelectHeader onClick={onSelectHeader} >
+        <span className={select}>{elementCategory}</span>
         <img src={vector} alt="vector" />
       </SelectHeader>
       {selectCategory && (
         <SelectBody>
           {arr.map((category) => (
-            <div key={category} onClick={onElementCategory}>
+            <div key={category} onClick={onElementCategory} >
               {category}
             </div>
           ))}
         </SelectBody>
       )}
-    </SelectCategory>
+      </SelectCategory>
+      {/* <SelectorBox >
+        <select>
+          <option>Product category</option>
+          {arr.map((category) => (
+           <option value={category} key={category} >{category}</option>
+          ))}
+        </select>
+        <span>
+          <img src={vector} alt="vector" />
+          </span>
+      </SelectorBox> */}
+    </>
   );
 };
 

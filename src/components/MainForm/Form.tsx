@@ -43,6 +43,8 @@ const Form = ({ type, onHandleSubmit }: ITFormProps) => {
   const [selectCategory, setSelectCategory] = useState("");
   const [amount, setAmount] = useState(0);
   const dispatch = useAppDispatch();
+const [selectDefault, setSelectDefault] = useState('')
+  
 
   const handleChange = (e: any) => {
     const value = e.target.value;
@@ -52,6 +54,7 @@ const Form = ({ type, onHandleSubmit }: ITFormProps) => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
+    setSelectDefault("Product category") ;
     let selectedDate = "";
     if (startDate instanceof DateObject) {
       selectedDate = startDate?.format("YYYY-MM-DD");
@@ -104,7 +107,7 @@ const Form = ({ type, onHandleSubmit }: ITFormProps) => {
           placeholder="Product description"
           min="0.00"
         />
-        <Select type={type} onSelectedCategory={onSelectedCategory} />
+        <Select type={type} onSelectedCategory={onSelectedCategory} selectDefault={selectDefault} onSelect={setSelectDefault } />
         <Input handleChange={handleChange} />
       </BlockForm>
       <BlockButton>

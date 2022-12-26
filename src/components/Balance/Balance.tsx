@@ -71,7 +71,7 @@ export const Balance = () => {
           </BalanceLabel>
 
           <InputWrap>
-            <BalanceText>UAN</BalanceText>
+            <BalanceText>UAH</BalanceText>
             <BalanceInput
               type="number"
               name="balance"

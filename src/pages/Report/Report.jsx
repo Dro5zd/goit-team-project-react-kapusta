@@ -14,17 +14,39 @@ import { Loader } from "../../components/Loader/Loader";
 const Report = () => {
   const categories = getReportsByPeriod();
   const [isLoading, setIsLoading] = useState(false);
-  const [categoriesExpenses, setCategoriesExpenses] = useState({});
+  const [categoriesArr, setCategoriesArr] = useState([]);
+  const [chartData, setChartData] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
+
+  useEffect(()=>{
+    if(categoriesArr[0]){
+      const data = categoriesArr[0]
+      delete data.data.total
+      setChartData(data)
+    }
+  },[categoriesArr])
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      console.log(data, "data");
-      setCategoriesIncomes(data?.incomes);
-      setCategoriesExpenses(data?.expenses);
+      for (const dataKey in data.expenses) {
+        if(typeof data.expenses[dataKey] === 'object'){
+          for (const key in data.expenses[dataKey]) {
+            setCategoriesArr(prevState => [...prevState, {
+             category: key,
+             total: data.expenses[dataKey][key].total,
+              data: data.expenses[dataKey][key]
+           }])
+          }
+        }
+      }
       setIsLoading(false);
     });
   }, []);
+
+  // const uniqueCourses = categoriesArr.filter(
+  //   (category, index, array) => {
+  //     return array.indexOf(category) === index
+  //   });
 
   const [fetchData, isError] = useFetch(getData);
 
@@ -35,8 +57,15 @@ const Report = () => {
   }, [fetchData]);
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader isLoading={isLoading}/>;
   }
+
+  const onclickHandle = (e, title) => {
+    const data = categoriesArr.find(el=> el.category === title)
+    delete data.data.total
+     setChartData(data)
+  }
+
 
   return (
     <BackgroundMain>
@@ -44,10 +73,10 @@ const Report = () => {
         <Balance />
         <SelDataPicker />
         <Box page="report">
-          <CategoriesList categories={categoriesExpenses} />
+          <CategoriesList categories={categoriesArr} onclickHandle={onclickHandle}/>
           {/* <ExpensesTypes /> */}
-          <MainChart />
         </Box>
+        {chartData?.data && <MainChart chartData={chartData?.data}/>}
       </Container>
     </BackgroundMain>
   );

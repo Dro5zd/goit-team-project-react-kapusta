@@ -11,7 +11,7 @@ import Report from "./pages/Report/Report";
 import { Loader } from "./components/Loader/Loader";
 
 import GlobalStyle from "./globalStyles";
-// import Expenses from "./pages/Expenses/Expenses";
+import Expenses from "./pages/Expenses/Expenses";
 import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
@@ -30,7 +30,7 @@ export const App = () => {
   }, [dispatch]);
 
   const HomePage = lazy(() => import("./pages/Home/Home"));
-  const ExpensesPage = lazy(() => import("./pages/Expenses/Expenses"));
+  // const ExpensesPage = lazy(() => import("./pages/Expenses/Expenses"));
   // const HomePage = lazy(() => import("./pages/Home/Home"));
 
   return (
@@ -75,7 +75,7 @@ export const App = () => {
             >
               {/* <Route index element={<Expenses />} /> */}
               <Route index element={<Navigate to="/home/expenses" />} />
-              <Route path="expenses" element={<ExpensesPage />} />
+              <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
             <Route

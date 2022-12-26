@@ -1,25 +1,24 @@
 import React from "react";
 import {
-  CategoriesIcon,
   CategoriesIconWrapper,
   CategoriesItemWrapper,
   CategoriesName,
   CategoriesTotalSum,
 } from "./CategoriesItem.styled";
 
+
 import { Link } from "react-router-dom";
 
-const CategoriesItem = ({ category, icon: Icon }: any) => {
-  // console.log("category", category);
+const CategoriesItem = ({ title, total, icon: Icon, onclickHandle }: any) => {
 
-  return (
-    <CategoriesItemWrapper>
-      <CategoriesTotalSum>5000</CategoriesTotalSum>
+    return (
+    <CategoriesItemWrapper onClick={(e)=>onclickHandle(e, title)}>
+      <CategoriesTotalSum>{total}</CategoriesTotalSum>
       <CategoriesIconWrapper>
         <Icon />
         {/* <CategoriesIcon active={"true"} /> */}
       </CategoriesIconWrapper>
-      <CategoriesName>PRODUCTS</CategoriesName>
+      <CategoriesName>{title}</CategoriesName>
     </CategoriesItemWrapper>
   );
 };

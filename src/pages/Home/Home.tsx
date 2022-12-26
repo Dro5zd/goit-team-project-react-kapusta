@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import {Outlet, useNavigate} from 'react-router-dom';
 import { BackgroundMain } from "../../components/BackgroundMain/BackgroundMain";
 
 import { Container } from "../../globalStyles";
@@ -7,21 +7,20 @@ import {
   BlockLink,
   BlockLinkMobil,
   ButtonLink,
-  ButtonLinkMobil,
-  ContainerMobilHome,
-} from "./Home.styled";
+  ButtonLinkMobil, ContainerMobileHome,
+} from './Home.styled';
 import { Balance } from "../../components/Balance/Balance";
 import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
 import ExpensesModal from "../../components/ModalsMobilHome/ExpensesModal/ExpensesModal";
 import IncomeModal from "../../components/ModalsMobilHome/IncomeModal/IncomeModal";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { selectIsLoadingTransaction } from "../../redux/transaction/transactions-selectors";
+import { useAppDispatch} from "../../redux/store";
 import { getExpenseCategories } from "../../redux/transaction/transactions-operations";
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const [isModalExp, setIsModalExp] = useState(false);
   const [isModalInc, setIsModalInc] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getExpenseCategories());
@@ -29,9 +28,11 @@ const Home = () => {
 
   const onButtonExpense = () => {
     setIsModalExp(true);
+    navigate('/home/expenses')
   };
   const onButtonIncome = () => {
     setIsModalInc(true);
+    navigate('/home/income')
   };
 
   return (
@@ -48,15 +49,15 @@ const Home = () => {
       </BackgroundMain>
 
       <BackgroundMobil>
-        <ContainerMobilHome>
+        <ContainerMobileHome>
           <Balance />
           <BlockLinkMobil>
             <ButtonLinkMobil onClick={onButtonExpense}>
               EXPENSES
             </ButtonLinkMobil>
-            <ButtonLinkMobil onClick={onButtonIncome}>INCOME</ButtonLinkMobil>
+            <ButtonLinkMobil onClick={onButtonIncome} >INCOME</ButtonLinkMobil>
           </BlockLinkMobil>
-        </ContainerMobilHome>
+        </ContainerMobileHome>
         {isModalExp && <ExpensesModal setExpBool={setIsModalExp} />}
         {isModalInc && <IncomeModal setIncBool={setIsModalInc} />}
       </BackgroundMobil>

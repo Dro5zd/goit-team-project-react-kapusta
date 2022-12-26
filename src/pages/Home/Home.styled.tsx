@@ -34,7 +34,7 @@ export const ButtonLink = styled(NavLink)`
   }
 `;
 
-export const ContainerMobilHome = styled.div`
+export const ContainerMobileHome = styled.div`
   width: 100%;
   min-height: calc(100vh - 56px);
   display: flex;

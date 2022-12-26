@@ -1,5 +1,10 @@
-import { GrayBgMobil } from "./BackgrounMobil.styled";
+import { ContentMob, GrayBgMobil } from "./BackgrounMobil.styled";
 
 export const BackgroundMobil = ({ children }) => {
-  return <GrayBgMobil>{children}</GrayBgMobil>;
+  return (
+    <ContentMob>
+      <GrayBgMobil />
+      {children}
+    </ContentMob>
+  );
 };

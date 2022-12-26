@@ -9,6 +9,8 @@ import { MainChart } from "../../components/Chart/MainChart";
 import { getReportsByPeriod } from "../../http/services.user";
 import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../components/Loader/Loader";
+import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
+import { SubHeaderReport } from "../../components/SubHeaderReport/SubHeaderReport";
 
 const Report = () => {
   const categories = getReportsByPeriod();

@@ -15,9 +15,9 @@ const Expenses = () => {
     const expensesList = useAppSelector(selectTransactionsExpenses);
     const summaryExpense = useAppSelector(selectMonthExpensesStats);
 
-  // useEffect(() => {
-  //   dispatch(getExpense());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getExpense());
+  }, [dispatch]);
 
   const onHandleSubmit = (data: ITransaction) => {
     dispatch(addExpense(data));

@@ -9,7 +9,7 @@ export const MonthPicker = styled.div`
 
   p {
     font-size: 12px;
-    line-height: 1.1;
+    line-height: 14px;
     letter-spacing: 0.04em;
     color: rgba(82, 85, 95, 0.7);
   }

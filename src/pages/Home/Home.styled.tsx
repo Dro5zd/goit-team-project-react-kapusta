@@ -21,7 +21,7 @@ export const ButtonLink = styled(NavLink)`
     height: 40px;
     font-weight: 700;
     font-size: 12px;
-    line-height: 1.1;
+    line-height: 14px;
     letter-spacing: 0.02em;
     color: ${colors.black};
     background-color: #fafbfd;
@@ -61,7 +61,7 @@ export const ButtonLinkMobil = styled.button`
   text-decoration: none;
   font-weight: 700;
   font-size: 12px;
-  line-height: 1.1;
+  line-height: 14px;
   letter-spacing: 0.02em;
   color: ${colors.black};
   background-color: ${colors.grayLight};

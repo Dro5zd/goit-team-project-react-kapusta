@@ -26,7 +26,6 @@ export const Box = styled.div`
 
   ${device.desktop} {
     width: 1098px;
-    justify-content: center;
     padding: ${(p: IBox) =>
       p.page === "report" ? "20px 220px" : "32px 32px 60px 32px"};
     //height: 579px;

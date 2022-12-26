@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,13 +7,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { useAppSelector } from "../../redux/store";
-import {
-  selectExpenseCategories,
-  selectMonthExpensesStats,
-} from "../../redux/transaction/transactions-selectors";
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -24,38 +19,47 @@ ChartJS.register(
   Legend
 );
 
-// export const options = {
-//     responsive: true,
-//     plugins: {
-//         legend: {
-//             position: 'top' as const,
-//         },
-//         title: {
-//             display: true,
-//             text: 'MainChart.js Bar MainChart',
-//         },
-//     },
-// };
 
-// const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-export function MainChart() {
-  const labels = useAppSelector(selectExpenseCategories);
-  // console.log('labels', labels);
-  // console.log(typeof labels);
-  const data = {
-    // labels,
-    // datasets: [
-    //     {
-    //         label: 'Dataset 1',
-    //         data: labels.map((month) => {
-    //
-    //         })),
-    //         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    //     },
-    // ],
+
+export function MainChart({chartData}) {
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+        position: 'top',
+      },
+      // title: {
+      //   display: false,
+      // },
+
+      // line: {
+      //   enabled: true
+      // }
+    },
   };
-  //   console.log("label", labels);
-  return <></>;
-  // return <Bar  data={data} />;
+
+  const labels = Object.keys(chartData)
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: labels.map((el) => chartData[el]),
+        borderColor: "#FF751D",
+        width: 30,
+        borderRadius: 15,
+        backgroundColor: "#FF751D",
+      },
+    ],
+  };
+  return (
+
+  <>
+    <p>CHART</p>
+  <Bar options={options} data={data} />
+  </>
+    )
 }

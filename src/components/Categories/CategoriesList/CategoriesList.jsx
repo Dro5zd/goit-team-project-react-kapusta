@@ -5,25 +5,32 @@ import {ReactComponent as LeftArrow} from '../../../assets/images/svg/expenses/a
 import {ReactComponent as RightArrow} from '../../../assets/images/svg/expenses/arrow-right.svg';
 import {StyledDiv} from '../../ExpensesTypes/ExpensesTypes.styled';
 import {ReactComponent as Alcohol} from '../../../assets/images/svg/expenses/alcohol.svg';
+import {ReactComponent as Products} from '../../../assets/images/svg/expenses/products.svg';
 import {ReactComponent as Entertainment} from '../../../assets/images/svg/expenses/entertainment.svg';
 import {ReactComponent as Health} from '../../../assets/images/svg/expenses/health.svg';
 import {ReactComponent as Transport} from '../../../assets/images/svg/expenses/transport.svg';
-import {ReactComponent as Техника} from '../../../assets/images/svg/expenses/technique.svg';
-import {ReactComponent as Прочее} from '../../../assets/images/svg/expenses/other.svg';
+import {ReactComponent as Technique} from '../../../assets/images/svg/expenses/technique.svg';
+import {ReactComponent as Other} from '../../../assets/images/svg/expenses/other.svg';
 import {ReactComponent as Housing} from '../../../assets/images/svg/expenses/housing.svg';
+import {ReactComponent as Communal} from '../../../assets/images/svg/expenses/communal.svg';
+import {ReactComponent as Hobbies} from '../../../assets/images/svg/expenses/hobbies.svg';
+import {ReactComponent as Education} from '../../../assets/images/svg/expenses/education.svg';
 
-const CategoriesList = ({ categories }) => {
-  const dispatch = useAppDispatch();
-
-  // const arrExpenses = Object.keys(categories?.expensesData);
-  // console.log('qwerty', arrExpenses);
-  // console.log(categories);
-  // console.log("arrExpenses ", arrExpenses);
-  // const categoriesList = useAppSelector(selectExpenseCategories);
-
-
+const CategoriesList = ({ categories, onclickHandle }) => {
 
   const categoryData = [
+    {
+      category: "Продукты",
+      icon: Products
+    } ,
+    {
+      category: "Alcohol",
+      icon: Alcohol
+    } ,
+    {
+      category: "Развлечения",
+      icon: Entertainment
+    } ,
     {
       category: "Здоровье",
       icon: Health
@@ -33,62 +40,35 @@ const CategoriesList = ({ categories }) => {
       icon: Transport
     },
     {
-      category: "Техника",
-      icon: Housing
-    } ,
-    {
-      category: "Продукты",
-      icon: Housing
-    } ,
-    {
       category: "Всё для дома",
       icon: Housing
     } ,
     {
+      category: "Техника",
+      icon: Technique
+    } ,
+    {
       category: "Коммуналка и связь",
-      icon: Housing
+      icon: Communal
     } ,
     {
       category: "Спорт и хобби",
-      icon: Housing
+      icon: Hobbies
     } ,
     {
       category: "Образование",
-      icon: Housing
-    } ,
-    {
-      category: "Развлечения",
-      icon: Housing
-    } ,
-    {
-      category: "Образование",
-      icon: Housing
+      icon: Education
     } ,
     {
       category: "Прочее",
-      icon: Housing
+      icon: Other
     }
-    // "Продукты" ,
-    // "Алкоголь",
-    // "Развлечения",
-    // "Здоровье",
-    // "Транспорт",
-    // "Всё для дома",
-    // "Техника",
-    // "Коммуналка и связь",
-    // "Спорт и хобби",
-    // "Образование",
-    // "Прочее",
   ];
   const createCategoryIcon = (catName) => {
-    const catIcon = categoryData.find(el => el.category === catName)
-    console.log('catIcon', catIcon);
-    return catIcon.icon
+    const categoryObj = categoryData.find(el => el.category === catName)
+    return categoryObj.icon
   }
 
-  // useEffect(() => {
-  //   dispatch(getExpenseCategories());
-  // }, [dispatch]);
   return (
     <StyledDiv>
       <div className="buttons-wrapper">
@@ -100,17 +80,14 @@ const CategoriesList = ({ categories }) => {
           <RightArrow />
         </button>
       </div>
-      <CategoriesListWrapper>
-        {/* {arrExpenses?.map((category, index) => {
-          // console.log(category, categories[category]);
-          return <CategoriesItem category={category} key={index} />;
-        })} */}
-
-
+      <CategoriesListWrapper >
         {categories?.map(({category, total}, index) => {
-          const icon = createCategoryIcon(category)
-            console.log(typeof icon);
-          return <CategoriesItem icon={icon} title={category} total={total} key={index} />
+          return <CategoriesItem icon={createCategoryIcon(category)}
+                                 key={index}
+                                 title={category}
+                                 total={total}
+                                 onclickHandle={onclickHandle}
+          />
         }
         )}
       </CategoriesListWrapper>

@@ -5,7 +5,7 @@ export const MonthPicker = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: fit-content;
+  width: 180px;
 
   p {
     font-size: 12px;

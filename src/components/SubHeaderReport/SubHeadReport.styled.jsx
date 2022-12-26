@@ -48,7 +48,7 @@ export const TabBox = styled.div`
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
-    gap: 120px;
+    gap: 40px;
   }
 
   ${device.desktop} {

@@ -1,14 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getUser, loginGoogle, loginUser, logoutUser, setUserBalance} from './auth-operations';
+import {
+  getUser,
+  loginGoogle,
+  loginUser,
+  logoutUser,
+  setUserBalance,
+} from "./auth-operations";
 import { Notify } from "notiflix";
-import {ITransaction} from '../transaction/transactionsSlice';
+import { ITransaction } from "../transaction/transactionsSlice";
 
 export interface IUser {
   id: string | null;
   email: string | null;
   password?: string | null;
   balance: number;
-  transactions: ITransaction[]
+  transactions: ITransaction[];
 }
 
 export interface IInitState {
@@ -30,9 +36,9 @@ const authInitialState: IInitState = {
         category: "Продукты",
         amount: 0,
         date: "2020-12-31",
-        _id: "507f1f77bcf86cd799439013"
-      }
-    ]
+        _id: "507f1f77bcf86cd799439013",
+      },
+    ],
   },
   token: null,
   isAuth: false,
@@ -51,8 +57,7 @@ const handleRejected = (state: IInitState, action: any) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: authInitialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
 
@@ -77,7 +82,6 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
-        console.log("loginGoogle", state, action);
         state.isLoading = false;
         state.token = action.payload.accessToken;
         Notify.success(`Welcome back, ${state.user.email}`);
@@ -91,7 +95,7 @@ const authSlice = createSlice({
         state.user = authInitialState.user;
         state.token = null;
         state.isAuth = false;
-        state.isLoading = false
+        state.isLoading = false;
       })
       .addCase(getUser.pending, handlePending)
       .addCase(getUser.rejected, handleRejected)
@@ -100,7 +104,7 @@ const authSlice = createSlice({
         state.isAuth = true;
         state.isLoading = false;
       })
-    .addCase(setUserBalance.pending, handlePending)
+      .addCase(setUserBalance.pending, handlePending)
       .addCase(setUserBalance.rejected, handleRejected)
       .addCase(setUserBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload.newBalance;

@@ -40,7 +40,11 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: none;
+   border: 2px solid ${colors.white};
+  ${device.tablet}{
+    border: 2px solid ${colors.grayBg};
+  }
+  /* border: none; */
   -webkit-text-fill-color: #52555f;
   /* -webkit-box-shadow: 0 0 0 1000px #f6f7fb inset; */
   transition: background-color 5000s ease-in-out 0s;
@@ -49,27 +53,39 @@ select:-webkit-autofill:focus {
 
 export const Container = styled.div`
   width: 100%;
-  min-height: calc(100vh - 56px);
+  height: 100%;
+  /* min-height: calc(100vh - 56px); */
   margin-left: auto;
   margin-right: auto;
-  padding: 104px 20px 0 20px;
+  /* padding: 104px 20px 0 20px; */
+  padding: 0 20px 60px;
 
   ${device.mobile} {
     width: ${size.mobile};
   }
 
   ${device.tablet} {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 40px 32px 60px;
     width: ${size.tablet};
     background-size: 100% 582px;
   }
 
   ${device.desktop} {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 40px 16px 83px;
     width: ${size.desktop};
   }
 `;
+
+// export const ContainerMobilHome = styled.div`
+// width: 100%;
+// min-height: calc(100vh - 56px);
+// display: flex;
+// flex-direction: column;
+// justify-content: space-between;
+// padding: 40px 0 0 0;
+//   ${device.tablet}{
+//     display: none;
+//   }
+// `
 
 export default GlobalStyle;

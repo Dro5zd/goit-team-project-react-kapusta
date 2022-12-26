@@ -1,5 +1,5 @@
 import { omit } from "lodash-es";
-import { useFormik } from "formik";
+import {FormikHelpers, useFormik} from 'formik';
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { ButtonLink } from "../ButtonLink/ButtonLink";
@@ -19,13 +19,30 @@ import {
   BtnBox,
   ButtonGoogle,
   SubText,
-  Content,
-} from "./RegisterForm.styled";
+  Content, ErrorStar,
+} from './RegisterForm.styled';
 
 const initialValues = {
   email: "",
   password: "",
 };
+
+// const formsValue = {
+//
+//   ...{
+//     stateOrProvince: null,
+//     stateCd: null,
+//     address3: null,
+//     phone: null,
+//   },
+//
+//   ...addressFields
+// };
+
+export interface IValues {
+  email: string;
+  password: string
+}
 
 export const RegisterForm = () => {
   const location = useLocation();
@@ -51,9 +68,8 @@ export const RegisterForm = () => {
         )
         .required("This is a required field"),
     }),
-    onSubmit: (values, actions) => {
-      if (location.pathname === "/login") {
-        console.log("login", values);
+    onSubmit: (values:IValues, actions: FormikHelpers<IValues>) => {
+      if (location.pathname === "/login" || location.pathname === "/") {
         dispatch(loginUser(values));
       }
 
@@ -63,7 +79,6 @@ export const RegisterForm = () => {
             toast.success("Success");
             dispatch(loginUser(omit(values))).unwrap();
           })
-          .then((data) => console.log("REG", data))
           .catch(() => toast.error("Error"));
       }
 
@@ -72,7 +87,6 @@ export const RegisterForm = () => {
   });
 
   const handleLoginGoogle = () => {
-    console.log("handleLoginGoog");
     dispatch(loginGoogle());
   };
 
@@ -87,7 +101,7 @@ export const RegisterForm = () => {
         </>
       );
     }
-    if (location.pathname === "/register") {
+    if (location.pathname === "/register" || location.pathname === "/") {
       return (
         <>
           <ButtonLink to="/login"> Log in</ButtonLink>
@@ -98,6 +112,7 @@ export const RegisterForm = () => {
       );
     }
   };
+
 
   return (
     <>
@@ -112,7 +127,11 @@ export const RegisterForm = () => {
           </SubText>
 
           <FieldStyle>
-            <LabelInput htmlFor="email">Email:</LabelInput>
+            <LabelInput htmlFor="email">
+              {formik.touched.email && formik.errors.email ? (
+                  <ErrorStar>*</ErrorStar>
+              ) : null}
+              Email:</LabelInput>
             <InputStyled
               type="email"
               name="email"
@@ -120,7 +139,7 @@ export const RegisterForm = () => {
               placeholder="your@email.com"
               onChange={formik.handleChange}
               value={formik.values.email}
-              {...formik.getFieldProps("email")}
+              onBlur={formik.handleBlur}
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required
             />
@@ -132,7 +151,7 @@ export const RegisterForm = () => {
           <FieldStyle>
             <LabelInput htmlFor="password">
               {formik.touched.password && formik.errors.password ? (
-                <ErrorText>*</ErrorText>
+                <ErrorStar>*</ErrorStar>
               ) : null}
               Password:
             </LabelInput>
@@ -143,7 +162,7 @@ export const RegisterForm = () => {
               placeholder="Password"
               onChange={formik.handleChange}
               value={formik.values.password}
-              {...formik.getFieldProps("password")}
+              onBlur={formik.handleBlur}
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               required
             />

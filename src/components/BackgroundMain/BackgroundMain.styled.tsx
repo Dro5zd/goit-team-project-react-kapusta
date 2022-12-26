@@ -2,17 +2,19 @@ import styled from "styled-components";
 import { colors } from "../../utils/colors";
 import { device } from "../../utils/mixins";
 import CabbageDesc from "../../assets/images/svg/cabbage-main.svg";
-import CabbageOne from "../../assets/images/svg/cabbage-one.svg";
 import CabbageTwo from "../../assets/images/svg/cabbage-two.svg";
 
 export const Content = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   position: relative;
   min-height: calc(100vh - 56px);
   //max-height: calc(100vh - 56px);
   overflow: hidden;
   max-width: 100%;
+  ${device.tablet} {
+    display: flex;
+  }
 
   &::after {
     content: "";
@@ -25,7 +27,7 @@ export const Content = styled.div`
       width: 183px;
       height: 146px;
       background-image: url(${CabbageTwo});
-      background-repeat: no-repeat;
+      background-repeat: repeat;
     }
     ${device.desktop} {
       bottom: -38px;
@@ -34,7 +36,7 @@ export const Content = styled.div`
       width: 100%;
       height: 232px;
       background-image: url(${CabbageDesc});
-      background-repeat: no-repeat;
+      background-repeat: repeat;
     }
   }
 `;

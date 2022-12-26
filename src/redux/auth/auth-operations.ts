@@ -1,16 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IUser } from "./authSlice";
 import { PrivateApi, PublicApi, token } from "../../http/http";
+import { IValues } from "../../components/RegisterForm/RegisterForm";
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async ({ email, password }: IUser, thunkAPI) => {
+  async ({ email, password }: IValues, thunkAPI) => {
     try {
       const res = await PublicApi.post("/auth/login", {
         email: email,
         password: password,
       });
-      console.log("Operat login", res.data);
       token.set(res.data.accessToken);
       return res.data;
     } catch (error: any) {
@@ -22,14 +21,11 @@ export const loginGoogle = createAsyncThunk(
   "auth/loginGoogle",
   async (_, thunkAPI) => {
     try {
-      console.log("THunk goo");
-
       const res = await PublicApi.get("/auth/google", {
         headers: {
           accept: "*/*",
         },
       });
-      console.log("Operat google", res.data);
       token.set(res.data.accessToken);
       getUser();
       return res.data;
@@ -69,13 +65,16 @@ export const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
 });
 
 export const setUserBalance = createAsyncThunk(
-    "auth/setUserBalance",
-    async (balance: number, thunkAPI) => {
-        try {
-          const res = await PrivateApi.patch("/user/balance", {newBalance: balance});
-          token.unset();
-          return res.data;
-        } catch (error: any) {
-          return thunkAPI.rejectWithValue(error.message);
-        }
-});
+  "auth/setUserBalance",
+  async (balance: number, thunkAPI) => {
+    try {
+      const res = await PrivateApi.patch("/user/balance", {
+        newBalance: balance,
+      });
+      token.unset();
+      return res.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

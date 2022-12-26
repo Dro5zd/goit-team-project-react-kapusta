@@ -33,3 +33,44 @@ export const ButtonLink = styled(NavLink)`
     background-color: #fefefe;
   }
 `;
+
+export const ContainerMobileHome = styled.div`
+  width: 100%;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 0 0 0;
+  ${device.tablet} {
+    display: none;
+  }
+`;
+
+export const BlockLinkMobil = styled.div`
+  display: flex;
+  gap: 4px;
+  margin: 0 auto;
+`;
+
+export const ButtonLinkMobil = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 158px;
+  height: 53px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: ${colors.black};
+  background-color: ${colors.grayLight};
+  border: none;
+  outline: none;
+  cursor: pointer;
+  :hover,
+  :focus {
+    color: ${colors.white};
+    background-color: ${colors.orange};
+  }
+`;

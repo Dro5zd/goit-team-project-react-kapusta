@@ -1,34 +1,39 @@
-import { Box, Title, Item } from "./Summary.styled";
+import { Box, Item, Title } from "./Summary.styled";
+import { useEffect, useState } from "react";
+import { ITransaction } from "../../redux/transaction/transactionsSlice";
 
-export const Summary = () => {
+interface ISummaryProps {
+  summaryIncome?: any;
+  summaryExpense?: any;
+}
+export const Summary = ({ summaryIncome, summaryExpense }: ISummaryProps) => {
+  const [summary, setSummary] = useState({});
+
+  useEffect(() => {
+    if (summaryIncome) {
+      setSummary(summaryIncome);
+    }
+    if (summaryExpense) {
+      setSummary(summaryExpense);
+    }
+  }, [summaryIncome, summaryExpense]);
+
+  const summaryArr = Object.keys(summary)?.map((key) => {
+    // @ts-ignore
+    return summary[key] !== "N/A" ? { month: [key], value: summary[key] } : {};
+  });
+
+  const filteredSummaryArr = summaryArr.filter(({ value }) => value);
   return (
     <Box>
-        <Title>SUMMARY</Title>
+      <Title>SUMMARY</Title>
       <ul>
-        <Item>
-          <p>{"November"}</p>
-          <p>{"10 000.00"}</p>
-        </Item>
-        <Item>
-          <p>{"October"}</p>
-          <p>{"30 000.00"}</p>
-        </Item>
-        <Item>
-          <p>{"September"}</p>
-          <p>{"30 000.00"}</p>
-        </Item>
-        <Item>
-          <p>{"August"}</p>
-          <p>{"20 000.00"}</p>
-        </Item>
-        <Item>
-          <p>{"July"}</p>
-          <p>{"15 000.00"}</p>
-        </Item>
-        <Item>
-          <p>{"June"}</p>
-          <p>{"18 000.00"}</p>
-        </Item>
+        {filteredSummaryArr?.map(({ value, month }, index) => (
+          <Item key={index}>
+            <p>{month}</p>
+            <p>{value}</p>
+          </Item>
+        ))}
       </ul>
     </Box>
   );

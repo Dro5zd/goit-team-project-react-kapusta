@@ -25,7 +25,7 @@ export const SubHeaderReport = () => {
             </ReportBalance>
         </TabBox>
         <MobileSummary>
-            <Title>Expences: <SummarySpan color="red">- 5555.00 UAH.</SummarySpan> </Title>
+            <Title>Expenses: <SummarySpan color="red">- {expenses[0].amount}.00 UAH.</SummarySpan> </Title>
             <Title>Income: <SummarySpan>+ {incomes[0].amount}.00 UAH.</SummarySpan></Title>
         </MobileSummary>
     </SubBox>

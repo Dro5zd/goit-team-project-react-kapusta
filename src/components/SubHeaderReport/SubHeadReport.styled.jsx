@@ -113,7 +113,7 @@ export const MobileSummary = styled.div`
   border-radius: 20px;
 
   ${device.tablet} {
-    left: 32;
+    left: 32px;
     bottom: 0;
     justify-content: center;
     gap: 20px;

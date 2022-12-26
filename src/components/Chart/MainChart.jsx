@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,8 +7,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -19,17 +19,17 @@ ChartJS.register(
   Legend
 );
 
-
-
-
-export function MainChart({chartData}) {
+export const MainChart = ({ chartData }) => {
+  const chartRef = useRef(null);
+  const [chartsData, setChartsData] = useState({ datasets: [] });
+  console.log("chartRef", chartRef);
 
   const options = {
     responsive: true,
     plugins: {
       legend: {
         display: false,
-        position: 'top',
+        position: "top",
       },
       // title: {
       //   display: false,
@@ -41,7 +41,7 @@ export function MainChart({chartData}) {
     },
   };
 
-  const labels = Object.keys(chartData)
+  const labels = Object.keys(chartData);
 
   const data = {
     labels,
@@ -55,11 +55,29 @@ export function MainChart({chartData}) {
       },
     ],
   };
-  return (
 
-  <>
-    <p>CHART</p>
-  <Bar options={options} data={data} />
-  </>
-    )
-}
+  useEffect(() => {
+    const chart = chartRef.current;
+
+    if (!chart) {
+      return;
+    }
+
+    const chartData = {
+      ...data,
+      datasets: data.datasets.map((dataset) => ({
+        ...dataset,
+        borderColor: "blue",
+      })),
+    };
+
+    setChartsData(chartData);
+  }, []);
+
+  return (
+    <>
+      <p>CHART</p>
+      <Bar ref={chartRef} options={options} data={chartsData} />
+    </>
+  );
+};

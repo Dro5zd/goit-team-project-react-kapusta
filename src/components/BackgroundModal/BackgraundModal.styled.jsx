@@ -3,7 +3,7 @@ import { colors } from "../../utils/colors";
 
 export const Content = styled.div`
   position: absolute;
-  top: 56px;
+  top: 0;
   left: 0;
   background-color: ${colors.white};
   width: 100%;

@@ -4,18 +4,24 @@ import {
   CategoriesItemWrapper,
   CategoriesName,
   CategoriesTotalSum,
+  ShadowIcon,
 } from "./CategoriesItem.styled";
-
 
 import { Link } from "react-router-dom";
 
-const CategoriesItem = ({ title, total, icon: Icon, onclickHandle }: any) => {
-
-    return (
-    <CategoriesItemWrapper onClick={(e)=>onclickHandle(e, title)}>
+const CategoriesItem = ({
+  title,
+  total,
+  icon: Icon,
+  onclickHandle,
+  active,
+}: any) => {
+  return (
+    <CategoriesItemWrapper onClick={(e) => onclickHandle(e, title)}>
       <CategoriesTotalSum>{total}</CategoriesTotalSum>
-      <CategoriesIconWrapper>
-        <Icon />
+      <CategoriesIconWrapper active={active}>
+        <Icon className="category" />
+        <ShadowIcon active={active} />
         {/* <CategoriesIcon active={"true"} /> */}
       </CategoriesIconWrapper>
       <CategoriesName>{title}</CategoriesName>

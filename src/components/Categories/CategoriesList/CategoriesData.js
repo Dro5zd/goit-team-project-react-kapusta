@@ -1,30 +1,58 @@
-import { CategoriesIcon } from "../CategoriesItem/CategoriesItem.styled";
-import { ReactComponent as AlcoholIcon } from "../../../assets/images/svg/expenses/alcohol.svg";
-import { ReactComponent as EntertainmentIcon } from "../../../assets/images/svg/expenses/entertainment.svg";
-import { ReactComponent as HealthIcon } from "../../../assets/images/svg/expenses/health.svg";
-import { ReactComponent as TransportIcon } from "../../../assets/images/svg/expenses/transport.svg";
-import { ReactComponent as HousingIcon } from "../../../assets/images/svg/expenses/housing.svg";
-import { ReactComponent as TechniqueIcon } from "../../../assets/images/svg/expenses/technique.svg";
-import { ReactComponent as CommunalIcon } from "../../../assets/images/svg/expenses/communal.svg";
-import { ReactComponent as HobbiesIcon } from "../../../assets/images/svg/expenses/hobbies.svg";
-import { ReactComponent as Освіта } from "../../../assets/images/svg/expenses/education.svg";
-import { ReactComponent as OtherIcon } from "../../../assets/images/svg/expenses/other.svg";
+import { ReactComponent as Alcohol } from "../../../assets/images/svg/expenses/alcohol.svg";
+import { ReactComponent as Products } from "../../../assets/images/svg/expenses/products.svg";
+import { ReactComponent as Entertainment } from "../../../assets/images/svg/expenses/entertainment.svg";
+import { ReactComponent as Health } from "../../../assets/images/svg/expenses/health.svg";
+import { ReactComponent as Transport } from "../../../assets/images/svg/expenses/transport.svg";
+import { ReactComponent as Technique } from "../../../assets/images/svg/expenses/technique.svg";
+import { ReactComponent as Other } from "../../../assets/images/svg/expenses/other.svg";
+import { ReactComponent as Housing } from "../../../assets/images/svg/expenses/housing.svg";
+import { ReactComponent as Communal } from "../../../assets/images/svg/expenses/communal.svg";
+import { ReactComponent as Hobbies } from "../../../assets/images/svg/expenses/hobbies.svg";
+import { ReactComponent as Education } from "../../../assets/images/svg/expenses/education.svg";
 
-export const CategoriesData = [
+export const categoryData = [
   {
-    category: "Здоровье",
-    icon: HealthIcon,
+    category: "Продукты",
+    icon: Products,
   },
   {
-    category: "Освіта",
-    icon: Освіта,
+    category: "Alcohol",
+    icon: Alcohol,
+  },
+  {
+    category: "Развлечения",
+    icon: Entertainment,
   },
   {
     category: "Здоровье",
-    icon: HealthIcon,
+    icon: Health,
   },
   {
-    category: "Здоровье",
-    icon: HealthIcon,
+    category: "Транспорт",
+    icon: Transport,
+  },
+  {
+    category: "Всё для дома",
+    icon: Housing,
+  },
+  {
+    category: "Техника",
+    icon: Technique,
+  },
+  {
+    category: "Коммуналка и связь",
+    icon: Communal,
+  },
+  {
+    category: "Спорт и хобби",
+    icon: Hobbies,
+  },
+  {
+    category: "Образование",
+    icon: Education,
+  },
+  {
+    category: "Прочее",
+    icon: Other,
   },
 ];

@@ -48,7 +48,7 @@ export const InputProduct = styled.input`
   padding: 2px 20px;
   font-weight: 400;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   background-color: #f5f6fb;
   outline: none;
   color: #c7ccdc;
@@ -91,7 +91,7 @@ export const ButtonInput = styled.button`
   outline: none;
   font-weight: 700;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   color: ${colors.white};
 
   ${device.tablet} {
@@ -111,7 +111,7 @@ export const ButtonClear = styled.button`
   outline: none;
   font-weight: 700;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   color: #52555f;
   box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
   ${device.tablet} {

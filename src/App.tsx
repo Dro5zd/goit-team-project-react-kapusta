@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "./redux/store";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
+// import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
@@ -11,7 +11,7 @@ import Report from "./pages/Report/Report";
 import { Loader } from "./components/Loader/Loader";
 
 import GlobalStyle from "./globalStyles";
-import Expenses from "./pages/Expenses/Expenses";
+// import Expenses from "./pages/Expenses/Expenses";
 import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
@@ -28,6 +28,10 @@ export const App = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+  const HomePage = lazy(() => import("./pages/Home/Home"));
+  const ExpensesPage = lazy(() => import("./pages/Expenses/Expenses"));
+  // const HomePage = lazy(() => import("./pages/Home/Home"));
 
   return (
     <>
@@ -65,13 +69,13 @@ export const App = () => {
               path="/home"
               element={
                 <PrivateRoute>
-                  <Home />
+                  <HomePage />
                 </PrivateRoute>
               }
             >
               {/* <Route index element={<Expenses />} /> */}
               <Route index element={<Navigate to="/home/expenses" />} />
-              <Route path="expenses" element={<Expenses />} />
+              <Route path="expenses" element={<ExpensesPage />} />
               <Route path="income" element={<Income />} />
             </Route>
             <Route

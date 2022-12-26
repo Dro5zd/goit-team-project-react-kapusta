@@ -16,7 +16,10 @@ import ExpensesModal from "../../components/ModalsMobilHome/ExpensesModal/Expens
 import IncomeModal from "../../components/ModalsMobilHome/IncomeModal/IncomeModal";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { selectIsLoadingTransaction } from "../../redux/transaction/transactions-selectors";
-import { getExpenseCategories } from "../../redux/transaction/transactions-operations";
+import {
+  getExpense,
+  getExpenseCategories,
+} from "../../redux/transaction/transactions-operations";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getExpenseCategories());
+    dispatch(getExpense());
   }, [dispatch]);
 
   const onButtonExpense = () => {

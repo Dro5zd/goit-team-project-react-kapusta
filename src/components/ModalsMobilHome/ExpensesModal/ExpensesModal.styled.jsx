@@ -8,6 +8,6 @@ export const ContainerModal = styled.div`
 `;
 
 export const BackspaceButton = styled(Backspace)`
-  margin-bottom: 26px;
+  margin-bottom: 16px;
   cursor: pointer;
 `;

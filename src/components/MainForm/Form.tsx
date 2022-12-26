@@ -5,11 +5,11 @@ import Input from "./Input/Input";
 import {
   BlockButton,
   BlockForm,
-  BlockPicker,
+  BlockPicker, ButtonClear, ButtonInput,
   CalendarIcon,
   FormGroup,
   InputProduct,
-} from "./Form.styled";
+} from './Form.styled';
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useAppDispatch } from "../../redux/store";
 import {
@@ -18,7 +18,7 @@ import {
   getExpense,
   getIncome,
 } from "../../redux/transaction/transactions-operations";
-import { ButtonClear, ButtonInput } from "../form/Form.styled";
+
 import { ITransaction } from "../../redux/transaction/transactionsSlice";
 
 interface ITFormProps {

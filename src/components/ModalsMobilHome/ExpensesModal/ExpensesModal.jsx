@@ -10,7 +10,7 @@ const ExpensesModal = ({ setExpBool }) => {
     <BackgroundModal>
       <ContainerModal>
         <BackspaceButton onClick={onBackspaceButton} />
-        <Form />
+        <Form type="expense" />
       </ContainerModal>
     </BackgroundModal>
   );

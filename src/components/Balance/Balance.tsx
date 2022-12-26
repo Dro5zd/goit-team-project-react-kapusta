@@ -8,12 +8,9 @@ import {
   DateSpan,
   DoubleDots,
   BackIcon,
-  BalanceText,
-  InputWrap,
   CalendarSvg,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { RxCalendar } from "react-icons/rx";
 import { BalanceNotification } from "../BalanceNotification/BalanceNotification";
 import { selectBalance } from "../../redux/auth/auth-selectors";
 import { useState, useEffect } from "react";
@@ -57,61 +54,63 @@ export const Balance = () => {
   };
 
   return (
-    <>
-      <BalanceContainer>
-        <BackIcon to="/" hidden={location.pathname !== "/report"}>
-          <ArrowBack />
-          Main page
-        </BackIcon>
+    <div>
+      <BackIcon
+        to="/"
+        hidden={location.pathname !== "/report"}
+        style={{ position: "absolute" }}
+      >
+        <ArrowBack />
+        Main page
+      </BackIcon>
 
+      <BalanceContainer>
         <BalanceForm onSubmit={handleSubmit}>
           <BalanceLabel htmlFor="balance">
             Balance
             <DoubleDots>:</DoubleDots>
           </BalanceLabel>
 
-          <InputWrap>
-            <BalanceText>UAH</BalanceText>
-            <BalanceInput
-              type="number"
-              name="balance"
-              id="balance"
-              value={balance}
-              placeholder="00.00"
-              min="0.00"
-              onChange={handleChange}
-              pattern="^[0-9]*$"
-            />
-          </InputWrap>
+          <BalanceInput
+            type="number"
+            name="balance"
+            id="balance"
+            value={balance}
+            placeholder="00.00"
+            min="0.00"
+            onChange={handleChange}
+            pattern="^[0-9]*$"
+          />
           {balance === "0.00" && <BalanceNotification />}
           <BalanceBtn type="submit">CONFIRM</BalanceBtn>
         </BalanceForm>
+
         <Link to={"/report"} className="reports-link">
           <span>Reports</span>
           <img src={chart} alt="chart" />
         </Link>
-        <DateSpan>
-          <CalendarSvg />
-          <DatePicker
-            value={startDate}
-            format={" DD.MM.YYYY"}
-            style={{
-              backgroundColor: "transparent",
-              height: "44px",
-              width: "100px",
-              borderColor: "transparent",
-              padding: "3px 10px",
-              fontWeight: "900",
-              fontSize: "12px",
-              lineHeight: "14px",
-              color: " #52555f",
-            }}
-            onChange={() => setStartDate}
-          />
-          {/* <RxCalendar size={20} />
-          <span>21.11.2012</span> */}
-        </DateSpan>
       </BalanceContainer>
+
+      <DateSpan>
+        <CalendarSvg />
+        <DatePicker
+          value={startDate}
+          format={" DD.MM.YYYY"}
+          style={{
+            backgroundColor: "transparent",
+            height: "44px",
+            width: "100px",
+            borderColor: "transparent",
+            padding: "3px 10px",
+            fontWeight: "900",
+            fontSize: "12px",
+            lineHeight: "14px",
+            color: " #52555f",
+          }}
+          onChange={() => setStartDate}
+        />
+      </DateSpan>
+
       {isOpen && (
         <Modal onClose={handleOpenModal}>
           <ModalContent
@@ -123,6 +122,6 @@ export const Balance = () => {
           />
         </Modal>
       )}
-    </>
+    </div>
   );
 };

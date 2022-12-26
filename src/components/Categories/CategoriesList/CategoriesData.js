@@ -16,7 +16,7 @@ export const categoryData = [
     icon: Products,
   },
   {
-    category: "Alcohol",
+    category: "Алкоголь",
     icon: Alcohol,
   },
   {

@@ -18,7 +18,7 @@ const Report = () => {
   const [categoriesExpenses, setCategoriesExpenses] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
 
-    const obj = {}
+  const obj = {};
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
@@ -26,13 +26,11 @@ const Report = () => {
       setCategoriesIncomes(data.incomes);
       setCategoriesExpenses(data.expenses);
       for (const dataKey in data.expenses) {
-        if(typeof data.expenses[dataKey] === 'object'){
+        if (typeof data.expenses[dataKey] === "object") {
           for (const key in data.expenses[dataKey]) {
-            console.log('data.expenses[dataKey]', data.expenses[dataKey]);
-            console.log('[Key]', data.expenses[dataKey][key]);
-
+            console.log("data.expenses[dataKey]", data.expenses[dataKey]);
+            console.log("[Key]", data.expenses[dataKey][key]);
           }
-
         }
         // console.log('123456789:', data.expenses[dataKey]);
         // console.log('123456789:', typeof data.expenses[dataKey]);
@@ -42,7 +40,7 @@ const Report = () => {
     });
   }, []);
 
-  console.log('arr', arr);
+  console.log("arr", arr);
 
   const [fetchData, isError] = useFetch(getData);
 
@@ -53,7 +51,7 @@ const Report = () => {
   }, [fetchData]);
 
   if (isLoading) {
-    return <Loader isLoading={isLoading}/>;
+    return <Loader isLoading={isLoading} />;
   }
 
   return (

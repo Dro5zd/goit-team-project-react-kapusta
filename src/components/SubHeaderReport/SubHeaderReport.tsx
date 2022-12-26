@@ -1,23 +1,32 @@
 import { useLocation } from "react-router-dom";
-import { BackIcon } from "../Balance/Balance.styled"
 import { ReactComponent as ArrowBack } from "../../assets/images/svg/balance/arrow-back.svg";
 import SelDataPicker from "../DatePicker/DatePicker";
-import { BalanceSpan, MobileSummary, ReportBalance, SubBox, SummarySpan, Title } from "./SubHeadReport.styled";
+import { useAppSelector } from "../../redux/store";
+import { selectBalance } from "../../redux/auth/auth-selectors";
+import { selectTransactions, selectTransactionsExpenses } from "../../redux/transaction/transactions-selectors";
+import { BalanceSpan, MobileSummary, ReportBalance, SubBox, SummarySpan, TabBox, Title, Icon } from "./SubHeadReport.styled";
 
 export const SubHeaderReport = () => {
+    const balance = useAppSelector(selectBalance)
+    const incomes = useAppSelector(selectTransactions)
+    const expenses = useAppSelector(selectTransactionsExpenses)
+    // console.log(expenses);
+    
     const location = useLocation();
     return <SubBox>
-        <BackIcon to="/" hidden={location.pathname !== "/report"} style={ {alignSelf: 'flex-start', marginBottom: '16px'}}>
-            <ArrowBack  />
-          {/* Main page */}
-        </BackIcon>
-        <SelDataPicker />
+        <Icon to="/" hidden={location.pathname !== "/report"}>
+            <ArrowBack />
+            Main page
+        </Icon>
+        <TabBox>
+            <SelDataPicker />
         <ReportBalance>Balance: 
-            <BalanceSpan>55555.00 UAH</BalanceSpan>
-        </ReportBalance>
+            <BalanceSpan>{balance}.00 UAH</BalanceSpan>
+            </ReportBalance>
+        </TabBox>
         <MobileSummary>
-            <Title >Expences: <SummarySpan color="red">- 5555 UAH.</SummarySpan> </Title>
-            <Title>Income: <SummarySpan>+ 5555 UAH.</SummarySpan></Title>
+            <Title>Expences: <SummarySpan color="red">- 5555.00 UAH.</SummarySpan> </Title>
+            <Title>Income: <SummarySpan>+ {incomes[0].amount}.00 UAH.</SummarySpan></Title>
         </MobileSummary>
     </SubBox>
 }

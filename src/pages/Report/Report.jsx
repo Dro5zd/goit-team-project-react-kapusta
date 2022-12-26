@@ -67,32 +67,35 @@ const Report = () => {
   };
 
   return (
-    <BackgroundMain>
-      <Container>
-        <Balance />
-        <SelDataPicker />
-        <Box page="report">
-          <CategoriesList
-            categories={categoriesArr}
-            onclickHandle={onclickHandle}
-          />
-          {/* <ExpensesTypes /> */}
-        </Box>
-        {chartData?.data && <MainChart chartData={chartData?.data} />}
-      </Container>
-    </BackgroundMain>
-    // <BackgroundMobil>
-    //   <Container>
-    //     <SubHeaderReport />
-    //     {/* <Balance />
-    //     <SelDataPicker /> */}
-    //     <Box page="report">
-    //       <CategoriesList categories={categoriesArr} />
-    //       {/* <ExpensesTypes /> */}
-    //       <MainChart />
-    //     </Box>
-    //   </Container>
-    // </BackgroundMobil>
+    <>
+      <BackgroundMobil>
+        <Container>
+          <SubHeaderReport />
+          <Box page="report">
+            <CategoriesList
+              categories={categoriesArr}
+              onclickHandle={onclickHandle}
+            />
+            {/* <ExpensesTypes /> */}
+          </Box>
+          {chartData?.data && <MainChart chartData={chartData?.data} />}
+        </Container>
+      </BackgroundMobil>
+
+      <BackgroundMain>
+        <SubHeaderReport />
+        <Container>
+          <Box page="report">
+            <CategoriesList
+              categories={categoriesArr}
+              onclickHandle={onclickHandle}
+            />
+            {/* <ExpensesTypes /> */}
+          </Box>
+          {chartData?.data && <MainChart chartData={chartData?.data} />}
+        </Container>
+      </BackgroundMain>
+    </>
   );
 };
 

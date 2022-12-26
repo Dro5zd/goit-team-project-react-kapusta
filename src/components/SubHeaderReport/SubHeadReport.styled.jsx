@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../utils/colors";
+import { device } from "../../utils/mixins";
+import { BackIcon } from "../Balance/Balance.styled";
 
 export const SubBox = styled.div`
   position: relative;
@@ -7,6 +9,51 @@ export const SubBox = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 16px 0 87px 0;
+  height: 342px;
+
+  ${device.tablet} {
+    flex-direction: row;
+    align-items: center;
+    height: 44px;
+    padding: 40px 32px 114px 32px;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ${device.desktop} {
+    padding: 40px 32px 114px 32px;
+    width: 1160px;
+  }
+`;
+
+export const Icon = styled(BackIcon)`
+  align-self: flex-start;
+  margin-bottom: 16px;
+  color: transparent;
+
+  ${device.tablet} {
+    align-self: center;
+    margin-bottom: 0;
+    width: 115px;
+    color: rgba(82, 85, 95, 0.7);
+  }
+`;
+
+export const TabBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ${device.tablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    gap: 120px;
+  }
+
+  ${device.desktop} {
+    gap: 240px;
+  }
 `;
 
 export const ReportBalance = styled.div`
@@ -22,6 +69,14 @@ export const ReportBalance = styled.div`
   letter-spacing: 0.02em;
   text-align: center;
   color: rgba(82, 85, 95, 0.7);
+
+  ${device.tablet} {
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    width: 228px;
+    height: 44px;
+  }
 `;
 
 export const BalanceSpan = styled.span`
@@ -36,6 +91,12 @@ export const BalanceSpan = styled.span`
   color: ${colors.black};
   border: 2px solid #ffffff;
   border-radius: 22px;
+
+  ${device.tablet} {
+    width: 125px;
+    margin-top: 0;
+    margin-left: 20px;
+  }
 `;
 
 export const MobileSummary = styled.div`
@@ -50,6 +111,20 @@ export const MobileSummary = styled.div`
   background-color: ${colors.white};
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
   border-radius: 20px;
+
+  ${device.tablet} {
+    left: 32;
+    bottom: 0;
+    justify-content: center;
+    gap: 20px;
+    width: 704px;
+    height: 50px;
+    padding: 0;
+  }
+
+  ${device.desktop} {
+    width: 1100px;
+  }
 `;
 
 export const Title = styled.p`
@@ -67,9 +142,22 @@ export const Title = styled.p`
   :not(:last-child) {
     border-right: 1px solid #e0e5eb;
   }
+
+  ${device.tablet} {
+    padding: 0;
+    padding-right: 20px;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+  }
 `;
 
 export const SummarySpan = styled.span`
   margin-top: 4px;
   color: ${(p) => (p.color ? "#E53935" : "#407946")};
+
+  ${device.tablet} {
+    margin-left: 15px;
+    padding-bottom: 3px;
+  }
 `;

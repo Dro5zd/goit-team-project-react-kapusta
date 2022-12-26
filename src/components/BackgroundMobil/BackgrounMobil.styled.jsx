@@ -4,6 +4,9 @@ import { device } from "../../utils/mixins";
 
 export const ContentMob = styled.div`
   position: relative;
+  ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const GrayBgMobil = styled.div`
@@ -16,7 +19,4 @@ export const GrayBgMobil = styled.div`
   width: 100%;
   height: 320px;
   border-radius: 0 0 0 110px;
-  ${device.tablet} {
-    display: none;
-  }
 `;

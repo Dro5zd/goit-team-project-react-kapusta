@@ -3,7 +3,6 @@ import {
   BalanceBtn,
   BalanceContainer,
   BalanceForm,
-  BalanceInput,
   BalanceLabel,
   DateSpan,
   DoubleDots,
@@ -11,6 +10,7 @@ import {
   BalanceText,
   InputWrap,
   CalendarSvg,
+  InputButton,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { RxCalendar } from "react-icons/rx";
@@ -55,7 +55,7 @@ export const Balance = () => {
     dispatch(setUserBalance(+balance));
     handleOpenModal();
   };
-
+  
   return (
     <>
       <BalanceContainer>
@@ -63,16 +63,19 @@ export const Balance = () => {
           <ArrowBack />
           Main page
         </BackIcon>
-
+        <Link to={"/report"} className="reports-link">
+          <span>Reports</span>
+          <img src={chart} alt="chart" />
+        </Link>
         <BalanceForm onSubmit={handleSubmit}>
           <BalanceLabel htmlFor="balance">
             Balance
             <DoubleDots>:</DoubleDots>
-          </BalanceLabel>
-
+            </BalanceLabel>
+          <InputButton>
           <InputWrap>
             <BalanceText>UAH</BalanceText>
-            <BalanceInput
+            <input
               type="number"
               name="balance"
               id="balance"
@@ -84,12 +87,9 @@ export const Balance = () => {
             />
           </InputWrap>
           {balance === "0.00" && <BalanceNotification />}
-          <BalanceBtn type="submit">CONFIRM</BalanceBtn>
+            <BalanceBtn type="submit">CONFIRM</BalanceBtn>
+            </InputButton>
         </BalanceForm>
-        <Link to={"/report"} className="reports-link">
-          <span>Reports</span>
-          <img src={chart} alt="chart" />
-        </Link>
         <DateSpan>
           <CalendarSvg />
           <DatePicker
@@ -104,7 +104,7 @@ export const Balance = () => {
               fontWeight: "900",
               fontSize: "12px",
               lineHeight: "14px",
-              color: " #52555f",
+              color: " #52555F",
             }}
             onChange={() => setStartDate}
           />
@@ -126,3 +126,9 @@ export const Balance = () => {
     </>
   );
 };
+
+
+
+
+
+

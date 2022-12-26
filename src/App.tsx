@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "./redux/store";
-import { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import { lazy, useEffect } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+// import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
@@ -16,18 +16,35 @@ import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { getUser } from "./redux/auth/auth-operations";
-import { selectIsLoading } from "./redux/auth/auth-selectors";
+import { selectIsLoading, selectToken } from "./redux/auth/auth-selectors";
 import { selectIsLoadingTransaction } from "./redux/transaction/transactions-selectors";
+
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
+  const location = useLocation();
+  const urlSearchParems = new URLSearchParams(location.search);
   const dispatch = useAppDispatch();
+  const accessToken = urlSearchParems.get("accessToken");
   const isLoading = useAppSelector(selectIsLoading);
   const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
+  console.log("accessToken", accessToken);
 
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (accessToken) {
+      if (location.pathname === "/") {
+        location.pathname = "/goit-team-project-react-kapusta/home/";
+      }
+    }
+  }, [accessToken]);
+
+  const HomePage = lazy(() => import("./pages/Home/Home"));
+  // const ExpensesPage = lazy(() => import("./pages/Expenses/Expenses"));
+  // const HomePage = lazy(() => import("./pages/Home/Home"));
 
   return (
     <>
@@ -65,12 +82,12 @@ export const App = () => {
               path="/home"
               element={
                 <PrivateRoute>
-                  <Home />
+                  <HomePage />
                 </PrivateRoute>
               }
             >
               {/* <Route index element={<Expenses />} /> */}
-              <Route index element={<Navigate to='/home/expenses' />} />
+              <Route index element={<Navigate to="/home/expenses" />} />
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>

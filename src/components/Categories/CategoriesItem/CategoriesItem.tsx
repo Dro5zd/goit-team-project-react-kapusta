@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  CategoriesIcon,
   CategoriesIconWrapper,
   CategoriesItemWrapper,
   CategoriesName,
@@ -10,11 +9,10 @@ import {
 
 import { Link } from "react-router-dom";
 
-const CategoriesItem = ({ title, total, icon: Icon }: any) => {
-  // console.log("category", category);
+const CategoriesItem = ({ title, total, icon: Icon, onclickHandle }: any) => {
 
-  return (
-    <CategoriesItemWrapper>
+    return (
+    <CategoriesItemWrapper onClick={(e)=>onclickHandle(e, title)}>
       <CategoriesTotalSum>{total}</CategoriesTotalSum>
       <CategoriesIconWrapper>
         <Icon />

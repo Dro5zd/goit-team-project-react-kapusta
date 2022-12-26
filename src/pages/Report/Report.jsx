@@ -15,45 +15,38 @@ const Report = () => {
   const categories = getReportsByPeriod();
   const [isLoading, setIsLoading] = useState(false);
   const [categoriesArr, setCategoriesArr] = useState([]);
-  const [categoriesExpenses, setCategoriesExpenses] = useState({});
+  const [chartData, setChartData] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
 
-    const obj = {}
+  useEffect(()=>{
+    if(categoriesArr[0]){
+      const data = categoriesArr[0]
+      delete data.data.total
+      setChartData(data)
+    }
+  },[categoriesArr])
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      // console.log(data, "data");
-      setCategoriesIncomes(data.incomes);
-      setCategoriesExpenses(data.expenses);
       for (const dataKey in data.expenses) {
         if(typeof data.expenses[dataKey] === 'object'){
           for (const key in data.expenses[dataKey]) {
-            // console.log('data.expenses[dataKey]', data.expenses[dataKey]);
-            // console.log('[Key]', data.expenses[dataKey][key]);
             setCategoriesArr(prevState => [...prevState, {
              category: key,
              total: data.expenses[dataKey][key].total,
+              data: data.expenses[dataKey][key]
            }])
           }
         }
-        // console.log('123456789:', data.expenses[dataKey]);
-        // console.log('123456789:', typeof data.expenses[dataKey]);
-        // console.log('dataKey', dataKey);
       }
       setIsLoading(false);
     });
   }, []);
 
-  const uniqueCourses = categoriesArr.filter(
-    (category, index, array) => {
-      console.log('category', category.category);
-      console.log('index', index);
-      console.log('array', array);
-      return array.indexOf(category) === index
-    });
-
-  console.log('uniqueCourses', uniqueCourses);
-  // console.log('arr', arr);
+  // const uniqueCourses = categoriesArr.filter(
+  //   (category, index, array) => {
+  //     return array.indexOf(category) === index
+  //   });
 
   const [fetchData, isError] = useFetch(getData);
 
@@ -67,16 +60,23 @@ const Report = () => {
     return <Loader isLoading={isLoading}/>;
   }
 
+  const onclickHandle = (e, title) => {
+    const data = categoriesArr.find(el=> el.category === title)
+    delete data.data.total
+     setChartData(data)
+  }
+
+
   return (
     <BackgroundMain>
       <Container>
         <Balance />
         <SelDataPicker />
         <Box page="report">
-          <CategoriesList categories={categoriesArr} />
+          <CategoriesList categories={categoriesArr} onclickHandle={onclickHandle}/>
           {/* <ExpensesTypes /> */}
-          <MainChart />
         </Box>
+        {chartData?.data && <MainChart chartData={chartData?.data}/>}
       </Container>
     </BackgroundMain>
   );

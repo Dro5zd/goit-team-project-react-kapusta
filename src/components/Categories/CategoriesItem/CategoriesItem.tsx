@@ -7,19 +7,20 @@ import {
   CategoriesTotalSum,
 } from "./CategoriesItem.styled";
 
+
 import { Link } from "react-router-dom";
 
-const CategoriesItem = ({ category, icon: Icon }: any) => {
+const CategoriesItem = ({ title, total, icon: Icon }: any) => {
   // console.log("category", category);
 
   return (
     <CategoriesItemWrapper>
-      <CategoriesTotalSum>5000</CategoriesTotalSum>
+      <CategoriesTotalSum>{total}</CategoriesTotalSum>
       <CategoriesIconWrapper>
         <Icon />
         {/* <CategoriesIcon active={"true"} /> */}
       </CategoriesIconWrapper>
-      <CategoriesName>PRODUCTS</CategoriesName>
+      <CategoriesName>{title}</CategoriesName>
     </CategoriesItemWrapper>
   );
 };

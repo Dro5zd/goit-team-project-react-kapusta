@@ -1,22 +1,16 @@
-import { useAppDispatch, useAppSelector } from "../../../redux/store";
-import { selectExpenseCategories } from "../../../redux/transaction/transactions-selectors";
-import CategoriesItem from "../CategoriesItem/CategoriesItem";
-import { CategoriesItemWrapper } from "../CategoriesItem/CategoriesItem.styled";
-import { CategoriesListWrapper } from "./CategoriesList.styled";
-import { ReactComponent as LeftArrow } from "../../../assets/images/svg/expenses/arrow-left.svg";
-import { ReactComponent as RightArrow } from "../../../assets/images/svg/expenses/arrow-right.svg";
-import { StyledDiv } from "../../ExpensesTypes/ExpensesTypes.styled";
-import { useFetch } from "../../../hooks/useFetch";
-import { ReactComponent as Алкоголь } from "../../../assets/images/svg/expenses/alcohol.svg";
-import { ReactComponent as Развлечения } from "../../../assets/images/svg/expenses/entertainment.svg";
-import { ReactComponent as Здоровье } from "../../../assets/images/svg/expenses/health.svg";
-import { ReactComponent as Транспорт } from "../../../assets/images/svg/expenses/transport.svg";
-import { ReactComponent as Всё } from "../../../assets/images/svg/expenses/housing.svg";
-import { ReactComponent as Техника } from "../../../assets/images/svg/expenses/technique.svg";
-import { ReactComponent as Коммуналка } from "../../../assets/images/svg/expenses/communal.svg";
-import { ReactComponent as Спорт } from "../../../assets/images/svg/expenses/hobbies.svg";
-import { ReactComponent as Освіта } from "../../../assets/images/svg/expenses/education.svg";
-import { ReactComponent as Прочее } from "../../../assets/images/svg/expenses/other.svg";
+import {useAppDispatch} from '../../../redux/store';
+import CategoriesItem from '../CategoriesItem/CategoriesItem';
+import {CategoriesListWrapper} from './CategoriesList.styled';
+import {ReactComponent as LeftArrow} from '../../../assets/images/svg/expenses/arrow-left.svg';
+import {ReactComponent as RightArrow} from '../../../assets/images/svg/expenses/arrow-right.svg';
+import {StyledDiv} from '../../ExpensesTypes/ExpensesTypes.styled';
+import {ReactComponent as Alcohol} from '../../../assets/images/svg/expenses/alcohol.svg';
+import {ReactComponent as Entertainment} from '../../../assets/images/svg/expenses/entertainment.svg';
+import {ReactComponent as Health} from '../../../assets/images/svg/expenses/health.svg';
+import {ReactComponent as Transport} from '../../../assets/images/svg/expenses/transport.svg';
+import {ReactComponent as Техника} from '../../../assets/images/svg/expenses/technique.svg';
+import {ReactComponent as Прочее} from '../../../assets/images/svg/expenses/other.svg';
+import {ReactComponent as Housing} from '../../../assets/images/svg/expenses/housing.svg';
 
 const CategoriesList = ({ categories }) => {
   const dispatch = useAppDispatch();
@@ -26,19 +20,71 @@ const CategoriesList = ({ categories }) => {
   // console.log(categories);
   // console.log("arrExpenses ", arrExpenses);
   // const categoriesList = useAppSelector(selectExpenseCategories);
-  const expense = [
-    "Продукты",
-    "Алкоголь",
-    "Развлечения",
-    "Здоровье",
-    "Транспорт",
-    "Всё для дома",
-    "Техника",
-    "Коммуналка и связь",
-    "Спорт и хобби",
-    "Образование",
-    "Прочее",
+
+
+
+  const categoryData = [
+    {
+      category: "Здоровье",
+      icon: Health
+    },
+    {
+      category: "Транспорт",
+      icon: Transport
+    },
+    {
+      category: "Техника",
+      icon: Housing
+    } ,
+    {
+      category: "Продукты",
+      icon: Housing
+    } ,
+    {
+      category: "Всё для дома",
+      icon: Housing
+    } ,
+    {
+      category: "Коммуналка и связь",
+      icon: Housing
+    } ,
+    {
+      category: "Спорт и хобби",
+      icon: Housing
+    } ,
+    {
+      category: "Образование",
+      icon: Housing
+    } ,
+    {
+      category: "Развлечения",
+      icon: Housing
+    } ,
+    {
+      category: "Образование",
+      icon: Housing
+    } ,
+    {
+      category: "Прочее",
+      icon: Housing
+    }
+    // "Продукты" ,
+    // "Алкоголь",
+    // "Развлечения",
+    // "Здоровье",
+    // "Транспорт",
+    // "Всё для дома",
+    // "Техника",
+    // "Коммуналка и связь",
+    // "Спорт и хобби",
+    // "Образование",
+    // "Прочее",
   ];
+  const createCategoryIcon = (catName) => {
+    const catIcon = categoryData.find(el => el.category === catName)
+    console.log('catIcon', catIcon);
+    return catIcon.icon
+  }
 
   // useEffect(() => {
   //   dispatch(getExpenseCategories());
@@ -60,9 +106,13 @@ const CategoriesList = ({ categories }) => {
           return <CategoriesItem category={category} key={index} />;
         })} */}
 
-        {expense?.map((category, index) => (
-          <CategoriesItem icon={Освіта} category={category} key={index} />
-        ))}
+
+        {categories?.map(({category, total}, index) => {
+          const icon = createCategoryIcon(category)
+            console.log(typeof icon);
+          return <CategoriesItem icon={icon} title={category} total={total} key={index} />
+        }
+        )}
       </CategoriesListWrapper>
     </StyledDiv>
   );

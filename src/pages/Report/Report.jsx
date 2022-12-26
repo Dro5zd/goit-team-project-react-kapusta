@@ -14,7 +14,7 @@ import { Loader } from "../../components/Loader/Loader";
 const Report = () => {
   const categories = getReportsByPeriod();
   const [isLoading, setIsLoading] = useState(false);
-  const [arr, setArr] = useState([]);
+  const [categoriesArr, setCategoriesArr] = useState([]);
   const [categoriesExpenses, setCategoriesExpenses] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
 
@@ -28,11 +28,13 @@ const Report = () => {
       for (const dataKey in data.expenses) {
         if(typeof data.expenses[dataKey] === 'object'){
           for (const key in data.expenses[dataKey]) {
-            console.log('data.expenses[dataKey]', data.expenses[dataKey]);
-            console.log('[Key]', data.expenses[dataKey][key]);
-
+            // console.log('data.expenses[dataKey]', data.expenses[dataKey]);
+            // console.log('[Key]', data.expenses[dataKey][key]);
+            setCategoriesArr(prevState => [...prevState, {
+             category: key,
+             total: data.expenses[dataKey][key].total,
+           }])
           }
-
         }
         // console.log('123456789:', data.expenses[dataKey]);
         // console.log('123456789:', typeof data.expenses[dataKey]);
@@ -42,7 +44,16 @@ const Report = () => {
     });
   }, []);
 
-  console.log('arr', arr);
+  const uniqueCourses = categoriesArr.filter(
+    (category, index, array) => {
+      console.log('category', category.category);
+      console.log('index', index);
+      console.log('array', array);
+      return array.indexOf(category) === index
+    });
+
+  console.log('uniqueCourses', uniqueCourses);
+  // console.log('arr', arr);
 
   const [fetchData, isError] = useFetch(getData);
 
@@ -62,7 +73,7 @@ const Report = () => {
         <Balance />
         <SelDataPicker />
         <Box page="report">
-          <CategoriesList categories={categoriesExpenses} />
+          <CategoriesList categories={categoriesArr} />
           {/* <ExpensesTypes /> */}
           <MainChart />
         </Box>

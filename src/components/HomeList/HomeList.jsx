@@ -15,27 +15,26 @@ import {
 } from "./HomeList.styled";
 import { DeleteSvg } from "./HomeList.styled";
 
-const HomeList = () => {
-  const dispatch = useAppDispatch();
-  const transactions = useAppSelector(selectTransactions);
-  const [transactionsList, setTransactionsList] = useState(transactions);
+const HomeList = ({ deleteExpense, transactions }) => {
+  // const dispatch = useAppDispatch();
+  // const [transactionsList, setTransactionsList] = useState(transactions);
 
-  const color = transactions.category;
+  // // const color = transactions.category;
 
-  const deleteExpense = (id, color) => {
-    const filterArr = transactionsList.filter((el) => el._id !== id);
-    setTransactionsList(filterArr);
+  // const deleteExpense = (id, color) => {
+  //   const filterArr = transactionsList.filter((el) => el._id !== id);
+  //   setTransactionsList(filterArr);
 
-    dispatch(
-      color === "red"
-        ? deleteExpenseTransaction(id)
-        : deleteIncomesTransaction(id)
-    );
-  };
+  //   dispatch(
+  //     color === "red"
+  //       ? deleteExpenseTransaction(id)
+  //       : deleteIncomesTransaction(id)
+  //   );
+  // };
 
   return (
     <List>
-      {transactionsList?.map(({ description, date, category, amount, _id }) => {
+      {transactions?.map(({ description, date, category, amount, _id }) => {
         const color =
           category === "Доп. доход" || category === "З/П" ? "green" : "red";
         return (

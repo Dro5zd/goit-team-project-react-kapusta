@@ -9,19 +9,17 @@ import { BackgroundModal } from "../../BackgroundModal/BackgraundModal";
 import Form from "../../MainForm/Form";
 import { BackspaceButton, ContainerModal } from "./ExpensesModal.styled";
 
-const ExpensesModal = ({ setExpBool }) => {
+const ExpensesModal = ({ setExpBool, onAddTransaction }) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onBackspaceButton = () => {
-    navigate("/home");
     setExpBool(false);
   };
 
   const onHandleSubmit = (data) => {
     console.log("ExpensesModal", data);
+    onAddTransaction(data);
     dispatch(addExpense(data));
-    dispatch(getExpense());
   };
 
   return (

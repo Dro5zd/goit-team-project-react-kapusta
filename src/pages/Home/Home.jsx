@@ -14,19 +14,40 @@ import { Balance } from "../../components/Balance/Balance";
 import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
 import ExpensesModal from "../../components/ModalsMobilHome/ExpensesModal/ExpensesModal";
 import IncomeModal from "../../components/ModalsMobilHome/IncomeModal/IncomeModal";
-import { useAppDispatch } from "../../redux/store";
-import { getExpenseCategories } from "../../redux/transaction/transactions-operations";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import {
+  deleteExpenseTransaction,
+  deleteIncomesTransaction,
+  getExpenseCategories,
+} from "../../redux/transaction/transactions-operations";
 import HomeList from "../../components/HomeList/HomeList";
 import { getUser } from "../../redux/auth/auth-operations";
+import {
+  selectToken,
+  selectTransactions,
+} from "../../redux/auth/auth-selectors";
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const [isModalExp, setIsModalExp] = useState(false);
   const [isModalInc, setIsModalInc] = useState(false);
+  const transactions = useAppSelector(selectTransactions);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  console.log("locatio", location);
+  const [transactionsList, setTransactionsList] = useState(transactions);
+
+  // const color = transactions.category;
+
+  const deleteExpense = (id, color) => {
+    const filterArr = transactionsList.filter((el) => el._id !== id);
+    setTransactionsList(filterArr);
+
+    dispatch(
+      color === "red"
+        ? deleteExpenseTransaction(id)
+        : deleteIncomesTransaction(id)
+    );
+  };
 
   useEffect(() => {
     dispatch(getExpenseCategories());
@@ -40,6 +61,12 @@ const Home = () => {
   const onButtonIncome = () => {
     setIsModalInc(true);
     navigate("/home/income");
+  };
+
+  const onAddTransaction = (data) => {
+    const trx = { ...data, id: new Date() };
+    setTransactionsList((prevState) => [data, ...prevState]);
+    console.log("onAddTransaction", data);
   };
 
   return (
@@ -59,7 +86,11 @@ const Home = () => {
         <ContainerMobileHome>
           <Balance />
           <div>
-            <HomeList />
+            <HomeList
+              deleteExpense={deleteExpense}
+              transactions={transactionsList}
+              // onAddTransaction={onAddTransaction}
+            />
           </div>
           <BlockLinkMobil>
             <ButtonLinkMobil onClick={onButtonExpense}>
@@ -68,7 +99,12 @@ const Home = () => {
             <ButtonLinkMobil onClick={onButtonIncome}>INCOME</ButtonLinkMobil>
           </BlockLinkMobil>
         </ContainerMobileHome>
-        {isModalExp && <ExpensesModal setExpBool={setIsModalExp} />}
+        {isModalExp && (
+          <ExpensesModal
+            setExpBool={setIsModalExp}
+            onAddTransaction={onAddTransaction}
+          />
+        )}
         {isModalInc && <IncomeModal setIncBool={setIsModalInc} />}
       </BackgroundMobil>
     </>

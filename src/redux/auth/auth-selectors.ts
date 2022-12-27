@@ -5,3 +5,4 @@ export const selectIsLoading = (state: RootState) => state.auth.isLoading;
 export const selectUsername = (state: RootState) => state.auth.user.email;
 // export const selectSid = (state: RootState) => state.auth.sid;
 export const selectBalance = (state: RootState) => state.auth.user.balance;
+export const selectTransactions = (state: RootState) => state.auth.user.transactions;

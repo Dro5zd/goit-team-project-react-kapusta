@@ -9,6 +9,8 @@ interface ISummaryProps {
 export const Summary = ({ summaryIncome, summaryExpense }: ISummaryProps) => {
   const [summary, setSummary] = useState({});
 
+  console.log("summary", summary);
+
   useEffect(() => {
     if (summaryIncome) {
       setSummary(summaryIncome);

@@ -7,18 +7,16 @@ import CategoriesList from "../../components/Categories/CategoriesList/Categorie
 import SelDataPicker from "../../components/DatePicker/DatePicker";
 import { MainChart } from "../../components/Chart/MainChart";
 import { getReportsByPeriod } from "../../http/services.user";
-import { ExpensesTypes } from "../../components/ExpensesTypes/ExpensesTypes";
 import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../components/Loader/Loader";
 import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
 import { SubHeaderReport } from "../../components/SubHeaderReport/SubHeaderReport";
-import StyledBarChart from '../../components/Chart/StyledBarChart';
-import TestChart from '../../components/Chart/StyledBarChart';
 
 const Report = () => {
   const categories = getReportsByPeriod();
   const [isLoading, setIsLoading] = useState(false);
   const [categoriesArr, setCategoriesArr] = useState([]);
+  const [uniqueArr, setUniqueArr] = useState([]);
   const [chartData, setChartData] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
 
@@ -28,6 +26,8 @@ const Report = () => {
       delete data.data.total;
       setChartData(data);
     }
+    const arr = new Set(categoriesArr);
+    setUniqueArr(arr);
   }, [categoriesArr]);
 
   // const getData = useCallback((params) => {
@@ -86,7 +86,7 @@ const Report = () => {
   }
 
   const onclickHandle = (e, title) => {
-    const data = categoriesArr.find((el) => el.category === title);
+    const data = categoriesArr?.find((el) => el.category === title);
     delete data.data.total;
     setChartData(data);
   };
@@ -103,10 +103,7 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
-          <Box page="report">
           {chartData?.data && <MainChart chartData={chartData?.data} />}
-          {/*{chartData?.data && <StyledBarChart chartData={chartData?.data}/>}*/}
-          </Box>
         </Container>
       </BackgroundMobil>
 
@@ -120,10 +117,7 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
-          <Box page="report">
           {chartData?.data && <MainChart chartData={chartData?.data} />}
-          {/*{chartData?.data && <StyledBarChart chartData={chartData?.data}/>}*/}
-        </Box>
         </Container>
       </BackgroundMain>
     </>

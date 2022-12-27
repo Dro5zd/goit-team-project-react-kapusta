@@ -43,7 +43,6 @@ export const CategoriesItemWrapper = styled.div`
     flex-grow: 0;
     border-bottom: none;
   }
-
   ${device.tablet} {
   }
   ${device.desktop} {
@@ -59,9 +58,9 @@ export const CategoriesTotalSum = styled.p`
   align-items: center;
   justify-content: center;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #52555f; */
+  text-transform: uppercase; */
 
+  color: #52555f;
   font-weight: 400;
   font-size: 12px;
   line-height: 12/14;

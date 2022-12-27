@@ -3,7 +3,7 @@ import { colors } from "../../utils/colors";
 import { ReactComponent as Delete } from "../../assets/images/svg/delete.svg";
 import { device } from "../../utils/mixins";
 
-export const TableBal = styled.table.attrs(props => ({
+export const TableBal = styled.table.attrs((props) => ({
   className: props.className,
 }))`
   width: 624px;
@@ -23,12 +23,10 @@ export const TableBal = styled.table.attrs(props => ({
     border: none;
     font-weight: 700;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 1.1;
     letter-spacing: 0.02em;
     border-collapse: collapse;
   }
-
- 
 
   tr th:first-child {
     border-radius: 16px 0 0 0;
@@ -37,7 +35,7 @@ export const TableBal = styled.table.attrs(props => ({
   tr th:last-child {
     width: 100px;
     border-radius: 0 16px 0 0;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 114px;
     }
   }
@@ -57,7 +55,6 @@ export const TableBal = styled.table.attrs(props => ({
       }
     }
   }
-   
 
   tbody {
     display: flex;
@@ -88,10 +85,9 @@ export const TableBal = styled.table.attrs(props => ({
         position: relative;
         align-items: center;
         justify-content: center;
-        
+
         /* flex: 1 0 calc(100% / 5); */
         display: flex;
-        
         height: 40px;
         border-bottom: 2px solid ${colors.grayBg};
       }
@@ -111,53 +107,52 @@ export const TableBal = styled.table.attrs(props => ({
     display: flex;
   }
 
-  & .date{
+  & .date {
     width: 104px;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 116px;
     }
-    
   }
-  & .description{
+  & .description {
     width: 193px;
-    
-    ${device.desktop}{
+
+    ${device.desktop} {
       width: 206px;
     }
   }
-  & .category{
+  & .category {
     width: 131px;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 197px;
     }
   }
-  & .sum{
+  & .sum {
     width: 107px;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 112px;
     }
   }
-  & .sumRed{
+  & .sumRed {
     width: 107px;
     color: red;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 112px;
     }
   }
-  & .sumGreen{
+  & .sumGreen {
     width: 107px;
     color: green;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 112px;
     }
   }
-  & .svg{
+  & .svg {
     width: 91px;
-    ${device.desktop}{
+    ${device.desktop} {
       width: 103px;
     }
   }
-  & .descriptionTd{
+  & .descriptionTd {
     width: 193px;
     max-width: 193px;
     padding-left: 40px;
@@ -165,13 +160,12 @@ export const TableBal = styled.table.attrs(props => ({
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    
-    ${device.desktop}{
+
+    ${device.desktop} {
       width: 206px;
       max-width: 206px;
     }
   }
-
 `;
 
 export const DeleteBtn = styled.button`
@@ -196,5 +190,4 @@ export const DeleteIcon = styled(Delete)`
   fill: #52555f;
   width: 18px;
   height: 18px;
-  
 `;

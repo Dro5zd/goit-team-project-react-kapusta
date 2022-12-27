@@ -15,6 +15,7 @@ import ExpensesModal from "../../components/ModalsMobilHome/ExpensesModal/Expens
 import IncomeModal from "../../components/ModalsMobilHome/IncomeModal/IncomeModal";
 import { useAppDispatch} from "../../redux/store";
 import { getExpenseCategories } from "../../redux/transaction/transactions-operations";
+import HomeList from "../../components/HomeList/HomeList";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -51,6 +52,9 @@ const Home = () => {
       <BackgroundMobil>
         <ContainerMobileHome>
           <Balance />
+          <div>
+          <HomeList/>
+        </div>
           <BlockLinkMobil>
             <ButtonLinkMobil onClick={onButtonExpense}>
               EXPENSES

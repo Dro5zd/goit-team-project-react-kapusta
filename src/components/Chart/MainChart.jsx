@@ -19,7 +19,7 @@ export function MainChart({chartData}) {
     indexAxis: 'y',
     scales: {
       y: {
-        ticks: false,
+        grid: false,
 
         // crossAlign: 'far',
 
@@ -35,12 +35,12 @@ export function MainChart({chartData}) {
         display: true,
         text: 'Custom Chart Subtitle'
       },
-      tooltip: {
-        enable: true,
-        position: 'top',
+      // tooltip: {
+      //   enable: true,
+      //   position: 'top',
 
         // intersect: true,
-      },
+      // },
 
       // scales: {
       // y: {

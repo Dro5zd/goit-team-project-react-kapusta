@@ -89,6 +89,7 @@ export const TableBal = styled.table.attrs(props => ({className: props.className
         color: #52555F;
         position: relative;
         align-items: center;
+        text-align: center;
         justify-content: center; /* flex: 1 0 calc(100% / 5); */
         display: flex;
         height: 40px;

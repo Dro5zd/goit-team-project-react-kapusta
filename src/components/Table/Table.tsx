@@ -51,7 +51,7 @@ const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
           ({ amount, category, date, description, _id }: ITransaction) => (
             <tr key={_id}>
               <td className={"date"}>{date}</td>
-              <td className={"descriptionTd"}>{description}</td>
+              <td className={"descriptionTd"}><span>{description}</span></td>
               <td className={"category"}>{category}</td>
               <td className={classNameTd}>
                 {expensesBool ? -amount : amount} UAH

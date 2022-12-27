@@ -8,13 +8,17 @@ interface IBox {
 }
 
 export const StyledDiv = styled.div`
-  width: 100%;
+  margin-bottom: 20px;
+
   .buttons-wrapper {
     display: flex;
     justify-content: center;
     gap: 15px;
 
+    margin-top: 32px;
+
     ${device.tablet} {
+      margin-top: 0;
       margin-bottom: 20px;
       gap: 16px;
     }
@@ -55,17 +59,27 @@ export const StyledDiv = styled.div`
   }
 `;
 export const CategoriesListWrapper = styled.div`
-  display: flex;
   /* flex-direction: column; */
+  /* display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 20px; */
+
+  width: 280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   ${device.tablet} {
+    width: 623px;
   }
+
   ${device.desktop} {
   }
 `;
+
 export const CategoriesTotalSum = styled.p`
   height: 20px;
   min-width: 84px;

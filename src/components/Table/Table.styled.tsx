@@ -88,7 +88,6 @@ export const TableBal = styled.table.attrs((props) => ({
 
         /* flex: 1 0 calc(100% / 5); */
         display: flex;
-
         height: 40px;
         border-bottom: 2px solid ${colors.grayBg};
       }

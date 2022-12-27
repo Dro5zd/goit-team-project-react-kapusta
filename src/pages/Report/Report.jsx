@@ -103,7 +103,9 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
+          <Box page="report">
           {chartData?.data && <MainChart chartData={chartData?.data} />}
+          </Box>
         </Container>
       </BackgroundMobil>
 
@@ -117,7 +119,9 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
+          <Box page="report">
           {chartData?.data && <MainChart chartData={chartData?.data} />}
+          </Box>
         </Container>
       </BackgroundMain>
     </>

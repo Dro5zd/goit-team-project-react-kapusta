@@ -8,7 +8,10 @@ interface IBox {
 }
 
 export const StyledDiv = styled.div`
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
+  //margin-left: auto;
+  //margin-right: auto;
+  //margin-bottom: 20px;
 
   .buttons-wrapper {
     display: flex;

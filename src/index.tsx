@@ -8,12 +8,12 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    {/* <BrowserRouter basename="goit-team-project-react-kapusta"> */}
+     <BrowserRouter basename="goit-team-project-react-kapusta"> 
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>
-    {/* </BrowserRouter> */}
+     </BrowserRouter> 
   </React.StrictMode>
 );

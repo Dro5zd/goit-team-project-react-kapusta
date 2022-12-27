@@ -73,12 +73,20 @@ export const CategoriesTotalSum = styled.p`
   ${device.desktop} {
   }
 `;
+export const ShadowIcon = styled(Shadow)`
+  width: 60px;
+  height: 46px;
+  position: absolute;
+  z-index: 0;
+  rect {
+    fill: ${(p) => p.active ? `${colors.lightOrange}` : `${colors.grayLight}`};
+  }
+`;
 export const CategoriesIconWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
 
   .category {
@@ -86,21 +94,10 @@ export const CategoriesIconWrapper = styled.div`
     z-index: 1;
     width: 56px;
     height: 56px;
-
     fill: ${(p) => (p.active ? `${colors.orange}` : `#071F41`)};
   }
 `;
 
-export const ShadowIcon = styled(Shadow)`
-  width: 60px;
-  height: 46px;
-  position: absolute;
-  z-index: 0;
-  rect {
-    fill: ${(p) =>
-      p.active ? `${colors.lightOrange}` : `${colors.grayLight}`};
-  }
-`;
 
 // export const CategoriesIcon = styled(products)`
 //   width: 56px;

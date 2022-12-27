@@ -1,5 +1,5 @@
 import { omit } from "lodash-es";
-import { FormikHelpers, useFormik } from "formik";
+import {FormikHelpers, useFormik} from 'formik';
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { ButtonLink } from "../ButtonLink/ButtonLink";
@@ -19,10 +19,8 @@ import {
   BtnBox,
   ButtonGoogle,
   SubText,
-  Content,
-  ErrorStar,
-  LinkGoogle,
-} from "./RegisterForm.styled";
+  Content, ErrorStar,
+} from './RegisterForm.styled';
 
 const initialValues = {
   email: "",
@@ -43,7 +41,7 @@ const initialValues = {
 
 export interface IValues {
   email: string;
-  password: string;
+  password: string
 }
 
 export const RegisterForm = () => {
@@ -70,7 +68,7 @@ export const RegisterForm = () => {
         )
         .required("This is a required field"),
     }),
-    onSubmit: (values: IValues, actions: FormikHelpers<IValues>) => {
+    onSubmit: (values:IValues, actions: FormikHelpers<IValues>) => {
       if (location.pathname === "/login" || location.pathname === "/") {
         dispatch(loginUser(values));
       }
@@ -115,20 +113,15 @@ export const RegisterForm = () => {
     }
   };
 
+
   return (
     <>
       <FormStyle onSubmit={formik.handleSubmit}>
         <Content>
           <Text>You can log in with your Google Account:</Text>
-          {/* <ButtonGoogle type="button" onClick={handleLoginGoogle}>
+          <ButtonGoogle type="button" onClick={handleLoginGoogle}>
             <GoogleIcon /> Google
-          </ButtonGoogle> */}
-          <LinkGoogle
-            href={`https://kapusta-backend.goit.global/auth/google`}
-            // onClick={handleLoginGoogle}
-          >
-            <GoogleIcon /> Google
-          </LinkGoogle>
+          </ButtonGoogle>
           <SubText>
             Or log in using an email and password, after registering:
           </SubText>
@@ -136,10 +129,9 @@ export const RegisterForm = () => {
           <FieldStyle>
             <LabelInput htmlFor="email">
               {formik.touched.email && formik.errors.email ? (
-                <ErrorStar>*</ErrorStar>
+                  <ErrorStar>*</ErrorStar>
               ) : null}
-              Email:
-            </LabelInput>
+              Email:</LabelInput>
             <InputStyled
               type="email"
               name="email"

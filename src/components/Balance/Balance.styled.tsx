@@ -29,6 +29,7 @@ export const BalanceContainer = styled.div`
     /* width: ${size.desktop}; */
     /* padding: 40px 91px 48px; */
     /* padding: 40px 91px 0; */
+    /* padding: 40px 91px 0; */
     padding-right: 91px;
     padding-left: 91px;
   }

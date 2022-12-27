@@ -29,7 +29,7 @@ export const BlockNumberMobil = styled.div`
     text-align: center;
     font-weight: 700;
     font-size: 12px;
-    line-height: 1.1;
+    line-height: 14px;
   }
 
   span {
@@ -72,7 +72,7 @@ export const BlockNumber = styled.div`
     outline: none;
     font-weight: 700;
     font-size: 12px;
-    line-height: 1.1;
+    line-height: 14px;
     color: #000000;
     ${device.tablet} {
       border-radius: 0 16px 16px 0;

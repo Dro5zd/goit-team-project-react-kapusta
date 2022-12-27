@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../utils/colors";
 
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
-import { StyledButton } from "../Button/Button.styled";
+import {StyledButton} from '../Button/Button.styled';
 
 export const FormGroup = styled.form`
   display: flex;
@@ -52,7 +52,7 @@ export const InputProduct = styled.input`
   font-weight: 400;
   font-size: 12px;
 
-  line-height: 1.1;
+  line-height: 14px;
   background-color: ${colors.grayBg};
   color: ${colors.black};
 
@@ -61,8 +61,9 @@ export const InputProduct = styled.input`
   }
   ${device.tablet} {
     width: 186px;
-    background-color: ${colors.white};
+    background-color:${colors.white};
     border-color: ${colors.grayBg};
+    
   }
   ${device.desktop} {
     margin-left: 32px;
@@ -98,6 +99,7 @@ export const BlockButton = styled.div`
 //   }
 // `;
 
+
 export const ButtonInput = styled.button`
   padding: 16px 35px;
   background: ${colors.orange};
@@ -106,7 +108,7 @@ export const ButtonInput = styled.button`
   outline: none;
   font-weight: 700;
   font-size: 12px;
-  line-height: 1.1;
+  line-height: 14px;
   color: ${colors.white};
 
   ${device.tablet} {
@@ -126,7 +128,7 @@ export const ButtonClear = styled.button`
   outline: none;
   font-weight: 700;
   font-size: 12px;
-  line-height: 1.1;
+  line-height: 14px;
   color: #52555f;
   box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
   ${device.tablet} {
@@ -138,8 +140,10 @@ export const ButtonClear = styled.button`
   }
 `;
 
+
 //  @media screen and (max-width: 479px) {
 //     background-size: 100% 258px;
 //     background-repeat: no-repeat;
 //     background-image: url(${fon});
 //   }
+

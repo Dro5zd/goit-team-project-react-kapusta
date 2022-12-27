@@ -11,7 +11,7 @@ export const SelectCategory = styled.div`
     height: 44px;
   }
 `;
-export const SelectHeader = styled.div.attrs(props => ({
+export const SelectHeader = styled.div.attrs((props) => ({
   className: props.className,
 }))`
   padding: 2px 20px;
@@ -37,7 +37,7 @@ export const SelectHeader = styled.div.attrs(props => ({
   span {
     font-weight: 400;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 1.1;
     letter-spacing: 0.02em;
 
     color: #c7ccdc;
@@ -48,8 +48,8 @@ export const SelectHeader = styled.div.attrs(props => ({
     top: 17px;
     right: 20px;
   }
-  & .activeSelect{
-    color: ${colors.black}
+  & .activeSelect {
+    color: ${colors.black};
   }
 `;
 
@@ -62,13 +62,13 @@ export const SelectBody = styled.div`
   border: 2px solid #f5f6fb;
   border-top: none;
   border-radius: 0 0 25px 0;
-overflow: hidden;
+  overflow: hidden;
   div {
     padding: 8px 20px;
     height: 32px;
     font-weight: 400;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 1.1;
     display: flex;
     align-items: center;
     letter-spacing: 0.02em;
@@ -81,7 +81,6 @@ overflow: hidden;
     color: #52555f;
     background-color: #f5f6fb;
   }
-  
 `;
 
 // export const SelectorBox =styled.div`
@@ -122,16 +121,16 @@ overflow: hidden;
 //   justify-content: center;
 //   align-items: center;
 //   background-color: ${colors.white};
-  
+
 //   pointer-events: none;
-  
+
 //   }
 //   option{
 //     padding: 8px 20px;
 //     height: 32px;
 //     font-weight: 400;
 //     font-size: 12px;
-//     line-height: 14px;
+//      line-height: 1.1;
 //     display: flex;
 //     align-items: center;
 //     letter-spacing: 0.02em;

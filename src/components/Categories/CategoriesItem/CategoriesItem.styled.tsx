@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../utils/colors";
 import { device } from "../../../utils/mixins";
 import { ReactComponent as products } from "../../../assets/images/svg/expenses/products.svg";
+import { ReactComponent as Shadow } from "../../../assets/images/svg/shadow.svg";
 
 interface IIcon {
   active: string;
@@ -48,11 +49,18 @@ export const CategoriesIconWrapper = styled.div`
       fill: ${colors.lightOrange};
     }
   }
+`;
+export const ShadowStyled = styled(Shadow)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  ${device.tablet} {
-  }
-
-  ${device.desktop} {
+  svg {
+    width: 56px;
+    height: 56px;
+    rect {
+      fill: ${colors.lightOrange};
+    }
   }
 `;
 

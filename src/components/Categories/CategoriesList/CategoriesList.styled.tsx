@@ -1,7 +1,7 @@
 import styled from "styled-components";
 // import { colors } from "../../utils/colors";
 import { device } from "../../../utils/mixins";
-import {colors} from '../../../utils/colors';
+import { colors } from "../../../utils/colors";
 
 interface IBox {
   page: string;
@@ -10,7 +10,6 @@ interface IBox {
 export const StyledDiv = styled.div`
   width: 100%;
   .buttons-wrapper {
-    /* width: 100%; */
     display: flex;
     justify-content: center;
     gap: 15px;

@@ -15,51 +15,115 @@ export function MainChart({chartData}) {
   const labels = Object.keys(chartData);
 
   const options = {
-    // Відораження графіка по горизонталі
     indexAxis: 'y',
     scales: {
-      y: {
-        grid: false,
-
+      x: {
+        beginAtZero: true,
+        ticks: { display: false },
+        grig: {
+          drawTicets:false,
+          drawOnChartArea: false,
+        },
         // crossAlign: 'far',
 
+
+
+
+
+        // Відораження графіка по горизонталі
+        //     indexAxis: 'y',
+        //   scales: {
+        //     x: {
+        //       ticks: false,
+
+        //   crossAlign: 'far',
+
+        // },
+
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+
+          subtitle: {
+            display: true,
+            text: 'Custom Chart Subtitle'
+          },
+          tooltip: {
+            enable: true,
+            position: 'top',
+            grid: {
+              borderColor: 'red',
+              borderWidth: 6
+            }
+
+            // intersect: true,
+          },
+
+          // scales: {
+          //   y: {
+          //     beginAtZero: true,
+          //     ticks: false,
+
+          //   },
+
+
+
+
+        },
       }
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      subtitle: {
-        display: true,
-        text: 'Custom Chart Subtitle'
-      },
-      // tooltip: {
-      //   enable: true,
-      //   position: 'top',
-
-        // intersect: true,
-      // },
-
-      // scales: {
-      // y: {
-      //   beginAtZero: true,
-      //   ticks: {
-      //     display: false
-      //   },
-      //   grid: {
-      //     borderColor: 'red',
-      //     borderWidth: 6
-      //   }
-      // },
-
-
-
-
-    },
-
+    }
   };
+
+
+  // const options = {
+  //   // Відораження графіка по горизонталі
+  //   indexAxis: 'y',
+  //   scales: {
+  //     y: {
+  //       tricks: false,
+  //
+  //       // crossAlign: 'far',
+  //
+  //     }
+  //   },
+  //   responsive: true,
+  //   maintainAspectRatio: false,
+  //   plugins: {
+  //     legend: {
+  //       display: false,
+  //     },
+  //     subtitle: {
+  //       display: true,
+  //       text: 'Custom Chart Subtitle'
+  //     },
+  //     // tooltip: {
+  //     //   enable: true,
+  //     //   position: 'top',
+  //
+  //       // intersect: true,
+  //     // },
+  //
+  //     // scales: {
+  //     // y: {
+  //     //   beginAtZero: true,
+  //     //   ticks: {
+  //     //     display: false
+  //     //   },
+  //     //   grid: {
+  //     //     borderColor: 'red',
+  //     //     borderWidth: 6
+  //     //   }
+  //     // },
+  //
+  //
+  //
+  //
+  //   },
+  //
+  // };
 
 const data = {
   labels,

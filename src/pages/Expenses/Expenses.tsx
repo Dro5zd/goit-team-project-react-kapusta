@@ -22,19 +22,16 @@ const Expenses = () => {
   const expensesList = useAppSelector(selectTransactionsExpenses);
   const summaryExpense = useAppSelector(selectMonthExpensesStats);
 
+  console.log("expensesLis", expensesList);
+  console.log("summaryExpense", summaryExpense);
+
   useEffect(() => {
     dispatch(getExpense());
-  }, [dispatch]);
+  }, [dispatch, expensesList]);
 
   const onHandleSubmit = (data: ITransaction) => {
     dispatch(addExpense(data));
-  };
-
-  const deleteExpense = (id: any) => {
-    console.log("deleteExpen", id);
-
-    dispatch(deleteExpenseTransaction(id));
-    dispatch(getExpense());
+    // dispatch(getExpense());
   };
 
   return (
@@ -44,7 +41,6 @@ const Expenses = () => {
         <TableBalance
           expensesList={expensesList}
           expensesForm={location.pathname}
-          onDeleteExpense={deleteExpense}
         />
         <SummaryIn>
           <Summary summaryExpense={summaryExpense} />

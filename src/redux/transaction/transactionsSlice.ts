@@ -136,6 +136,8 @@ const transactionsSlice = createSlice({
         (state: ITransactionsInitState, action) => {
           state.isLoading = false;
           state.error = null;
+          console.log("getExpens", action.payload.expenses);
+
           state.transaction.expenses = action.payload.expenses;
           state.transaction.monthExpensesStats = action.payload.monthsStats;
         }

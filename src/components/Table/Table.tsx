@@ -13,12 +13,7 @@ interface ITableBalanceProps {
   expensesList?: ITransaction[];
   incomeList?: ITransaction[];
 }
-const TableBalance = ({
-  expensesList,
-  incomeList,
-  expensesForm,
-  onDeleteExpense,
-}: any) => {
+const TableBalance = ({ expensesList, incomeList, expensesForm }: any) => {
   const dispatch = useAppDispatch();
   const [arr, setArr] = useState([]);
 
@@ -34,12 +29,9 @@ const TableBalance = ({
   }, [expensesList, incomeList]);
 
   const deleteExpense = (id: any) => {
-    if (expensesList) {
-      onDeleteExpense(id);
-    }
-    // dispatch(
-    //   expensesList ? deleteExpenseTransaction(id) : deleteIncomesTransaction(id)
-    // );
+    dispatch(
+      expensesList ? deleteExpenseTransaction(id) : deleteIncomesTransaction(id)
+    );
   };
 
   return (

@@ -7,6 +7,16 @@ import { categoryData } from "./CategoriesData";
 import { useState } from "react";
 
 const CategoriesList = ({ categories, onclickHandle }) => {
+  const [categoryTitle, setCategoryTitle] = useState("EXPENSES");
+
+  const handleCategoryChanger = () => {
+    if (categoryTitle === "EXPENSES") {
+      setCategoryTitle("INCOME");
+    } else {
+      setCategoryTitle("EXPENSES");
+    }
+  };
+
   const [activeCategory, setActiveCategory] = useState(
     categories?.[0]?.category
   );
@@ -23,11 +33,19 @@ const CategoriesList = ({ categories, onclickHandle }) => {
   return (
     <StyledDiv>
       <div className="buttons-wrapper">
-        <button type="button" className="arrow-btn">
+        <button
+          type="button"
+          className="arrow-btn"
+          onClick={handleCategoryChanger}
+        >
           <LeftArrow />
         </button>
-        <h2 className="expenses-title">EXPENSES</h2>
-        <button type="button" className="arrow-btn">
+        <h2 className="expenses-title">{categoryTitle}</h2>
+        <button
+          type="button"
+          className="arrow-btn"
+          onClick={handleCategoryChanger}
+        >
           <RightArrow />
         </button>
       </div>

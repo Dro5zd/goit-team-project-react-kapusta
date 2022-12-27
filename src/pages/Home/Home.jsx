@@ -54,6 +54,10 @@ const Home = () => {
     dispatch(getUser());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [onAddTransaction]);
+
   const onButtonExpense = () => {
     setIsModalExp(true);
     navigate("/home/expenses");
@@ -64,8 +68,9 @@ const Home = () => {
   };
 
   const onAddTransaction = (data) => {
-    const trx = { ...data, id: new Date() };
-    setTransactionsList((prevState) => [data, ...prevState]);
+    // const trx = { _id: Date.now(), ...data };
+    // setTransactionsList((prevState) => [trx, ...prevState]);
+    dispatch(getUser());
     console.log("onAddTransaction", data);
   };
 

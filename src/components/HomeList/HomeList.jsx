@@ -32,6 +32,8 @@ const HomeList = ({ deleteExpense, transactions }) => {
   //   );
   // };
 
+  console.log("transactions", transactions);
+
   return (
     <List>
       {transactions?.map(({ description, date, category, amount, _id }) => {

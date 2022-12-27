@@ -30,8 +30,6 @@ const Report = () => {
     setUniqueArr(arr);
   }, [categoriesArr]);
 
-  console.log("UniqueA", categoriesArr);
-
   // const getData = useCallback((params) => {
   //   getReportsByPeriod(params).then((data) => {
   //     for (const dataKey in data.expenses) {

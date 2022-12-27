@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { colors } from "../../../utils/colors";
 import { device } from "../../../utils/mixins";
-import { ReactComponent as products } from "../../../assets/images/svg/expenses/products.svg";
 import { ReactComponent as Shadow } from "../../../assets/images/svg/shadow.svg";
 
-interface IIcon {
-  active: string;
-}
+import { ReactComponent as products } from "../../../assets/images/svg/expenses/products.svg";
+
+// interface IIcon {
+//     active: any
+// }
 export const CategoriesItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 84px;
+  min-width: 84px;
+  gap: 5px;
   ${device.tablet} {
   }
   ${device.desktop} {
@@ -23,7 +25,7 @@ export const CategoriesTotalSum = styled.p`
   height: 20px;
   width: 84px;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,44 +40,51 @@ export const CategoriesTotalSum = styled.p`
   }
 `;
 export const CategoriesIconWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  svg {
+  .category {
+    position: relative;
+    z-index: 1;
     width: 56px;
     height: 56px;
-    rect {
-      fill: ${colors.lightOrange};
-    }
+    fill: ${(p) => (p.active ? `${colors.orange}` : `#071F41`)};
   }
 `;
-export const ShadowStyled = styled(Shadow)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  svg {
-    width: 56px;
-    height: 56px;
-    rect {
-      fill: ${colors.lightOrange};
-    }
+export const ShadowIcon = styled(Shadow)`
+  width: 60px;
+  height: 46px;
+  position: absolute;
+  z-index: 0;
+  rect {
+    fill: ${(p) =>
+      p.active ? `${colors.lightOrange}` : `${colors.grayLight}`};
   }
 `;
 
 // export const CategoriesIcon = styled(products)`
 //   width: 56px;
 //   height: 56px;
-//   fill: ${(p: IIcon) => (p.active === "true" ? `${colors.orange}` : `#071F41`)};
+//   fill: ${(p: IIcon) => (p.active === 'true' ? `${colors.orange}` : `#071F41`)};
 //   ${device.tablet} {
+//
 //   }
 //   ${device.desktop} {
+//
 //   }
 //   @media screen and (min-width: 768px) {
 //     width: 306.52px;
 //     height: 77.69px;
 //   }
+//
+//   @media screen and (min-width: 1280px) {
+//     width: 377px;
+//     height: 120px;
+//   }
+// `;
 
 //   @media screen and (min-width: 1280px) {
 //     width: 377px;
@@ -84,12 +93,12 @@ export const ShadowStyled = styled(Shadow)`
 // `;
 
 export const CategoriesName = styled.p`
-  width: 84px;
+  min-width: 84px;
   height: 20px;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.1;
   display: flex;
   align-items: center;
   justify-content: center;

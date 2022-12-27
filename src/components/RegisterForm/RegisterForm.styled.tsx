@@ -140,6 +140,7 @@ export const InputStyled = styled.input`
 
 export const ButtonGoogle = styled.button`
   border: none;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,3 +170,38 @@ export const ButtonGoogle = styled.button`
     z-index: -1;
   }
 `;
+
+export const LinkGoogle = styled.a`
+  border: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  width: 122px;
+  height: 40px;
+  margin: 0 auto 32px auto;
+  background: ${colors.grayLight};
+  border-radius: 26px;
+  color: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  filter: drop-shadow(1px 2px 3px rgba(170, 178, 197, 0.2));
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    box-shadow: 1px 2px 6px 1px rgba(33, 33, 33, 0.4);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    position: relative;
+    z-index: -1;
+  }
+`;
+

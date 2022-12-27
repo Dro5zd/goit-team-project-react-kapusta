@@ -19,7 +19,9 @@ import {
   BtnBox,
   ButtonGoogle,
   SubText,
-  Content, ErrorStar,
+  Content,
+  ErrorStar,
+    LinkGoogle
 } from './RegisterForm.styled';
 
 const initialValues = {
@@ -119,9 +121,15 @@ export const RegisterForm = () => {
       <FormStyle onSubmit={formik.handleSubmit}>
         <Content>
           <Text>You can log in with your Google Account:</Text>
-          <ButtonGoogle type="button" onClick={handleLoginGoogle}>
+          {/*<ButtonGoogle type="button" onClick={handleLoginGoogle}>*/}
+          {/*  <GoogleIcon /> Google*/}
+          {/*</ButtonGoogle>*/}
+          <LinkGoogle
+              href={`https://kapusta-backend.goit.global/auth/google`}
+              // onClick={handleLoginGoogle}
+          >
             <GoogleIcon /> Google
-          </ButtonGoogle>
+          </LinkGoogle>
           <SubText>
             Or log in using an email and password, after registering:
           </SubText>

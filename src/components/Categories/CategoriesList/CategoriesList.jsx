@@ -49,7 +49,7 @@ const CategoriesList = ({ categories, onclickHandle }) => {
           <RightArrow />
         </button>
       </div>
-      <CategoriesListWrapper>
+      <CategoriesListWrapper className="HELLOO">
         {categories?.map(({ category, total }, index) => {
           return (
             <CategoriesItem

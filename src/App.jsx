@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
-import {Navigate, Route, Routes, useLocation} from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -16,34 +16,41 @@ import Income from "./pages/Income/Income";
 import { Header } from "./components/Header/Header";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { getUser } from "./redux/auth/auth-operations";
+import { token } from "./http/http";
 import { selectIsLoading } from "./redux/auth/auth-selectors";
 import { selectIsLoadingTransaction } from "./redux/transaction/transactions-selectors";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
-    const location = useLocation();
-    const urlSearchParams = new URLSearchParams(location.search);
-    const dispatch = useAppDispatch();
-    const accessToken = urlSearchParams.get("accessToken");
-    const isLoading = useAppSelector(selectIsLoading);
-    const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
-    console.log("accessToken", accessToken);
+  /*eslint-disable */
+  const urlSearchParams = new URLSearchParams(location.search);
+  const dispatch = useAppDispatch();
+  const accessToken = urlSearchParams.get("accessToken");
+  // const isLoading = useAppSelector(selectIsLoading);
+  // const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
+
+  console.log("accessToken", accessToken);
+  console.log("location", location);
 
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
 
-    useEffect(() => {
-        if (accessToken) {
-            if (location.pathname === "/") {
-                location.pathname = "/goit-team-project-react-kapusta/home/";
-            }
-        }
-    }, [accessToken]);
+  useEffect(() => {
+    if (accessToken) {
+      token.set(accessToken);
+      dispatch(getUser());
+      if (location.pathname === "/") {
+        location.pathname = "/goit-team-project-react-kapusta/home";
+        /*eslint-enable */
+        // dispatch(getUser());
+      }
+    }
+  }, [accessToken]);
 
   return (
-    <>
-      <Loader isLoading={isLoading || isLoadingTrx} />
+    <BrowserRouter basename="goit-team-project-react-kapusta">
+      {/* <Loader isLoading={isLoading || isLoadingTrx} /> */}
       <GlobalStyle />
       <Header />
       <div>
@@ -82,7 +89,7 @@ export const App = () => {
               }
             >
               {/* <Route index element={<Expenses />} /> */}
-              <Route index element={<Navigate to='/home/expenses' />} />
+              <Route index element={<Navigate to="/home/expenses" />} />
               <Route path="expenses" element={<Expenses />} />
               <Route path="income" element={<Income />} />
             </Route>
@@ -98,6 +105,6 @@ export const App = () => {
           </Route>
         </Routes>
       </div>
-    </>
+    </BrowserRouter>
   );
 };

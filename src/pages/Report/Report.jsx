@@ -7,16 +7,18 @@ import CategoriesList from "../../components/Categories/CategoriesList/Categorie
 import SelDataPicker from "../../components/DatePicker/DatePicker";
 import { MainChart } from "../../components/Chart/MainChart";
 import { getReportsByPeriod } from "../../http/services.user";
+import { ExpensesTypes } from "../../components/ExpensesTypes/ExpensesTypes";
 import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../components/Loader/Loader";
 import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
 import { SubHeaderReport } from "../../components/SubHeaderReport/SubHeaderReport";
+import StyledBarChart from '../../components/Chart/StyledBarChart';
+import TestChart from '../../components/Chart/StyledBarChart';
 
 const Report = () => {
   const categories = getReportsByPeriod();
   const [isLoading, setIsLoading] = useState(false);
   const [categoriesArr, setCategoriesArr] = useState([]);
-  const [uniqueArr, setUniqueArr] = useState([]);
   const [chartData, setChartData] = useState({});
   const [categoriesIncomes, setCategoriesIncomes] = useState({});
 
@@ -26,48 +28,21 @@ const Report = () => {
       delete data.data.total;
       setChartData(data);
     }
-    const arr = new Set(categoriesArr);
-    setUniqueArr(arr);
   }, [categoriesArr]);
-
-  console.log("UniqueA", categoriesArr);
-
-  // const getData = useCallback((params) => {
-  //   getReportsByPeriod(params).then((data) => {
-  //     for (const dataKey in data.expenses) {
-  //       if (typeof data.expenses[dataKey] === "object") {
-  //         for (const key in data.expenses[dataKey]) {
-  //           setCategoriesArr((prevState) => [
-  //             ...prevState,
-  //             {
-  //               category: key,
-  //               total: data.expenses[dataKey][key].total,
-  //               data: data.expenses[dataKey][key],
-  //             },
-  //           ]);
-  //         }
-  //       }
-  //     }
-  //     setIsLoading(false);
-  //   });
-  // }, []);
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      console.log("data.expenses", data.expenses.expensesData, data.expenses);
-      if (data?.expenses?.expensesData) {
-        const arr = [];
-        for (const key in data?.expenses?.expensesData) {
-          const isContainCategory = categoriesArr.some((el) => {
-            return el.category === key;
-          });
-          if (!isContainCategory) {
-            arr.push({
-              category: key,
-              total: data?.expenses?.expensesData[key].total,
-              data: data?.expenses?.expensesData[key],
-            });
-            setCategoriesArr(arr);
+      for (const dataKey in data.expenses) {
+        if (typeof data.expenses[dataKey] === "object") {
+          for (const key in data.expenses[dataKey]) {
+            setCategoriesArr((prevState) => [
+              ...prevState,
+              {
+                category: key,
+                total: data.expenses[dataKey][key].total,
+                data: data.expenses[dataKey][key],
+              },
+            ]);
           }
         }
       }
@@ -88,25 +63,47 @@ const Report = () => {
   }
 
   const onclickHandle = (e, title) => {
-    const data = categoriesArr?.find((el) => el.category === title);
+    const data = categoriesArr.find((el) => el.category === title);
     delete data.data.total;
     setChartData(data);
   };
 
   return (
-    <BackgroundMain>
-      <Container>
-        <Balance />
-        <SelDataPicker />
-        <Box page="report">
-          <CategoriesList
-            categories={categoriesArr}
-            onclickHandle={onclickHandle}
-          />
+    <>
+      <BackgroundMobil>
+        <Container>
+          <SubHeaderReport />
+          <Box page="report">
+            <CategoriesList
+              categories={categoriesArr}
+              onclickHandle={onclickHandle}
+            />
+            {/* <ExpensesTypes /> */}
+          </Box>
+          <Box page="report">
+          {chartData?.data && <MainChart chartData={chartData?.data} />}
+          {/*{chartData?.data && <StyledBarChart chartData={chartData?.data}/>}*/}
+          </Box>
+        </Container>
+      </BackgroundMobil>
+
+      <BackgroundMain>
+        <SubHeaderReport />
+        <Container>
+          <Box page="report">
+            <CategoriesList
+              categories={categoriesArr}
+              onclickHandle={onclickHandle}
+            />
+            {/* <ExpensesTypes /> */}
+          </Box>
+          <Box page="report">
+          {chartData?.data && <MainChart chartData={chartData?.data} />}
+          {/*{chartData?.data && <StyledBarChart chartData={chartData?.data}/>}*/}
         </Box>
-        {chartData?.data && <MainChart chartData={chartData?.data} />}
-      </Container>
-    </BackgroundMain>
+        </Container>
+      </BackgroundMain>
+    </>
   );
 };
 

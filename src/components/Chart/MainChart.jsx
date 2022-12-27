@@ -1,14 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+import React from 'react';
+import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip,} from 'chart.js';
+import {Bar} from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -19,65 +11,86 @@ ChartJS.register(
   Legend
 );
 
-export const MainChart = ({ chartData }) => {
-  const chartRef = useRef(null);
-  const [chartsData, setChartsData] = useState({ datasets: [] });
-  console.log("chartRef", chartRef);
+export function MainChart({chartData}) {
+  const labels = Object.keys(chartData);
 
   const options = {
     responsive: true,
     plugins: {
       legend: {
         display: false,
-        position: "top",
       },
-      // title: {
-      //   display: false,
-      // },
-
-      // line: {
-      //   enabled: true
-      // }
+      subtitle: {
+        display: true,
+        text: 'Custom Chart Subtitle'
+      },
+      tooltip: {
+        enable: true,
+        position: 'top'
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            display: false
+          },
+          grid: {
+            borderColor: 'red',
+            borderWidth: 6
+          }
+        }
+      }
     },
   };
-
-  const labels = Object.keys(chartData);
 
   const data = {
     labels,
     datasets: [
       {
         data: labels.map((el) => chartData[el]),
-        borderColor: "#FF751D",
-        width: 30,
-        borderRadius: 15,
-        backgroundColor: "#FF751D",
+        tension: 0.0,
+        borderRadius: 10,
+        backgroundColor: ['#FF751D', '#FFDAC0', '#FFDAC0'],
+        // indexAxis: 'y',
+
+        // scales: {
+        //   y: {
+        //     beginAtZero: true,
+        //     ticks: {
+        //       display: false
+        //     },
+        //     grid: {
+        //       borderColor: 'red',
+        //       borderWidth: 6
+        //     }
+        //   }
+        // }
       },
     ],
   };
 
-  useEffect(() => {
-    const chart = chartRef.current;
-
-    if (!chart) {
-      return;
-    }
-
-    const chartData = {
-      ...data,
-      datasets: data.datasets.map((dataset) => ({
-        ...dataset,
-        borderColor: "blue",
-      })),
-    };
-
-    setChartsData(chartData);
-  }, []);
-
+  // // config
+  // const config = {
+  //   type: 'bar',
+  //   data,
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //         ticks: {
+  //           display: false
+  //         },
+  //         grid: {
+  //           borderColor: 'red',
+  //           borderWidth: 6
+  //         }
+  //       }
+  //     }
+  //   }
+  // };
   return (
     <>
-      <p>CHART</p>
-      <Bar ref={chartRef} options={options} data={chartsData} />
+      <Bar options={options} data={data}/>
     </>
   );
-};
+}

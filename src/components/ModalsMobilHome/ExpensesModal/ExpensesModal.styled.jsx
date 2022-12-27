@@ -3,6 +3,7 @@ import { ReactComponent as Backspace } from "../../../assets/images/svg/backspas
 
 export const ContainerModal = styled.div`
   position: relative;
+
   padding: 16px 20px;
   z-index: 10;
 `;

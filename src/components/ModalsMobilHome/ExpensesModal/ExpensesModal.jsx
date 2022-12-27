@@ -6,6 +6,7 @@ const ExpensesModal = ({ setExpBool }) => {
   const onBackspaceButton = () => {
     setExpBool(false);
   };
+
   return (
     <BackgroundModal>
       <ContainerModal>

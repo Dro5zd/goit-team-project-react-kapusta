@@ -50,6 +50,10 @@ export const TableBal = styled.table.attrs(props => ({
       display: flex;
 
       th {
+        font-weight: 700;
+font-size: 12px;
+line-height: 14px;
+letter-spacing: 0.02em;
         align-items: center;
         justify-content: center;
         /* flex: 1 0 calc(100% / 5); */
@@ -85,6 +89,11 @@ export const TableBal = styled.table.attrs(props => ({
       display: flex;
 
       td {
+        font-size: 12px;
+line-height: 14px;
+letter-spacing: 0.04em;
+color: #52555F;
+
         position: relative;
         align-items: center;
         justify-content: center;
@@ -95,6 +104,11 @@ export const TableBal = styled.table.attrs(props => ({
         
         height: 40px;
         border-bottom: 2px solid ${colors.grayBg};
+        span{
+text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+        }
       }
     }
   }
@@ -163,9 +177,7 @@ export const TableBal = styled.table.attrs(props => ({
     max-width: 193px;
     padding-left: 40px;
     justify-content: flex-start;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    
     
     ${device.desktop}{
       width: 206px;

@@ -7,10 +7,11 @@ export const List = styled.ul`
   margin: 0 auto;
   margin-top: 60px;
   padding: 20px 20px 12px 20px;
-  height: 200px;
-  overflow-y: scroll;
+  margin-bottom: 40px;
+  width: 320px;
+  /* height: 200px;
+  overflow-y: scroll; */
   ${device.mobile} {
-    width: 480px;
   }
 `;
 
@@ -29,7 +30,7 @@ export const BlockAction = styled.div`
     line-height: 14px;
     letter-spacing: 0.04em;
     color: #52555f;
-    max-width: 200px;
+    max-width: 100px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

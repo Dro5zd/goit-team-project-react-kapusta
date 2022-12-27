@@ -4,11 +4,8 @@ import { size } from "../../utils/mixins";
 import { colors } from "../../utils/colors";
 import { Link } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/images/svg/calendar.svg";
+
 export const BalanceContainer = styled.div`
-  /* background-color: #F5F6FB;
-  margin: 0 auto;
-  border-bottom-left-radius: 100px;
-  padding: 40px 0; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,19 +14,12 @@ export const BalanceContainer = styled.div`
     /* width: ${size.mobile}; */
   }
   ${device.tablet} {
-    /* width: ${size.tablet}; */
-    /* border-bottom-left-radius: 0; */
-    /* padding: 40px 32px; */
     width: 100%;
     padding-left: 35px;
     flex-direction: row-reverse;
     justify-content: space-between;
   }
   ${device.desktop} {
-    /* width: ${size.desktop}; */
-    /* padding: 40px 91px 48px; */
-    /* padding: 40px 91px 0; */
-    /* padding: 40px 91px 0; */
     padding-right: 91px;
     padding-left: 91px;
   }
@@ -85,7 +75,7 @@ export const BackIcon = styled(Link)`
 `;
 export const BalanceForm = styled.form`
   position: relative;
-  width: 280px;
+  min-width: 280px;
   ${device.tablet} {
     display: flex;
     flex-direction: row;
@@ -105,7 +95,7 @@ export const BalanceForm = styled.form`
   align-items: center;
   justify-content: center;
   padding-right: 44px;
-  padding-bottom: 2px;
+  /* padding-bottom: 2px; */
   width: 140px;
   height: 44px;
   text-align: end;
@@ -113,17 +103,19 @@ export const BalanceForm = styled.form`
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.02em;
+  
   ${device.tablet} {
+  min-width: 125px;
     border-radius: 20px;
-    padding: 12px 10px 12px 0;
+    padding: 12px 40px 13px 0;
     margin-right: 15px;
     justify-content: center;
     text-align: center;
-    width: 125px;
+    
   }
   ${device.desktop} {
     margin-right: 16px;
-    width: 125px;
+    /* width: 125px; */
     height: 44px;
     padding: 12px 45px 13px 0;
     border-radius: 16px;
@@ -188,7 +180,8 @@ export const InputWrap = styled.div`
 `;
 export const BalanceText = styled.span`
  position: absolute;
- top:16px;
+ transform: translateY(-50%);
+top: 50%;
  right:16px;
  font-weight: 700;
   font-size: 12px;
@@ -197,7 +190,7 @@ export const BalanceText = styled.span`
   text-transform: uppercase;
   /* right: 10px; */
   ${device.tablet} {
-     top: 17px;
+     /* top: 17px; */
   right: 32px;
   font-weight: 700;
   font-size: 12px;
@@ -208,7 +201,7 @@ export const BalanceText = styled.span`
   }
   ${device.desktop} {
     display: inline-block;
-    top: 16px;
+    /* top: 16px; */
   }
 `;
 // export const BalanceInput = styled.input`

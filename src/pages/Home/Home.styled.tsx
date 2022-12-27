@@ -6,6 +6,7 @@ import { device } from "../../utils/mixins";
 export const BlockLink = styled.div`
   display: flex;
   margin-top: 60px;
+  
   ${device.desktop} {
     margin-left: 75px;
   }
@@ -35,8 +36,10 @@ export const ButtonLink = styled(NavLink)`
 `;
 
 export const ContainerMobileHome = styled.div`
+position: relative;
   width: 100%;
   min-height: calc(100vh - 56px);
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,9 +50,14 @@ export const ContainerMobileHome = styled.div`
 `;
 
 export const BlockLinkMobil = styled.div`
+position: fixed;
+    top: 94%;
+    transform: translateX(50%);
+    right: 50%;
   display: flex;
   gap: 4px;
   margin: 0 auto;
+  margin-top: auto;
 `;
 
 export const ButtonLinkMobil = styled.button`

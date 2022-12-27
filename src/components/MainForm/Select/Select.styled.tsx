@@ -61,8 +61,11 @@ export const SelectBody = styled.div`
   background: ${colors.white};
   border: 2px solid #f5f6fb;
   border-top: none;
-  border-radius: 0 0 25px 0;
+  border-radius: 0 25px 25px 0;
 overflow: hidden;
+${device.tablet}{
+  border-radius: 0 0 25px 0;
+}
   div {
     padding: 8px 20px;
     height: 32px;

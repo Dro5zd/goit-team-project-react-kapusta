@@ -15,14 +15,13 @@ const CategoriesItem = ({
   icon: Icon,
   onclickHandle,
   active,
-}: any) => {
+}) => {
   return (
     <CategoriesItemWrapper onClick={(e) => onclickHandle(e, title)}>
       <CategoriesTotalSum>{total}</CategoriesTotalSum>
-      <CategoriesIconWrapper>
+      <CategoriesIconWrapper active={active}>
         <Icon className="category" active={active} />
         <ShadowIcon active={active} />
-        {/* <CategoriesIcon active={"true"} /> */}
       </CategoriesIconWrapper>
       <CategoriesName>{title}</CategoriesName>
     </CategoriesItemWrapper>

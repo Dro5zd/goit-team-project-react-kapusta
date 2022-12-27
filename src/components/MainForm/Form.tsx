@@ -5,11 +5,13 @@ import Input from "./Input/Input";
 import {
   BlockButton,
   BlockForm,
-  BlockPicker, ButtonClear, ButtonInput,
+  BlockPicker,
+  ButtonClear,
+  ButtonInput,
   CalendarIcon,
   FormGroup,
   InputProduct,
-} from './Form.styled';
+} from "./Form.styled";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import { useAppDispatch } from "../../redux/store";
 import {
@@ -43,8 +45,7 @@ const Form = ({ type, onHandleSubmit }: ITFormProps) => {
   const [selectCategory, setSelectCategory] = useState("");
   const [amount, setAmount] = useState(0);
   const dispatch = useAppDispatch();
-const [selectDefault, setSelectDefault] = useState('')
-  
+  const [selectDefault, setSelectDefault] = useState("");
 
   const handleChange = (e: any) => {
     const value = e.target.value;
@@ -54,7 +55,7 @@ const [selectDefault, setSelectDefault] = useState('')
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    setSelectDefault("Product category") ;
+    setSelectDefault("Product category");
     let selectedDate = "";
     if (startDate instanceof DateObject) {
       selectedDate = startDate?.format("YYYY-MM-DD");
@@ -69,6 +70,10 @@ const [selectDefault, setSelectDefault] = useState('')
       date: selectedDate,
       category: selectCategory,
     };
+
+    console.log("DATA", data);
+
+    // if(type ===)
     onHandleSubmit(data);
     form.reset();
     //   handleOpenModal();
@@ -107,7 +112,12 @@ const [selectDefault, setSelectDefault] = useState('')
           placeholder="Product description"
           min="0.00"
         />
-        <Select type={type} onSelectedCategory={onSelectedCategory} selectDefault={selectDefault} onSelect={setSelectDefault } />
+        <Select
+          type={type}
+          onSelectedCategory={onSelectedCategory}
+          selectDefault={selectDefault}
+          onSelect={setSelectDefault}
+        />
         <Input handleChange={handleChange} />
       </BlockForm>
       <BlockButton>

@@ -49,11 +49,11 @@ export const App = () => {
   }, [accessToken]);
 
   return (
-    <BrowserRouter basename="goit-team-project-react-kapusta">
-      {/* <Loader isLoading={isLoading || isLoadingTrx} /> */}
+    // <BrowserRouter basename="goit-team-project-react-kapusta">
+      <div>
+       {/*<Loader isLoading={isLoading || isLoadingTrx} />*/}
       <GlobalStyle />
       <Header />
-      <div>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
@@ -105,6 +105,6 @@ export const App = () => {
           </Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 };

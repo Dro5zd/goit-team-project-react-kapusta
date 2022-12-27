@@ -62,7 +62,7 @@ export const deleteIncomesTransaction = createAsyncThunk(
   async (transactionId: string, thunkAPI) => {
     try {
       const response = await PrivateApi.delete(`/transaction/${transactionId}`);
-      return response.data;
+      return { ...response.data, id: transactionId };
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -73,7 +73,7 @@ export const deleteExpenseTransaction = createAsyncThunk(
   async (transactionId: string, thunkAPI) => {
     try {
       const response = await PrivateApi.delete(`/transaction/${transactionId}`);
-      return response.data;
+      return { ...response.data, id: transactionId };
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
     }

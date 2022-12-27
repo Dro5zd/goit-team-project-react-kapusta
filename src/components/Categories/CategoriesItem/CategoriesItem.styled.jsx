@@ -3,7 +3,7 @@ import { colors } from "../../../utils/colors";
 import { device } from "../../../utils/mixins";
 import { ReactComponent as Shadow } from "../../../assets/images/svg/shadow.svg";
 
-import {ReactComponent as products} from "../../../assets/images/svg/expenses/products.svg";
+import { ReactComponent as products } from "../../../assets/images/svg/expenses/products.svg";
 
 // interface IIcon {
 //     active: any
@@ -16,10 +16,8 @@ export const CategoriesItemWrapper = styled.div`
   min-width: 84px;
   gap: 5px;
   ${device.tablet} {
-
   }
   ${device.desktop} {
-
   }
 `;
 
@@ -33,14 +31,12 @@ export const CategoriesTotalSum = styled.p`
   justify-content: center;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #52555F;
+  color: #52555f;
 
   ${device.tablet} {
-
   }
 
   ${device.desktop} {
-
   }
 `;
 export const CategoriesIconWrapper = styled.div`
@@ -65,7 +61,7 @@ export const ShadowIcon = styled(Shadow)`
   z-index: 0;
   rect {
     fill: ${(p) =>
-    p.active ? `${colors.lightOrange}` : `${colors.grayLight}`};
+      p.active ? `${colors.lightOrange}` : `${colors.grayLight}`};
   }
 `;
 
@@ -90,7 +86,11 @@ export const ShadowIcon = styled(Shadow)`
 //   }
 // `;
 
-
+//   @media screen and (min-width: 1280px) {
+//     width: 377px;
+//     height: 120px;
+//   }
+// `;
 
 export const CategoriesName = styled.p`
   min-width: 84px;
@@ -105,11 +105,9 @@ export const CategoriesName = styled.p`
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  color: #52555F;
+  color: #52555f;
   ${device.tablet} {
- 
   }
   ${device.desktop} {
-
   }
 `;

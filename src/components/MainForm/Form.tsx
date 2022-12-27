@@ -71,7 +71,7 @@ const Form = ({ type, onHandleSubmit }: ITFormProps) => {
       category: selectCategory,
     };
 
-    console.log("DATA", data);
+    // console.log("DATA", data);
 
     // if(type ===)
     onHandleSubmit(data);

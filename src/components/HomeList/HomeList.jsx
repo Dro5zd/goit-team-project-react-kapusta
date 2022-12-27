@@ -32,7 +32,7 @@ const HomeList = ({ deleteExpense, transactions }) => {
   //   );
   // };
 
-  console.log("transactions", transactions);
+  //  line-height: 1.1;og("transactions", transactions);
 
   return (
     <List>

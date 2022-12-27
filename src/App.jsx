@@ -30,7 +30,7 @@ export const App = () => {
   // const isLoading = useAppSelector(selectIsLoading);
   // const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
 
-  console.log("accessToken", accessToken);
+  // console.log("accessToken", accessToken);
 
   useEffect(() => {
     dispatch(getUser());

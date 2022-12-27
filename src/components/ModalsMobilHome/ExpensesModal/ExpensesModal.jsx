@@ -17,7 +17,7 @@ const ExpensesModal = ({ setExpBool, onAddTransaction }) => {
   };
 
   const onHandleSubmit = (data) => {
-    console.log("ExpensesModal", data);
+    // console.log("ExpensesModal", data);
     onAddTransaction(data);
     dispatch(addExpense(data));
   };

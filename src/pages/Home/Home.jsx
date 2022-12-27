@@ -54,10 +54,6 @@ const Home = () => {
     dispatch(getUser());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, [onAddTransaction]);
-
   const onButtonExpense = () => {
     setIsModalExp(true);
     navigate("/home/expenses");
@@ -68,10 +64,8 @@ const Home = () => {
   };
 
   const onAddTransaction = (data) => {
-    // const trx = { _id: Date.now(), ...data };
-    // setTransactionsList((prevState) => [trx, ...prevState]);
     dispatch(getUser());
-    console.log("onAddTransaction", data);
+    // console.log("onAddTransaction", data);
   };
 
   return (
@@ -110,7 +104,12 @@ const Home = () => {
             onAddTransaction={onAddTransaction}
           />
         )}
-        {isModalInc && <IncomeModal setIncBool={setIsModalInc} />}
+        {isModalInc && (
+          <IncomeModal
+            setIncBool={setIsModalInc}
+            onAddTransaction={onAddTransaction}
+          />
+        )}
       </BackgroundMobil>
     </>
   );

@@ -4,29 +4,49 @@ import { CategoriesListWrapper, StyledDiv } from "./CategoriesList.styled";
 import { ReactComponent as LeftArrow } from "../../../assets/images/svg/expenses/arrow-left.svg";
 import { ReactComponent as RightArrow } from "../../../assets/images/svg/expenses/arrow-right.svg";
 import { categoryData } from "./CategoriesData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CategoriesList = ({ categories, onclickHandle }) => {
+const CategoriesList = ({
+  categories,
+  onclickHandle,
+  categoriesIncome,
+  onChangeType,
+}) => {
   const [categoryTitle, setCategoryTitle] = useState("EXPENSES");
+  const [categoriesList, setCategoriesList] = useState(categories);
+  const [activeCategory, setActiveCategory] = useState(
+    categories?.[0]?.category
+  );
+
+  console.log("categoriesLis", categoriesList);
+
+  useEffect(() => {
+    if (categoryTitle === "EXPENSES") {
+      setCategoriesList(categories);
+      setActiveCategory(categories?.[0]?.category);
+    } else {
+      setCategoriesList(categoriesIncome);
+      setActiveCategory(categoriesIncome?.[0]?.category);
+    }
+  }, [categoryTitle]);
 
   const handleCategoryChanger = () => {
     if (categoryTitle === "EXPENSES") {
       setCategoryTitle("INCOME");
+      onChangeType("INCOME");
     } else {
       setCategoryTitle("EXPENSES");
+      onChangeType("EXPENSES");
     }
   };
 
-  const [activeCategory, setActiveCategory] = useState(
-    categories?.[0]?.category
-  );
   const createCategoryIcon = (catName) => {
     const categoryObj = categoryData.find((el) => el.category === catName);
     return categoryObj.icon;
   };
 
   const onClickItem = (e, title) => {
-    onclickHandle(e, title);
+    onclickHandle(e, title, categoryTitle);
     setActiveCategory(title);
   };
 
@@ -50,7 +70,7 @@ const CategoriesList = ({ categories, onclickHandle }) => {
         </button>
       </div>
       <CategoriesListWrapper className="HELLOO">
-        {categories?.map(({ category, total }, index) => {
+        {categoriesList?.map(({ category, total }, index) => {
           return (
             <CategoriesItem
               icon={createCategoryIcon(category)}

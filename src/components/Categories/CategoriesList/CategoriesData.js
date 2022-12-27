@@ -9,6 +9,8 @@ import { ReactComponent as Housing } from "../../../assets/images/svg/expenses/h
 import { ReactComponent as Communal } from "../../../assets/images/svg/expenses/communal.svg";
 import { ReactComponent as Hobbies } from "../../../assets/images/svg/expenses/hobbies.svg";
 import { ReactComponent as Education } from "../../../assets/images/svg/expenses/education.svg";
+import { ReactComponent as Salary } from "../../../assets/images/svg/expenses/salary.svg";
+import { ReactComponent as Services } from "../../../assets/images/svg/expenses/services.svg";
 
 export const categoryData = [
   {
@@ -54,5 +56,13 @@ export const categoryData = [
   {
     category: "Прочее",
     icon: Other,
+  },
+  {
+    category: "Доп. доход",
+    icon: Services,
+  },
+  {
+    category: "З/П",
+    icon: Salary,
   },
 ];

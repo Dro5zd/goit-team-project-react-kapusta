@@ -12,6 +12,8 @@ import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../components/Loader/Loader";
 import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
 import { SubHeaderReport } from "../../components/SubHeaderReport/SubHeaderReport";
+import StyledBarChart from '../../components/Chart/StyledBarChart';
+import TestChart from '../../components/Chart/StyledBarChart';
 
 const Report = () => {
   const categories = getReportsByPeriod();
@@ -78,7 +80,10 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
+          <Box page="report">
           {chartData?.data && <MainChart chartData={chartData?.data} />}
+          {/*{chartData?.data && <StyledBarChart chartData={chartData?.data}/>}*/}
+          </Box>
         </Container>
       </BackgroundMobil>
 
@@ -92,7 +97,10 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
+          <Box page="report">
           {chartData?.data && <MainChart chartData={chartData?.data} />}
+          {/*{chartData?.data && <StyledBarChart chartData={chartData?.data}/>}*/}
+        </Box>
         </Container>
       </BackgroundMain>
     </>

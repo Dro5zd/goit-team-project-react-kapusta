@@ -49,6 +49,8 @@ export const logoutUser = createAsyncThunk(
 );
 export const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
   const { auth }: any = thunkAPI.getState();
+  // console.log("getUser");
+
   const persistedToken = auth.token;
   const persistedIsAuth = auth.isAuth;
   // @ts-ignore

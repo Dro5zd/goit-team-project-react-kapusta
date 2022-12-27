@@ -19,6 +19,7 @@ import { getUser } from "./redux/auth/auth-operations";
 import { token } from "./http/http";
 import { selectIsLoading } from "./redux/auth/auth-selectors";
 import { selectIsLoadingTransaction } from "./redux/transaction/transactions-selectors";
+import { addToken } from "./redux/auth/authSlice";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
@@ -29,8 +30,7 @@ export const App = () => {
   // const isLoading = useAppSelector(selectIsLoading);
   // const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
 
-  console.log("accessToken", accessToken);
-  console.log("location", location);
+  // console.log("accessToken", accessToken);
 
   useEffect(() => {
     dispatch(getUser());
@@ -39,11 +39,11 @@ export const App = () => {
   useEffect(() => {
     if (accessToken) {
       token.set(accessToken);
+      dispatch(addToken(accessToken));
       dispatch(getUser());
       if (location.pathname === "/") {
         location.pathname = "/goit-team-project-react-kapusta/home";
         /*eslint-enable */
-        // dispatch(getUser());
       }
     }
   }, [accessToken]);

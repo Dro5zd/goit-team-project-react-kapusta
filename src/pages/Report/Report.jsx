@@ -52,7 +52,7 @@ const Report = () => {
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      console.log("data.expenses", data.expenses.expensesData, data.expenses);
+      // console.log("data.expenses", data.expenses.expensesData, data.expenses);
       if (data?.expenses?.expensesData) {
         const arr = [];
         for (const key in data?.expenses?.expensesData) {

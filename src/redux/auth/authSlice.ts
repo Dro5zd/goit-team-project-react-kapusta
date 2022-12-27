@@ -8,6 +8,7 @@ import {
 } from "./auth-operations";
 import { Notify } from "notiflix";
 import { ITransaction } from "../transaction/transactionsSlice";
+import { token } from "../../http/http";
 
 export interface IUser {
   id: string | null;
@@ -57,7 +58,14 @@ const handleRejected = (state: IInitState, action: any) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: authInitialState,
-  reducers: {},
+  reducers: {
+    addToken(state, action) {
+      // console.log("addToken", action.payload);
+
+      state.token = action.payload.accessToken;
+      token.set(action.payload.accessToken);
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -112,4 +120,6 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { addToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;

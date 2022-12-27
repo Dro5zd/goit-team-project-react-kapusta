@@ -107,10 +107,10 @@ export const BalanceForm = styled.form`
   ${device.tablet} {
   min-width: 125px;
     border-radius: 20px;
-    padding: 12px 40px 13px 0;
+    padding: 12px 45px 13px 0;
     margin-right: 15px;
     justify-content: center;
-    text-align: center;
+    text-align: right;
     
   }
   ${device.desktop} {

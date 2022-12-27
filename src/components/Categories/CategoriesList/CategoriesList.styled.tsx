@@ -9,6 +9,10 @@ interface IBox {
 
 export const StyledDiv = styled.div`
   width: 100%;
+  margin-top: 32px;
+  ${device.tablet}{
+    margin-top: 0;
+  }
   .buttons-wrapper {
     /* width: 100%; */
     display: flex;

@@ -68,6 +68,10 @@ const Home = () => {
     // console.log("onAddTransaction", data);
   };
 
+  if (isModalExp || isModalInc) {  const body = document.body;  body.style.height = '100vh';  body.style.overflowY = 'hidden';
+  } else {  const body = document.body;  body.style.position = '';  body.style.top = '';  body.style.height = '';  body.style.overflowY = '';
+  }
+
   return (
     <>
       <BackgroundMain>

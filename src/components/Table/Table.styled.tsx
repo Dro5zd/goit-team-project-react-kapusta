@@ -1,12 +1,9 @@
-import styled from "styled-components";
-import { colors } from "../../utils/colors";
-import { ReactComponent as Delete } from "../../assets/images/svg/delete.svg";
-import { device } from "../../utils/mixins";
+import styled from 'styled-components';
+import {colors} from '../../utils/colors';
+import {ReactComponent as Delete} from '../../assets/images/svg/delete.svg';
+import {device} from '../../utils/mixins';
 
-export const TableBal = styled.table.attrs((props) => ({
-  className: props.className,
-}))`
-  width: 624px;
+export const TableBal = styled.table.attrs(props => ({className: props.className,}))`  width: 624px;
   margin-top: 48px;
   position: relative;
   border-collapse: collapse;
@@ -23,7 +20,7 @@ export const TableBal = styled.table.attrs((props) => ({
     border: none;
     font-weight: 700;
     font-size: 12px;
-    line-height: 1.1;
+    line-height: 14px;
     letter-spacing: 0.02em;
     border-collapse: collapse;
   }
@@ -35,6 +32,7 @@ export const TableBal = styled.table.attrs((props) => ({
   tr th:last-child {
     width: 100px;
     border-radius: 0 16px 0 0;
+
     ${device.desktop} {
       width: 114px;
     }
@@ -48,9 +46,12 @@ export const TableBal = styled.table.attrs((props) => ({
       display: flex;
 
       th {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.02em;
         align-items: center;
-        justify-content: center;
-        /* flex: 1 0 calc(100% / 5); */
+        justify-content: center; /* flex: 1 0 calc(100% / 5); */
         display: flex;
       }
     }
@@ -82,26 +83,28 @@ export const TableBal = styled.table.attrs((props) => ({
       display: flex;
 
       td {
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.04em;
+        color: #52555F;
         position: relative;
         align-items: center;
-        justify-content: center;
-
-        /* flex: 1 0 calc(100% / 5); */
+        justify-content: center; /* flex: 1 0 calc(100% / 5); */
         display: flex;
         height: 40px;
         border-bottom: 2px solid ${colors.grayBg};
+
+        span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
       }
     }
   }
 
-  /* tr td:first-child {
-    border-left: 2px solid ${colors.grayBg};
-  }
-
-  tr td:last-child {
-    padding-right: 50px;
-    border-right: 2px solid ${colors.grayBg};
-  } */
+    /* tr td:first-child {    border-left: 2px solid ${colors.grayBg};  }
+  tr td:last-child {    padding-right: 50px;    border-right: 2px solid ${colors.grayBg};  } */
 
   ${device.tablet} {
     display: flex;
@@ -109,10 +112,12 @@ export const TableBal = styled.table.attrs((props) => ({
 
   & .date {
     width: 104px;
+
     ${device.desktop} {
       width: 116px;
     }
   }
+
   & .description {
     width: 193px;
 
@@ -120,46 +125,54 @@ export const TableBal = styled.table.attrs((props) => ({
       width: 206px;
     }
   }
+
   & .category {
     width: 131px;
+
     ${device.desktop} {
       width: 197px;
     }
   }
+
   & .sum {
     width: 107px;
+
     ${device.desktop} {
       width: 112px;
     }
   }
+
   & .sumRed {
     width: 107px;
     color: red;
+
     ${device.desktop} {
       width: 112px;
     }
   }
+
   & .sumGreen {
     width: 107px;
     color: green;
+
     ${device.desktop} {
       width: 112px;
     }
   }
+
   & .svg {
     width: 91px;
+
     ${device.desktop} {
       width: 103px;
     }
   }
+
   & .descriptionTd {
     width: 193px;
     max-width: 193px;
     padding-left: 40px;
     justify-content: flex-start;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
 
     ${device.desktop} {
       width: 206px;
@@ -167,9 +180,7 @@ export const TableBal = styled.table.attrs((props) => ({
     }
   }
 `;
-
-export const DeleteBtn = styled.button`
-  border: none;
+export const DeleteBtn = styled.button`  border: none;
   background-color: transparent;
   width: 32px;
   height: 32px;
@@ -182,12 +193,8 @@ export const DeleteBtn = styled.button`
   :hover {
     cursor: pointer;
     background-color: ${colors.grayLight};
-  }
-`;
-
-export const DeleteIcon = styled(Delete)`
-  /* position: absolute; */
-  fill: #52555f;
+  }`;
+export const DeleteIcon = styled(Delete)`  /* position: absolute; */
+  fill: #52555F;
   width: 18px;
-  height: 18px;
-`;
+  height: 18px;  `;

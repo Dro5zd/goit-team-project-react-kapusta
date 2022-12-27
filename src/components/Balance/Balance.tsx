@@ -9,8 +9,8 @@ import {
   BackIcon,
   BalanceText,
   InputWrap,
-  CalendarSvg,
   InputButton,
+  CalendarSvg,
 } from "./Balance.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { RxCalendar } from "react-icons/rx";
@@ -55,7 +55,7 @@ export const Balance = () => {
     dispatch(setUserBalance(+balance));
     handleOpenModal();
   };
-  
+
   return (
     <>
       <BalanceContainer>

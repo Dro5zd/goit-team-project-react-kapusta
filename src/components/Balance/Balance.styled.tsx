@@ -115,20 +115,12 @@ export const BalanceForm = styled.form`
   letter-spacing: 0.02em;
   ${device.tablet} {
     border-radius: 20px;
-    padding: 12px 10px 12px 0;
-    margin-right: 15px;
-    justify-content: center;
-    text-align: center;
-    width: 125px;
-  }
-  ${device.desktop} {
+    padding: 12px 45px 13px 0;
     margin-right: 16px;
     width: 125px;
-    height: 44px;
-    padding: 12px 45px 13px 0;
     border-radius: 16px;
-    text-align: end;
   }
+
   &:placeholder-shown {
     text-align: end;
     font-weight: 700;
@@ -186,18 +178,19 @@ export const InputWrap = styled.div`
     display: inline-block;
   } */
 `;
-export const BalanceText = styled.span`
- position: absolute;
- top:16px;
- right:16px;
- font-weight: 700;
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  /* right: 10px; */
-  ${device.tablet} {
-     top: 17px;
+ export const BalanceText = styled.span`
+position: absolute;
+transform: translateY(-50%);
+top: 50%;
+right:16px;
+font-weight: 700;
+font-size: 12px;
+line-height: 1;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+/* right: 10px; */
+${device.tablet} {
+  /* top: 17px; */
   right: 32px;
   font-weight: 700;
   font-size: 12px;
@@ -205,11 +198,11 @@ export const BalanceText = styled.span`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: ${colors.black};
-  }
-  ${device.desktop} {
-    display: inline-block;
-    top: 16px;
-  }
+}
+${device.desktop} {
+  display: inline-block;
+  /* top: 16px; */
+}
 `;
 // export const BalanceInput = styled.input`
 //   border: 2px solid ${colors.white};

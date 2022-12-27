@@ -30,19 +30,42 @@ const Report = () => {
     }
   }, [categoriesArr]);
 
+  // const getData = useCallback((params) => {
+  //   getReportsByPeriod(params).then((data) => {
+  //     for (const dataKey in data.expenses) {
+  //       if (typeof data.expenses[dataKey] === "object") {
+  //         for (const key in data.expenses[dataKey]) {
+  //           setCategoriesArr((prevState) => [
+  //             ...prevState,
+  //             {
+  //               category: key,
+  //               total: data.expenses[dataKey][key].total,
+  //               data: data.expenses[dataKey][key],
+  //             },
+  //           ]);
+  //         }
+  //       }
+  //     }
+  //     setIsLoading(false);
+  //   });
+  // }, []);
+
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      for (const dataKey in data.expenses) {
-        if (typeof data.expenses[dataKey] === "object") {
-          for (const key in data.expenses[dataKey]) {
-            setCategoriesArr((prevState) => [
-              ...prevState,
-              {
-                category: key,
-                total: data.expenses[dataKey][key].total,
-                data: data.expenses[dataKey][key],
-              },
-            ]);
+      console.log("data.expenses", data.expenses.expensesData, data.expenses);
+      if (data?.expenses?.expensesData) {
+        const arr = [];
+        for (const key in data?.expenses?.expensesData) {
+          const isContainCategory = categoriesArr.some((el) => {
+            return el.category === key;
+          });
+          if (!isContainCategory) {
+            arr.push({
+              category: key,
+              total: data?.expenses?.expensesData[key].total,
+              data: data?.expenses?.expensesData[key],
+            });
+            setCategoriesArr(arr);
           }
         }
       }

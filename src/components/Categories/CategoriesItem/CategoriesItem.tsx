@@ -3,23 +3,24 @@ import {
   CategoriesIconWrapper,
   CategoriesItemWrapper,
   CategoriesName,
-  CategoriesTotalSum,
-} from "./CategoriesItem.styled";
+  CategoriesTotalSum, ShadowIcon,
+} from './CategoriesItem.styled';
 
 
 import { Link } from "react-router-dom";
 
-const CategoriesItem = ({ title, total, icon: Icon, onclickHandle }: any) => {
+const CategoriesItem = ({ title, total, icon: Icon, onclickHandle, active }: any) => {
 
     return (
-    <CategoriesItemWrapper onClick={(e)=>onclickHandle(e, title)}>
-      <CategoriesTotalSum>{total}</CategoriesTotalSum>
-      <CategoriesIconWrapper>
-        <Icon />
-        {/* <CategoriesIcon active={"true"} /> */}
-      </CategoriesIconWrapper>
-      <CategoriesName>{title}</CategoriesName>
-    </CategoriesItemWrapper>
+        <CategoriesItemWrapper onClick={(e) => onclickHandle(e, title)}>
+          <CategoriesTotalSum>{total}</CategoriesTotalSum>
+          <CategoriesIconWrapper >
+            <Icon className="category" active={active}/>
+            <ShadowIcon active={active} />
+            {/* <CategoriesIcon active={"true"} /> */}
+          </CategoriesIconWrapper>
+          <CategoriesName>{title}</CategoriesName>
+        </CategoriesItemWrapper>
   );
 };
 

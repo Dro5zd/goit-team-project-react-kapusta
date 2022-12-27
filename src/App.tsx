@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import {Navigate, Route, Routes, useLocation} from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -21,13 +21,25 @@ import { selectIsLoadingTransaction } from "./redux/transaction/transactions-sel
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
-  const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(selectIsLoading);
-  const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
+    const location = useLocation();
+    const urlSearchParams = new URLSearchParams(location.search);
+    const dispatch = useAppDispatch();
+    const accessToken = urlSearchParams.get("accessToken");
+    const isLoading = useAppSelector(selectIsLoading);
+    const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
+    console.log("accessToken", accessToken);
 
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+    useEffect(() => {
+        if (accessToken) {
+            if (location.pathname === "/") {
+                location.pathname = "/goit-team-project-react-kapusta/home/";
+            }
+        }
+    }, [accessToken]);
 
   return (
     <>

@@ -18,7 +18,7 @@ const CategoriesList = ({
     categories?.[0]?.category
   );
 
-  console.log("categoriesLis", categoriesList);
+  // console.log("categoriesLis", categoriesList);
 
   useEffect(() => {
     if (categoryTitle === "EXPENSES") {

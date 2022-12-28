@@ -23,7 +23,7 @@ export const SubHeaderReport = ({ expenseTotal, incomeTotal }: any) => {
   // const incomes = useAppSelector(selectTransactions);
   // const expenses = useAppSelector(selectTransactionsExpenses);
   // console.log(expenses);
-  console.log("ExpenseTot", expenseTotal);
+  // console.log("ExpenseTot", expenseTotal);
 
   const location = useLocation();
   return (

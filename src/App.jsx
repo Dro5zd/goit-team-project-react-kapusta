@@ -20,6 +20,8 @@ import { token } from "./http/http";
 import { selectIsLoading } from "./redux/auth/auth-selectors";
 import { selectIsLoadingTransaction } from "./redux/transaction/transactions-selectors";
 import { addToken } from "./redux/auth/authSlice";
+import { changeAccessToken } from "./http/services.user";
+import { toast } from "react-toastify";
 // import { selectSid } from "./redux/auth/auth-selectors";
 
 export const App = () => {
@@ -27,10 +29,10 @@ export const App = () => {
   const urlSearchParams = new URLSearchParams(location.search);
   const dispatch = useAppDispatch();
   const accessToken = urlSearchParams.get("accessToken");
-  // const isLoading = useAppSelector(selectIsLoading);
-  // const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
+  const isLoading = useAppSelector(selectIsLoading);
+  const isLoadingTrx = useAppSelector(selectIsLoadingTransaction);
 
-  // console.log("accessToken", accessToken);
+  console.log("accessToken", accessToken);
 
   useEffect(() => {
     dispatch(getUser());
@@ -38,9 +40,13 @@ export const App = () => {
 
   useEffect(() => {
     if (accessToken) {
-      token.set(accessToken);
-      dispatch(addToken(accessToken));
-      dispatch(getUser());
+      changeAccessToken(accessToken)
+        .then(() => {
+          dispatch(addToken(accessToken)).unwrap();
+        })
+        .then(() => dispatch(getUser()))
+        .catch(() => toast.error("Error"));
+
       if (location.pathname === "/") {
         location.pathname = "/goit-team-project-react-kapusta/home";
         /*eslint-enable */
@@ -49,11 +55,11 @@ export const App = () => {
   }, [accessToken]);
 
   return (
-    // <BrowserRouter basename="goit-team-project-react-kapusta">
+    <BrowserRouter basename="goit-team-project-react-kapusta">
       <div>
-       {/*<Loader isLoading={isLoading || isLoadingTrx} />*/}
-      <GlobalStyle />
-      <Header />
+        <Loader isLoading={isLoading || isLoadingTrx} />
+        <GlobalStyle />
+        <Header />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route
@@ -104,8 +110,7 @@ export const App = () => {
             <Route path="/*" element={<NotFound />} />
           </Route>
         </Routes>
-
       </div>
-    // </BrowserRouter>
+    </BrowserRouter>
   );
 };

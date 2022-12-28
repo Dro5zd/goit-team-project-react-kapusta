@@ -60,10 +60,11 @@ const authSlice = createSlice({
   initialState: authInitialState,
   reducers: {
     addToken(state, action) {
-      // console.log("addToken", action.payload);
-
-      state.token = action.payload.accessToken;
-      token.set(action.payload.accessToken);
+      console.log("addToken", action.payload);
+      state.isLoading = false;
+      state.token = action.payload;
+      token.set(action.payload);
+      state.isAuth = true;
     },
   },
   extraReducers: (builder) => {

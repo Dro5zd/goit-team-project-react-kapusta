@@ -40,7 +40,6 @@ const Report = () => {
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
-      console.log("data", data, data?.expenses?.expenseTotal);
       if (data?.expenses?.expensesData) {
         setExpenseTotal(data?.expenses?.expenseTotal);
         const arr = [];

@@ -9,48 +9,30 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 
-import { addIncome } from "../../redux/transaction/transactions-operations";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
   Title,
-  ChartDataLabels,
   Tooltip,
   Legend
 );
 
-export function MainChart({ chartData }) {
+export function ChartVertical({ chartData }) {
   const labels = Object.keys(chartData);
+
   const options = {
-    plugins: [ChartDataLabels],
-    options: {
-      plugins: {
-        legend: {
-          display: false,
-        },
-        datalabels: {
-          color: 'white',
-          anchor: "end",
-          align: "end",
-          offset: 10,
-        },
-      },
-    },
     plugins: {
       legend: {
         display: false,
       },
     },
-
     type: "bar",
 
-    indexAxis: "y",
     scales: {
-      x: {
+      y: {
         beginAtZero: true,
         ticks: { display: false },
         grig: {
@@ -93,28 +75,11 @@ export function MainChart({ chartData }) {
           align: "end",
           offset: 5,
         }
-        // indexAxis: 'y',
-
-        // scales: {
-        //   y: {
-        //     beginAtZero: true,
-        //     ticks: {
-        //       display: false
-        //     },
-        //     grid: {
-        //       borderColor: 'red',
-        //       borderWidth: 6
-        //     }
-        //   }
-        // }
       },
     ],
   };
 
   return (
-
-
-
-      <Bar options={options} data={data} />
+    <Bar options={options} data={data}/>
   );
 }

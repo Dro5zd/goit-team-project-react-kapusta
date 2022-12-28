@@ -4,10 +4,14 @@ import {colors} from '../../utils/colors';
 import {device} from '../../utils/mixins';
 
 export const List = styled.ul`  margin: 0 auto;
-  margin-top: 60px;
+  margin: 0 auto;
+  margin-top: 70px;
   padding: 20px 20px 12px 20px;
-  margin-bottom: 40px;
+  margin-bottom: 53px;
   width: 100%;
+  /* max-height: 508px; */
+  max-height: 440px;
+  overflow-y: scroll;
 
   ${device.mobile} {
   }`;

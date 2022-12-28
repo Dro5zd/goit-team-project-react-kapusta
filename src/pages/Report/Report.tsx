@@ -5,12 +5,14 @@ import { BackgroundMain } from "../../components/BackgroundMain/BackgroundMain";
 import { Box } from "../Expenses/Expenses.styled";
 import CategoriesList from "../../components/Categories/CategoriesList/CategoriesList";
 import SelDataPicker from "../../components/DatePicker/DatePicker";
-import { MainChart } from "../../components/Chart/MainChart";
 import { getReportsByPeriod } from "../../http/services.user";
 import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../components/Loader/Loader";
 import { BackgroundMobil } from "../../components/BackgroundMobil/BackgroundMobil";
 import { SubHeaderReport } from "../../components/SubHeaderReport/SubHeaderReport";
+import { ChartVertical } from "../../components/Chart/ChartVertical";
+import { MainChart } from "../../components/Chart/MainChart";
+
 
 const Report = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -135,10 +137,10 @@ const Report = () => {
             />
             {/* <ExpensesTypes /> */}
           </Box>
-          <Box page="report">
+          {/*<Box page="report">*/}
             {/*// @ts-ignore*/}
             {chartData?.data && <MainChart chartData={chartData?.data} />}
-          </Box>
+          {/*</Box>*/}
         </Container>
       </BackgroundMobil>
 
@@ -159,7 +161,7 @@ const Report = () => {
           </Box>
           <Box page="report">
             {/*// @ts-ignore*/}
-            {chartData?.data && <MainChart chartData={chartData?.data} />}
+            {chartData?.data && <ChartVertical chartData={chartData?.data} />}
           </Box>
         </Container>
       </BackgroundMain>

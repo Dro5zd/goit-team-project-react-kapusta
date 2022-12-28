@@ -16,7 +16,6 @@ const persistedAuthReducer = persistReducer(authConfig, authReducer)
 const rootReducer = combineReducers({
     auth: persistedAuthReducer,
     transactions: transactionsReducer,
-    // user: userReducer
 })
 
 export const store = configureStore({

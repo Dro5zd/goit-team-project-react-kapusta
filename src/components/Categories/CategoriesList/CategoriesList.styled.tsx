@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { colors } from "../../utils/colors";
 import { device } from "../../../utils/mixins";
 import { colors } from "../../../utils/colors";
 
@@ -9,9 +8,6 @@ interface IBox {
 
 export const StyledDiv = styled.div`
   margin: 0 auto 20px;
-  //margin-left: auto;
-  //margin-right: auto;
-  //margin-bottom: 20px;
 
   .buttons-wrapper {
     display: flex;
@@ -55,20 +51,9 @@ export const StyledDiv = styled.div`
     ${device.tablet} {
       width: 623px;
     }
-
-    /* svg {
-      fill: #071f41;
-    } */
   }
 `;
 export const CategoriesListWrapper = styled.div`
-  /* flex-direction: column; */
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px; */
-
   width: 280px;
   margin: 0 auto;
   display: flex;

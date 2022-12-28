@@ -12,7 +12,7 @@ export const WrapperHeader = styled.div`
   max-height: 56px;
   background-color: #fff;
   width: 100%;
-  /* padding: 12px 20px;
+    /* padding: 12px 20px;
   align-items: center;
   ${device.tablet} {
     padding: 12px 32px;

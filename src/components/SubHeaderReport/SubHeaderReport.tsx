@@ -24,9 +24,6 @@ export const SubHeaderReport = ({ expenseTotal, incomeTotal }: any) => {
   const incomes = useAppSelector(selectTransactionsIncomes);
   const expenses = useAppSelector(selectTransactionsExpenses);
 
-  // console.log(expenses);
-  console.log("ExpenseTot", expenseTotal);
-
   const location = useLocation();
   return (
     <SubBox>

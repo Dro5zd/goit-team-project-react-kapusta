@@ -137,7 +137,6 @@ const transactionsSlice = createSlice({
           state.isLoading = false;
           state.error = null;
           // console.log("getExpens", action.payload.expenses);
-
           state.transaction.expenses = action.payload.expenses;
           state.transaction.monthExpensesStats = action.payload.monthsStats;
         }
@@ -183,5 +182,4 @@ const transactionsSlice = createSlice({
       });
   },
 });
-// export const { filterTransaction } = transactionsSlice.actions;
 export const transactionsReducer = transactionsSlice.reducer;

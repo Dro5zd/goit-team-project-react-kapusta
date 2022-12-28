@@ -67,7 +67,8 @@ export const CategoriesIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: ${(p) => (p.active ? `${colors.orange}` : `#071F41`)};
+
+  color: ${(p: any) => (p.active ? `${colors.orange}` : `#071F41`)};
 
   svg.category {
     position: relative;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import loader from '../../assets/images/loader-orange.png'
 
 type LoaderWrapperType = {
     disable: boolean
@@ -26,7 +27,7 @@ export const LoaderBody = styled.div`
 
   &:after {
     content: "";
-    background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+    background-image: url(${loader});
     background-repeat: no-repeat;
     background-position-x: 50%;
     background-position-y: 50%;

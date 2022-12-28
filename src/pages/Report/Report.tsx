@@ -132,15 +132,14 @@ const Report = () => {
           <Box page="report">
             {/*// @ts-ignore*/}
             <CategoriesList
+                categoriesIncome={categoriesIncome}
               categories={categoriesArr}
               onclickHandle={onclickHandle}
+                onChangeType={onChangeType}
             />
-            {/* <ExpensesTypes /> */}
           </Box>
-          {/*<Box page="report">*/}
             {/*// @ts-ignore*/}
             {chartData?.data && <MainChart chartData={chartData?.data} />}
-          {/*</Box>*/}
         </Container>
       </BackgroundMobil>
 

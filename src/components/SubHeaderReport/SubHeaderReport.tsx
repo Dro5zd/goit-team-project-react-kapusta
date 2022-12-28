@@ -18,11 +18,14 @@ import {
   Icon,
 } from "./SubHeadReport.styled";
 
-export const SubHeaderReport = () => {
+export const SubHeaderReport = ({ expenseTotal, incomeTotal }: any) => {
   const balance = useAppSelector(selectBalance);
+
   const incomes = useAppSelector(selectTransactionsIncomes);
   const expenses = useAppSelector(selectTransactionsExpenses);
+
   // console.log(expenses);
+  console.log("ExpenseTot", expenseTotal);
 
   const location = useLocation();
   return (
@@ -41,10 +44,10 @@ export const SubHeaderReport = () => {
       <MobileSummary>
         <Title>
           Expenses:{" "}
-          <SummarySpan color="red">- {expenses[0]?.amount}.00 UAH.</SummarySpan>{" "}
+          <SummarySpan color="red">- {expenseTotal}.00 UAH.</SummarySpan>{" "}
         </Title>
         <Title>
-          Income: <SummarySpan>+ {incomes[0]?.amount}.00 UAH.</SummarySpan>
+          Income: <SummarySpan>+ {incomeTotal}.00 UAH.</SummarySpan>
         </Title>
       </MobileSummary>
     </SubBox>

@@ -16,6 +16,8 @@ const Report = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [categoriesArr, setCategoriesArr] = useState([]);
   const [categoriesIncome, setCategoriesIncome] = useState([]);
+  const [expenseTotal, setExpenseTotal] = useState(0);
+  const [incomeTotal, setIncomeTotal] = useState(0);
   const [chartData, setChartData] = useState({});
   const [categoriesType, setCategoriesType] = useState("EXPENSES");
 
@@ -34,12 +36,13 @@ const Report = () => {
         setChartData(data);
       }
     }
-    console.log("chartData", chartData, categoriesType);
   }, [categoriesType, categoriesArr, categoriesIncome]);
 
   const getData = useCallback((params) => {
     getReportsByPeriod(params).then((data) => {
+      console.log("data", data, data?.expenses?.expenseTotal);
       if (data?.expenses?.expensesData) {
+        setExpenseTotal(data?.expenses?.expenseTotal);
         const arr = [];
         for (const key in data?.expenses?.expensesData) {
           const isContainCategory = categoriesArr.some((el) => {
@@ -56,8 +59,8 @@ const Report = () => {
         }
       }
 
-      console.log("data?.incomes?.expensesD", data);
       if (data?.incomes?.incomesData) {
+        setIncomeTotal(data?.incomes?.incomeTotal);
         const arr = [];
         for (const key in data?.incomes?.incomesData) {
           const isContainCategory = categoriesArr.some((el) => {
@@ -78,8 +81,6 @@ const Report = () => {
     });
   }, []);
 
-  console.log("categoriesIncome", categoriesIncome);
-
   const [fetchData, isError] = useFetch(getData);
 
   useEffect(() => {
@@ -97,7 +98,6 @@ const Report = () => {
   };
 
   const onclickHandle = (e, title, categoryTitle) => {
-    console.log(" categoryTitle", categoryTitle, title);
     setCategoriesType(categoryTitle);
     let data = [];
     if (categoryTitle === "EXPENSES") {
@@ -113,7 +113,11 @@ const Report = () => {
     <>
       <BackgroundMobil>
         <Container>
-          <SubHeaderReport />
+          <SubHeaderReport
+            expenseTotal={expenseTotal}
+            incomeTotal={incomeTotal}
+          />
+
           <Box page="report">
             <CategoriesList
               categories={categoriesArr}
@@ -128,7 +132,10 @@ const Report = () => {
       </BackgroundMobil>
 
       <BackgroundMain>
-        <SubHeaderReport />
+        <SubHeaderReport
+          expenseTotal={expenseTotal}
+          incomeTotal={incomeTotal}
+        />
         <Container>
           <Box page="report">
             <CategoriesList
@@ -137,7 +144,6 @@ const Report = () => {
               onclickHandle={onclickHandle}
               onChangeType={onChangeType}
             />
-            {/* <ExpensesTypes /> */}
           </Box>
           <Box page="report">
             {chartData?.data && <MainChart chartData={chartData?.data} />}

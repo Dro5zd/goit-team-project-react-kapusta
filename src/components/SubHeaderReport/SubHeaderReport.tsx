@@ -4,7 +4,7 @@ import SelDataPicker from "../DatePicker/DatePicker";
 import { useAppSelector } from "../../redux/store";
 import { selectBalance } from "../../redux/auth/auth-selectors";
 import {
-  selectTransactions,
+  selectTransactionsIncomes,
   selectTransactionsExpenses,
 } from "../../redux/transaction/transactions-selectors";
 import {
@@ -20,7 +20,7 @@ import {
 
 export const SubHeaderReport = () => {
   const balance = useAppSelector(selectBalance);
-  const incomes = useAppSelector(selectTransactions);
+  const incomes = useAppSelector(selectTransactionsIncomes);
   const expenses = useAppSelector(selectTransactionsExpenses);
   // console.log(expenses);
 

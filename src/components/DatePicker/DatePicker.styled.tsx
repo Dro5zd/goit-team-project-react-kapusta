@@ -13,6 +13,7 @@ export const MonthPicker = styled.div`
     letter-spacing: 0.04em;
     color: rgba(82, 85, 95, 0.7);
   }
+
   div {
     margin-top: 5px;
     display: flex;

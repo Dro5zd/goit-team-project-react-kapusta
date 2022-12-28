@@ -15,4 +15,4 @@ export const selectMonthIncomeStats = (state: RootState) =>
 export const selectIsLoadingTransaction = (state: RootState) =>
   state.transactions.isLoading;
 export const selectError = (state: RootState) => state.transactions.error;
-// export const selectTransactionFilter = (state: RootState) => state.transactions.filter;
+

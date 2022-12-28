@@ -26,25 +26,28 @@ const Report = () => {
     if (categoriesType === "EXPENSES") {
       if (categoriesArr[0]) {
         data = categoriesArr[0];
+        // @ts-ignore
         delete data.data.total;
         setChartData(data);
       }
     } else {
       if (categoriesIncome[0]) {
         data = categoriesIncome[0];
+        // @ts-ignore
         delete data.data.total;
         setChartData(data);
       }
     }
   }, [categoriesType, categoriesArr, categoriesIncome]);
 
-  const getData = useCallback((params) => {
+  const getData = useCallback((params: any) => {
     getReportsByPeriod(params).then((data) => {
       if (data?.expenses?.expensesData) {
         setExpenseTotal(data?.expenses?.expenseTotal);
         const arr = [];
         for (const key in data?.expenses?.expensesData) {
           const isContainCategory = categoriesArr.some((el) => {
+            // @ts-ignore
             return el.category === key;
           });
           if (!isContainCategory) {
@@ -53,6 +56,7 @@ const Report = () => {
               total: data?.expenses?.expensesData[key].total,
               data: data?.expenses?.expensesData[key],
             });
+            // @ts-ignore
             setCategoriesArr(arr);
           }
         }
@@ -63,6 +67,7 @@ const Report = () => {
         const arr = [];
         for (const key in data?.incomes?.incomesData) {
           const isContainCategory = categoriesArr.some((el) => {
+            // @ts-ignore
             return el.category === key;
           });
           if (!isContainCategory) {
@@ -71,6 +76,7 @@ const Report = () => {
               total: data?.incomes?.incomesData[key].total,
               data: data?.incomes?.incomesData[key],
             });
+            // @ts-ignore
             setCategoriesIncome(arr);
           }
         }
@@ -85,6 +91,7 @@ const Report = () => {
   useEffect(() => {
     setIsLoading(true);
     const date = "2022-12";
+    // @ts-ignore
     fetchData(date);
   }, [fetchData]);
 
@@ -92,18 +99,21 @@ const Report = () => {
     return <Loader isLoading={isLoading} />;
   }
 
-  const onChangeType = (type) => {
+  const onChangeType = (type: any) => {
     setCategoriesType(type);
   };
 
-  const onclickHandle = (e, title, categoryTitle) => {
+  const onclickHandle = (e: number, title: string, categoryTitle: string) => {
     setCategoriesType(categoryTitle);
     let data = [];
     if (categoryTitle === "EXPENSES") {
+      // @ts-ignore
       data = categoriesArr?.find((el) => el.category === title);
     } else {
+      // @ts-ignore
       data = categoriesIncome?.find((el) => el.category === title);
     }
+    // @ts-ignore
     delete data.data.total;
     setChartData(data);
   };
@@ -118,6 +128,7 @@ const Report = () => {
           />
 
           <Box page="report">
+            {/*// @ts-ignore*/}
             <CategoriesList
               categories={categoriesArr}
               onclickHandle={onclickHandle}
@@ -125,11 +136,13 @@ const Report = () => {
             {/* <ExpensesTypes /> */}
           </Box>
           <Box page="report">
+            {/*// @ts-ignore*/}
             {chartData?.data && <MainChart chartData={chartData?.data} />}
           </Box>
         </Container>
       </BackgroundMobil>
 
+  {/*// @ts-ignore*/}
       <BackgroundMain>
         <SubHeaderReport
           expenseTotal={expenseTotal}
@@ -145,6 +158,7 @@ const Report = () => {
             />
           </Box>
           <Box page="report">
+            {/*// @ts-ignore*/}
             {chartData?.data && <MainChart chartData={chartData?.data} />}
           </Box>
         </Container>

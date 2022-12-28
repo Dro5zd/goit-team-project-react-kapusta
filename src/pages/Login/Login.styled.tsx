@@ -15,10 +15,12 @@ export const Container = styled.div`
     padding: 13vh 0 155px;
     height: 100%;
   }
+
   ${device.desktop} {
     padding: 13vh 0 30px;
     height: 100%;
-  } ;
+  }
+;
 `;
 export const Content = styled.div`
   width: 100%;

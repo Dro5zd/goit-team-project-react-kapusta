@@ -22,9 +22,6 @@ const Expenses = () => {
   const expensesList = useAppSelector(selectTransactionsExpenses);
   const summaryExpense = useAppSelector(selectMonthExpensesStats);
 
-  // console.log("expensesLis", expensesList);
-  // console.log("summaryExpense", summaryExpense);
-
   useEffect(() => {
     dispatch(getExpense());
   }, [dispatch]);

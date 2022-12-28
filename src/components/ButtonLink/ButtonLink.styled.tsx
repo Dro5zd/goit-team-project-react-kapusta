@@ -18,12 +18,10 @@ export const StyledLink = styled(NavLink)`
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: ${(p) => (p.color ? "#ffffff" : "#52555F")};
-  filter: drop-shadow(
-    ${(p) =>
-      p.color
-        ? "1px 3px 5px rgba(255, 107, 8, 0.35)"
-        : "1px 3px 5px rgba(82, 85, 95, 0.15)"}
-  );
+  filter: drop-shadow(${(p) =>
+          p.color
+                  ? "1px 3px 5px rgba(255, 107, 8, 0.35)"
+                  : "1px 3px 5px rgba(82, 85, 95, 0.15)"});
 
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

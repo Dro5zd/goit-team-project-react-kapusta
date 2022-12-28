@@ -13,7 +13,7 @@ export const NotFoundWrapper = styled.div`
 
 export const NotFoundTitle = styled.h2`
   //margin: 0 auto;
- font-size: 60px;
+  font-size: 60px;
 `
 export const NotFoundLogo = styled.h3`
   //margin: 0 auto;

@@ -32,23 +32,22 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-   border: 2px solid ${colors.white};
-  ${device.tablet}{
-    border: 2px solid ${colors.grayBg};
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 2px solid ${colors.white};
+
+    ${device.tablet} {
+      border: 2px solid ${colors.grayBg};
+    }
+    -webkit-text-fill-color: #52555f;
+    transition: background-color 5000s ease-in-out 0s;
   }
-  /* border: none; */
-  -webkit-text-fill-color: #52555f;
-  /* -webkit-box-shadow: 0 0 0 1000px #f6f7fb inset; */
-  transition: background-color 5000s ease-in-out 0s;
-}
 `;
 
 export const Container = styled.div`
@@ -75,17 +74,5 @@ export const Container = styled.div`
     width: ${size.desktop};
   }
 `;
-
-// export const ContainerMobilHome = styled.div`
-// width: 100%;
-// min-height: calc(100vh - 56px);
-// display: flex;
-// flex-direction: column;
-// justify-content: space-between;
-// padding: 40px 0 0 0;
-//   ${device.tablet}{
-//     display: none;
-//   }
-// `
 
 export default GlobalStyle;

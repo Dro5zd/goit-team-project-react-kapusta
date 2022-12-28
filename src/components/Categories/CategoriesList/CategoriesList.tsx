@@ -1,30 +1,32 @@
-import CategoriesItem from '../CategoriesItem/CategoriesItem';
-import {CategoriesListWrapper, StyledDiv} from './CategoriesList.styled';
-import {ReactComponent as LeftArrow} from '../../../assets/images/svg/expenses/arrow-left.svg';
-import {ReactComponent as RightArrow} from '../../../assets/images/svg/expenses/arrow-right.svg';
-import {categoryData} from './CategoriesData';
-import {useEffect, useState} from 'react';
+import CategoriesItem from "../CategoriesItem/CategoriesItem";
+import { CategoriesListWrapper, StyledDiv } from "./CategoriesList.styled";
+import { ReactComponent as LeftArrow } from "../../../assets/images/svg/expenses/arrow-left.svg";
+import { ReactComponent as RightArrow } from "../../../assets/images/svg/expenses/arrow-right.svg";
+import { categoryData } from "./CategoriesData";
+import { useEffect, useState } from "react";
 
 interface ICategoriesListProps {
-  categories: any,
-  onclickHandle: any,
-  categoriesIncome: any,
-  onChangeType: any
+  categories: any;
+  onclickHandle: any;
+  categoriesIncome: any;
+  onChangeType: any;
 }
 const CategoriesList = ({
-                          categories,
-                          onclickHandle,
-                          categoriesIncome,
-                          onChangeType,
-                        }: ICategoriesListProps) => {
-  const [categoryTitle, setCategoryTitle] = useState('EXPENSES');
+  categories,
+  onclickHandle,
+  categoriesIncome,
+  onChangeType,
+}: ICategoriesListProps) => {
+  const [categoryTitle, setCategoryTitle] = useState("EXPENSES");
   const [categoriesList, setCategoriesList] = useState(categories);
   const [activeCategory, setActiveCategory] = useState(
     categories?.[0]?.category
   );
 
+  // console.log("categoriesLis", categoriesList);
+
   useEffect(() => {
-    if (categoryTitle === 'EXPENSES') {
+    if (categoryTitle === "EXPENSES") {
       setCategoriesList(categories);
       setActiveCategory(categories?.[0]?.category);
     } else {
@@ -34,12 +36,12 @@ const CategoriesList = ({
   }, [categoryTitle]);
 
   const handleCategoryChanger = () => {
-    if (categoryTitle === 'EXPENSES') {
-      setCategoryTitle('INCOME');
-      onChangeType('INCOME');
+    if (categoryTitle === "EXPENSES") {
+      setCategoryTitle("INCOME");
+      onChangeType("INCOME");
     } else {
-      setCategoryTitle('EXPENSES');
-      onChangeType('EXPENSES');
+      setCategoryTitle("EXPENSES");
+      onChangeType("EXPENSES");
     }
   };
 
@@ -61,7 +63,7 @@ const CategoriesList = ({
           className="arrow-btn"
           onClick={handleCategoryChanger}
         >
-          <LeftArrow/>
+          <LeftArrow />
         </button>
         <h2 className="expenses-title">{categoryTitle}</h2>
         <button
@@ -69,11 +71,11 @@ const CategoriesList = ({
           className="arrow-btn"
           onClick={handleCategoryChanger}
         >
-          <RightArrow/>
+          <RightArrow />
         </button>
       </div>
       <CategoriesListWrapper className="HELLOO">
-        {categoriesList?.map(({category, total}: any, index: string) => {
+        {categoriesList?.map(({ category, total }: any, index: string) => {
           return (
             <CategoriesItem
               icon={createCategoryIcon(category)}

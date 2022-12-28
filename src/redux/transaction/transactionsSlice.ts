@@ -97,7 +97,7 @@ const handlePending = (state: ITransactionsInitState) => {
 };
 const handleRejected = (state: ITransactionsInitState, action: any) => {
   state.isLoading = false;
-  Notify.failure(`Something went wrong`);
+  // Notify.failure(`Something went wrong`);
   state.error = action.payload;
 };
 

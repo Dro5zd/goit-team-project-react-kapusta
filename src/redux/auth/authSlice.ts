@@ -60,7 +60,7 @@ const authSlice = createSlice({
   initialState: authInitialState,
   reducers: {
     addToken(state, action) {
-      console.log("addToken", action.payload);
+      // console.log("addToken", action.payload);
       state.isLoading = false;
       state.token = action.payload;
       token.set(action.payload);

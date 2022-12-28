@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as Backspace } from "../../../assets/images/svg/backspase.svg";
-
+import { colors } from "../../../utils/colors";
 export const ContainerModal = styled.div`
   position: relative;
   padding: 16px 20px;
@@ -8,6 +8,7 @@ export const ContainerModal = styled.div`
 `;
 
 export const BackspaceButton = styled(Backspace)`
+  fill: ${colors.orange};
   margin-bottom: 16px;
   cursor: pointer;
 `;

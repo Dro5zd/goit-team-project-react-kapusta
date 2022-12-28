@@ -7,7 +7,7 @@ export const List = styled.ul`  margin: 0 auto;
   margin-top: 60px;
   padding: 20px 20px 12px 20px;
   margin-bottom: 40px;
-  width: 320px;
+  width: 100%;
 
   ${device.mobile} {
   }`;
